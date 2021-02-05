@@ -1,33 +1,39 @@
-
-
-
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-     <!--    <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Contact List</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Contact List</li>
-            </ol>
-          </div>
-        </div> -->
-      </div>
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="card">
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-12 mb-2 mt-1">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                          <!--   <h5 class="content-header-title float-left pr-1 mb-0">Profile</h5>
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb p-0 mb-0">
+                                    <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="#">Form Elements</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Input
+                                    </li>
+                                </ol>
+                            </div> --> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-body">
+                <!-- Basic Inputs start -->
+                <section id="basic-input">
+                    <div class="row">
+                        <div class="col-md-12">
+       <div class="card">
         <div class="card-header">
-          <h4>Profile</h4>
+           <h4>Profile</h4>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
             <form action="<?php echo base_url('admin/add_client_data'); ?>" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
             <ul class="nav nav-tabs" id="custom-content-above-tab" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" id="custom-content-above-home-tab" data-toggle="pill" href="#custom-content-above-home" role="tab" aria-controls="custom-content-above-home" aria-selected="true">Customer Details</a>
@@ -228,16 +234,14 @@
                
                 </div>
     </div>
-      <!-- /.card -->
-    </section>
-    <!-- /.content -->
-  </div>
- 
+                        </div>
+                    </div>
+                </section>
+                <!-- Basic Inputs end -->
 
+              
 
- <script type="text/javascript">
-        $(document).ready(function() {
-            $('.group').select2();
-        });
+            </div>
+        </div>
+    </div>
 
-    </script>

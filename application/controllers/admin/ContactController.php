@@ -7,6 +7,7 @@ class ContactController extends MY_Controller
   {
     parent::__construct();
     $this->load->model('admin/ContactsModel');
+    
 
   }
 
@@ -28,7 +29,7 @@ class ContactController extends MY_Controller
    $this->admin_load('contacts/add_client',$data);
  }
  public function insertClient(){
-
+    
   if ($this->form_validation->run('add_client') == FALSE)
   {
     $data['title'] = "Add Customers";
@@ -127,9 +128,8 @@ public function editClient($id){
             // delete customer and customer's contacts
 public function deleteClient($customer_id){
   $deleteClient = $this->ContactsModel->deleteClient($customer_id);
-  if($deleteClient){
-    return redirect('admin/clients');
-  }
+ 
+  return redirect('admin/clients');
 }
 
 public function viewContactlistById($id){
@@ -140,7 +140,7 @@ public function viewContactlistById($id){
   // echo "<pre>";
   //   print_r($data);
   //   die;
-  $this->ladmin_load('contacts/edit_client_contact',$data);
+  $this->admin_load('contacts/edit_client_contact',$data);
 
 }
       // delete contact by customer id and contact id

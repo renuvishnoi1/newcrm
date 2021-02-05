@@ -65,9 +65,9 @@ class Auth extends MY_Controller
 			else
 			{
 		
-    $query1=$this->db->query("SELECT * from tbl_admin where email = '".$email."' ");
-    if ($query1->num_rows()>0)
-{
+		    $query1=$this->db->query("SELECT * from tbl_admin where email = '".$email."' ");
+		    if ($query1->num_rows()>0)
+		{
             $res = $query1->result();
             $user=$res[0];
 			$this->load->helper('string');

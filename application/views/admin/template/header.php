@@ -38,6 +38,11 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/assets/css/style.css">
     <!-- END: Custom CSS-->
 
+     <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/vendors/css/tables/datatable/datatables.min.css">
+    <!-- END: Vendor CSS-->
+
 </head>
 <!-- END: Head-->
 

@@ -35,7 +35,7 @@
                   <!-- card-body -->
                   <div class="card-body">
                    <div class="_buttons">
-                    <a href="<?php echo base_url('admin/add_contact/') ?><?php echo $userid; ?>" class="btn btn-info mright5 test pull-left display-block">
+                    <a href="<?php echo base_url('admin/add_contact/') ?><?php echo $userid; ?>" class="btn btn-info mright5 test pull-left ">
                     New Contact</a>
                   </div>
                   <br>

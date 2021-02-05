@@ -97,11 +97,7 @@
                 </div>
                 <div class="form-group">
                   <label>Default Language</label>
-                 <!--  <select class="form-control select2bs4" name="default_language" style="width: 100%;">
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    
-                  </select>  -->  
+                     
                   <select name="default_language" id="default_language" class="form-control selectpicker" >
                       
                         <?php foreach($this->app->get_available_languages() as $availableLanguage){

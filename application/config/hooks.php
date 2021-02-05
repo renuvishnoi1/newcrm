@@ -17,3 +17,6 @@ $hook['post_controller_constructor'] = array(
     'filename' => 'LanguageLoader.php',
     'filepath' => 'hooks'
 );
+if (file_exists(APPPATH . 'config/my_hooks.php')) {
+    include_once(APPPATH . 'config/my_hooks.php');
+}

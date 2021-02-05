@@ -23,9 +23,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+function db_prefix()
+{
+    return defined('APP_DB_PREFIX') ? APP_DB_PREFIX : 'tbl';
+}
 date_default_timezone_set("Asia/Kolkata");
 
-$config['base_url'] = 'http://localhost/crm-fresh/';
+
+$config['base_url'] = 'http://localhost/newcrm/';
 
 /*
 |--------------------------------------------------------------------------

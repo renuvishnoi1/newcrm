@@ -93,11 +93,20 @@
     <script src="<?php echo base_url();?>assets/backend/app-assets/js/scripts/components.js"></script>
     <script src="<?php echo base_url();?>assets/backend/app-assets/js/scripts/footer.js"></script>
     <!-- END: Theme JS-->
-
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
+    <script src=".<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js"></script>
+    <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
+    <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
+    <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js"></script>
+    <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
+    <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
+    <!-- END: Page Vendor JS-->
     <!-- BEGIN: Page JS-->
     <script src="<?php echo base_url();?>assets/backend/app-assets/js/scripts/pages/dashboard-ecommerce.js"></script>
     <!-- END: Page JS-->
-
+     <script src="<?php echo base_url();?>assets/app-assets/js/scripts/forms/select/form-select2.js"></script>
 </body>
 <!-- END: Body-->
 

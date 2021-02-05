@@ -1,25 +1,38 @@
 
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-
-  </section>
-
-  <!-- Main content -->
-  <section class="content">
-    <div class="card">
-      <div class="card-header">
-          <!-- <div class="_buttons">
-              <a href="<?php //echo base_url('admin/add_contact'); ?>" class="btn btn-info mright5 test pull-left display-block">
-                     Add Contact</a>
-             
-                   </div> -->
-                 </div>
-                 <!-- /.card-header -->
-                 <div class="card-body">
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-12 mb-2 mt-1">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                           <!--  <h5 class="content-header-title float-left pr-1 mb-0">Input</h5>
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb p-0 mb-0">
+                                    <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="#">Form Elements</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Input
+                                    </li>
+                                </ol>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-body">
+                <!-- Basic Inputs start -->
+                <section id="basic-input">
+                    <div class="row">
+                        <div class="col-md-12">
+       <div class="card">
+       
+        <!-- /.card-header -->
+         <div class="card-body">
                    <br>
                    <div class="table-responsive">
-                    <table id="book-table" class="table table-bordered table-striped table-hover">
+                    <table id="book-table" class="table table-bordered table-striped table-hover ">
                      <thead>
                        <tr>
                         <th>First Name</th>
@@ -67,14 +80,22 @@
                   </table> 
                 </div>     
               </div>
-              <!-- /.card-body -->
+       <div class="card-footer">
+                 <!--  <button type="submit" class="btn btn-primary">Submit</button> -->
+               
+                </div>
+    </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Basic Inputs end -->
+
+              
+
             </div>
-            <!-- /.card -->
-          </section>
-          <!-- /.content -->
         </div>
-       
-        <!-- page script -->
+    </div>
+   
         <script type="text/javascript">
           $(document).ready(function() {
             $('#book-table').DataTable();
