@@ -98,13 +98,19 @@ public function deleteClient($customer_id){
   // die;
     return $query;
 }
-public function updateClientStatus($course_id,$status){
-  $data['active'] = $status;
-  $this->db->where('userid', $course_id);
-  $query = $this->db->update('tblclients',$data);
+// public function updateClientStatus($course_id,$status){
+//   $data['active'] = $status;
+//   $this->db->where('userid', $course_id);
+//   $query = $this->db->update('tblclients',$data);
   
-  return $query;
-}
+//   return $query;
+// }
+ public function updateStatus($id,$data,$table){
+        $this->db->where($id);
+        $query = $this->db->update($table,$data);
+        return $query;
+        
+    }
 
 }
 ?>

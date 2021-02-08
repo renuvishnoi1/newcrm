@@ -4,7 +4,7 @@
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mr-auto"><a class="navbar-brand" href="<?php echo base_url();?>assets/backend/html/ltr/vertical-menu-template-semi-dark/index.html">
                         <div class="brand-logo"><img class="logo" src="<?php echo base_url();?>assets/backend/app-assets/images/logo/logo.png" /></div>
-                        <h2 class="brand-text mb-0">Frest</h2>
+                        <h2 class="brand-text mb-0">CRM</h2>
                     </a></li>
                 <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
             </ul>
@@ -26,26 +26,27 @@
                 </li> -->
                 <li class=" nav-item"><a href="<?php echo base_url('admin/clients'); ?>"><i class="" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Customers</span></a>
                 </li>
-                <!-- <li class=" nav-item"><a href="#"><i class="" data-icon="comments"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
+             <!--    <li class=" nav-item"><a href="#"><i class="" data-icon="comments"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="" data-icon="check-alt"></i><span class="menu-title" data-i18n="Todo">Todo</span></a>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="" data-icon="calendar"></i><span class="menu-title" data-i18n="Calendar">Calendar</span></a>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="" data-icon="grid"></i><span class="menu-title" data-i18n="Kanban">Kanban</span></a>
-                </li>
-                <li class=" nav-item"><a href="#"><i class="" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">Invoice</span></a>
+                </li> -->
+                <li class=" nav-item"><a href="#"><i class="" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">Leads</span></a>
                     <ul class="menu-content">
-                        <li><a href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Invoice List</span></a>
+                        <li><a href="<?php echo base_url('admin/leads/sources'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Sources</span></a>
                         </li>
-                        <li><a href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">Invoice</span></a>
-                        </li>
+                       <li><a href="<?php  echo base_url('admin/leads/statuses'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">Statuses</span></a>
+                        </li> <!-- 
                         <li><a href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">Invoice Edit</span></a>
                         </li>
                         <li><a href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Add">Invoice Add</span></a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
+                 <!--
                 <li class=" nav-item"><a href="app-file-manager.html"><i class="" data-icon="save"></i><span class="menu-title" data-i18n="File Manager">File Manager</span></a>
                 </li> -->
                 <!-- <li class=" navigation-header"><span>UI Elements</span>

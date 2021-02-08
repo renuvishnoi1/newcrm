@@ -25,7 +25,7 @@ class ContactController extends MY_Controller
    $data['country'] = $this->ContactsModel->get_countries();
    $data['currencies'] = $this->ContactsModel->get_currencies();
    $data['title'] = "Add Customers";
-
+//die($this->app->get_available_languages());
    $this->admin_load('contacts/add_client',$data);
  }
  public function insertClient(){
@@ -333,6 +333,19 @@ public function do_upload_image($file, $path='') {
 
   return $data;
 } 
+public function changestatus(){
+ // die('hi');
+     $status= $this->input->post('status');
+     $id= $this->input->post('id');
+     $data=array();
+     $data['active']=$status;
+    $userid = array('userid'=>$id);
+    $table= ' tblclients';
+    $statusupdate = $this->ContactsModel->updateStatus($userid,$data,$table);
+    if($statusupdate){
+      redirect('admin/clients');
+    }
+}
 
 
 }

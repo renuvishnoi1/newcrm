@@ -21,6 +21,20 @@ $config = [
         ['field' => 'email', 'label' => 'Email', 'rules' => 'trim|required|valid_email'],
         ['field' => 'password', 'label' => 'Password', 'rules' => 'trim|required'],
     ],
+     'add_source'=>[
+        ['field' => 'name', 'label' => 'Source Name', 'rules' => 'trim|required|min_length[2]|max_length[15]'],
+    ],
+    
+     'edit_source'=>[
+        ['field' => 'name', 'label' => 'Source Name', 'rules' => 'trim|required|min_length[2]|max_length[15]'],
+    ],
+    
+     'add_status'=>[
+        ['field' => 'name', 'label' => 'Status Name', 'rules' => 'trim|required|min_length[2]|max_length[15]'],
+    ],
+    'edit_status'=>[
+        ['field' => 'name', 'label' => 'Status Name', 'rules' => 'trim|required|min_length[2]|max_length[15]'],
+    ],
     'login'=>[
         ['field' => 'email', 'label' => 'Email Address', 'rules' => 'trim|required|valid_email'],
         ['field' => 'password', 'label' => 'Password', 'rules' => 'trim|required'],

@@ -95,7 +95,8 @@
     <!-- END: Theme JS-->
     <!-- BEGIN: Page Vendor JS-->
     <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
-    <script src=".<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js"></script>
+
     <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js"></script>
     <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
     <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
@@ -107,6 +108,14 @@
     <script src="<?php echo base_url();?>assets/backend/app-assets/js/scripts/pages/dashboard-ecommerce.js"></script>
     <!-- END: Page JS-->
      <script src="<?php echo base_url();?>assets/app-assets/js/scripts/forms/select/form-select2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+     <!--  multiselect-->
+     <script type="text/javascript">
+         $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+     </script>
+
 </body>
 <!-- END: Body-->
 

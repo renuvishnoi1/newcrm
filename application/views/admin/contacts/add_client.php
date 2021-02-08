@@ -70,7 +70,7 @@
                 </div>
                   <div class="form-group">
                   <label>Groups</label>
-                  <select class="form-control group" name="groups[]" style="width: 100%;" multiple>
+                  <select class="form-control js-example-basic-multiple" name="groups[]" style="width: 100%;" multiple="multiple">
                     <?php foreach($groups as $group) {
                       ?>
                     <option value="<?php echo $group['id']; ?>"><?php echo $group['name']; ?></option>
@@ -81,7 +81,7 @@
                 </div>
                   <div class="form-group">
                   <label>Currency</label>
-                  <select class="form-control select2bs4" name="default_currency" style="width: 100%;">
+                  <select class="form-control " name="default_currency" style="width: 100%;" >
                     <option value="0">Select Currency</option>
                    <?php foreach($currencies as $currency) {
                       ?>

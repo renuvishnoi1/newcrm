@@ -67,7 +67,7 @@ $route['translate_uri_dashes'] = FALSE;
 // $route['products/(:num)'] = 'home/products/$1';
 // $route['products_details/(:num)'] = 'home/products_details/$1';
 
-
+// contacts route
 $route['admin/clients']='admin/ContactController/index';
 $route['admin/add_client'] = 'admin/ContactController/addClient';
 $route['admin/add_client_data'] = 'admin/ContactController/insertClient';
@@ -86,3 +86,22 @@ $route['admin/delete_contact/(:num)/(:any)']='admin/ContactController/deleteCont
 $route['admin/delete_client/(:any)'] = 'admin/ContactController/deleteClient/$1';
 
 $route['admin/update_client_status/(:any)'] = 'admin/ContactController/updateClientStatus/$1';
+
+$route['admin/changestatus'] = 'admin/ContactController/changestatus';
+
+
+// leads source route
+$route['admin/leads/sources'] = 'admin/LeadsSourceController/index';
+$route['admin/leads/add_source'] = 'admin/LeadsSourceController/add';
+$route['admin/leads/insert_source'] = 'admin/LeadsSourceController/insert';
+$route['admin/leads/edit_source/(:any)'] = 'admin/LeadsSourceController/edit/$1';
+$route['admin/leads/update_source'] = 'admin/LeadsSourceController/update';
+$route['admin/leads/delete_source/(:any)'] = 'admin/LeadsSourceController/delete/$1';
+
+// leads statuses route
+$route['admin/leads/statuses'] = 'admin/LeadsStatusController/index';
+$route['admin/leads/add_status'] = 'admin/LeadsStatusController/add';
+$route['admin/leads/insert_status'] = 'admin/LeadsStatusController/insert';
+$route['admin/leads/edit_status/(:any)'] = 'admin/LeadsStatusController/edit/$1';
+$route['admin/leads/update_status'] = 'admin/LeadsStatusController/update';
+$route['admin/leads/delete_status/(:any)'] = 'admin/LeadsStatusController/delete/$1';

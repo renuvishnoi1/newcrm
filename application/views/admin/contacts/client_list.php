@@ -58,13 +58,27 @@
        ?>
       
       <tr>
-       
         <td><?php echo $value['userid']; ?></td>
         <td><?php echo $value['company']; ?></td>
          <td><?php echo $value['firstname']; ?></td>
         <td><?php echo $value['email']; ?></td>
         <td><?php echo $value['phonenumber']; ?></td>
-        <td></td>
+        <td>  
+          <form action="<?php  echo base_url()?>admin/changestatus" method="post">
+            <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+    <input type="hidden" name="id" value="<?php echo  $value['userid']; ?>">
+    <?php
+      if($value['active']==1){ ?>
+     <input type="hidden" name="status" value='0'>
+      <button type="submit" class="btn btn-info">Active</button>
+    <?php  }else{ ?>
+      <input type="hidden" name="status" value='1'>
+     <button type="submit" class="btn btn-danger">In-active</button>
+     <?php 
+    }
+    ?>
+
+  </form></td>
         <td></td>
         <td><?php echo $value['datecreated']; ?></td>
         <td>

@@ -171,17 +171,7 @@ class App
         return $result;
     }
 
-    /**
-     * Return all available languages in the application/language folder
-     * @return array
-     */
-    public function get_available_languages()
-    {
-        // echo "<pre>";
-        // print_r($this->available_languages);
-        // die('die here');
-        return $this->available_languages;
-    }
+   
 
     /**
      * Function that will parse table data from the tables folder for amin area
@@ -364,7 +354,9 @@ class App
     /**
      * Init necessary data
      */
-    protected function init()
+
+
+    public function init()
     {
         // Temporary checking for v1.8.0
         if ($this->ci->db->field_exists('autoload', db_prefix() . 'options')) {
@@ -385,6 +377,7 @@ class App
          * Available languages
          */
         foreach (list_folders(APPPATH . 'language') as $language) {
+
             if (is_dir(APPPATH . 'language/' . $language)) {
                 array_push($this->available_languages, $language);
             }
@@ -440,5 +433,14 @@ class App
     public function get_contact_permissions()
     {
         return get_contact_permissions();
+    }
+     /**
+     * Return all available languages in the application/language folder
+     * @return array
+     */
+    public function get_available_languages()
+    {
+
+        return $this->available_languages;
     }
 }
