@@ -46,9 +46,9 @@
                         </li> -->
                     </ul>
                 </li>
-                 <!--
-                <li class=" nav-item"><a href="app-file-manager.html"><i class="" data-icon="save"></i><span class="menu-title" data-i18n="File Manager">File Manager</span></a>
-                </li> -->
+                 
+                <li class=" nav-item"><a href=""><i class="" data-icon="save"></i><span class="menu-title" data-i18n="File Manager">Leads</span></a>
+                </li> 
                 <!-- <li class=" navigation-header"><span>UI Elements</span>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="" data-icon="retweet"></i><span class="menu-title" data-i18n="Content">Content</span></a>
