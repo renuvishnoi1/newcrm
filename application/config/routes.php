@@ -113,3 +113,4 @@ $route['admin/add_lead'] = 'admin/LeadsController/addLead';
 $route['admin/save_lead'] = 'admin/LeadsController/insertLead';
 $route['admin/edit_lead/(:any)'] = 'admin/LeadsController/editLead/$1';
 $route['admin/update_lead'] = 'admin/LeadsController/updateLead';
+$route['admin/fetch_lead']= 'admin/LeadsController/fetchLead';

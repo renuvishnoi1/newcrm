@@ -105,6 +105,26 @@ class LeadsController extends MY_Controller
   public function updateLead(){
     
   }
+  public function fetchLead(){
+    $this->load->view();
+    $fetch_data=$this->LeadsModel->make_datatables();
+    $data = array();
+    foreach ($fetch_data as $row) {
+      $sub_array = array();
+      $sub_array[] = $row->id;
+      $sub_array[] = $row->company;
+      $sub_array[] = '<button type="button" name = "update" id="'.$row->id.'" class="btn  btn-info">Update</button>';
+       $sub_array[] = '<button type="button" name = "delete" id="'.$row->id.'" class="btn  btn-info">Delete</button>';
+       $data[]= $sub_array;
+       $output= array(
+        "draw"=>intval($_POST["draw"]),
+        "recordTotal "=>$this->LeadsModel->get_all_data(),
+        "recordFiltered"=>$this->LeadsModel->get_filtered_data(),
+        "data"=> $data
+         );
+       echo json_encode($output);
 
+    }
+  }
 }
 ?>

@@ -107,8 +107,10 @@
     <!-- BEGIN: Page JS-->
     <script src="<?php echo base_url();?>assets/backend/app-assets/js/scripts/pages/dashboard-ecommerce.js"></script>
     <!-- END: Page JS-->
+
      <script src="<?php echo base_url();?>assets/app-assets/js/scripts/forms/select/form-select2.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
      <!--  multiselect-->
      <script type="text/javascript">
          $(document).ready(function() {
@@ -131,6 +133,33 @@
     });
 });
      </script>
+         <!-- ajax start -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script  src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+    csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+    var dataJson = { [csrfName]: csrfHash };
+            var datatable = $('#lead_data').DataTable({
+                "processing":true,
+                "serverside":true,
+                "order":[],
+                "ajax":{
+                    url:"<?php echo base_url().'admin/fetch_lead'; ?>",
+                    type:"POST",
+                    data: dataJson
+                },"columnDef":[
+                {
+                    "targets":[0,3,4],
+                    "ordertable":false
+                }]
+            })
+        })
+    </script>
+    <!-- ajax cdn end -->
 
 </body>
 <!-- END: Body-->
