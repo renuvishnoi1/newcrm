@@ -21,11 +21,11 @@ class LeadsModel extends CI_Model
 		}
 	}
 	function make_datatables(){
-		$this->make_query();
-		if($_POST['length'] != -1)
-		{
-			$this->db->limit($_POST["length"], $_POST["start"]);
-		}
+		 $this->make_query();  
+           if($_POST["length"] != -1)  
+           {  
+                $this->db->limit($_POST['length'], $_POST['start']);  
+           } 
 		$query= $this->db->get();
 		return $query->result();
 	}

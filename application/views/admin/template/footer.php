@@ -150,7 +150,7 @@
                 "ajax":{
                     url:"<?php echo base_url().'admin/fetch_lead'; ?>",
                     type:"POST",
-                    data: dataJson
+                    data: dataJson,
                 },"columnDef":[
                 {
                     "targets":[0,3,4],

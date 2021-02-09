@@ -106,8 +106,10 @@ class LeadsController extends MY_Controller
     
   }
   public function fetchLead(){
-    $this->load->view();
+    //die('here');
+    //$this->load->view();
     $fetch_data=$this->LeadsModel->make_datatables();
+    die('here');
     $data = array();
     foreach ($fetch_data as $row) {
       $sub_array = array();

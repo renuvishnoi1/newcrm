@@ -35,9 +35,9 @@
             <table id="lead_data" class="table table-bordered table-striped">  
                      <thead>  
                           <tr>  
-                               <th width="10%">Image</th>  
-                               <th width="35%">First Name</th>  
-                               <th width="35%">Last Name</th>  
+                               <th width="10%">Id</th>  
+                               <th width="35%">Name</th>  
+                               <th width="35%">Company</th>  
                                <th width="10%">Edit</th>  
                                <th width="10%">Delete</th>  
                           </tr>  
