@@ -35,6 +35,11 @@ $config = [
     'edit_status'=>[
         ['field' => 'name', 'label' => 'Status Name', 'rules' => 'trim|required|min_length[2]|max_length[15]'],
     ],
+     'add_lead'=>[
+        ['field' => 'name', 'label' => 'Name', 'rules' => 'trim|required|min_length[2]|max_length[15]'],
+        ['field' => 'status', 'label' => 'Status ', 'rules' => 'required'],
+        ['field' => 'source', 'label' => 'Source ', 'rules' => 'required'],
+    ],
     'login'=>[
         ['field' => 'email', 'label' => 'Email Address', 'rules' => 'trim|required|valid_email'],
         ['field' => 'password', 'label' => 'Password', 'rules' => 'trim|required'],

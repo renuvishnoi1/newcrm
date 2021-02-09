@@ -105,3 +105,11 @@ $route['admin/leads/insert_status'] = 'admin/LeadsStatusController/insert';
 $route['admin/leads/edit_status/(:any)'] = 'admin/LeadsStatusController/edit/$1';
 $route['admin/leads/update_status'] = 'admin/LeadsStatusController/update';
 $route['admin/leads/delete_status/(:any)'] = 'admin/LeadsStatusController/delete/$1';
+
+// leads route
+
+$route['admin/leads'] = 'admin/LeadsController/index';
+$route['admin/add_lead'] = 'admin/LeadsController/addLead';
+$route['admin/save_lead'] = 'admin/LeadsController/insertLead';
+$route['admin/edit_lead/(:any)'] = 'admin/LeadsController/editLead/$1';
+$route['admin/update_lead'] = 'admin/LeadsController/updateLead';

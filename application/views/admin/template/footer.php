@@ -115,6 +115,22 @@
     $('.js-example-basic-multiple').select2();
 });
      </script>
+     
+     <!-- add lead -->
+     <script type="text/javascript">
+         $(function () {
+    $('#lastcontact').hide();
+
+    //show it when the checkbox is clicked
+    $('input[name="contacted_today"]').on('click', function () {
+        if ($(this).prop('checked')) {
+            $('#lastcontact').fadeIn();
+        } else {
+            $('#lastcontact').hide();
+        }
+    });
+});
+     </script>
 
 </body>
 <!-- END: Body-->

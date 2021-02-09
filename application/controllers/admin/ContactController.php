@@ -125,7 +125,7 @@ public function editClient($id){
   /********update customer *****/
 
 }
-            // delete customer and customer's contacts
+// delete customer and customer's contacts
 public function deleteClient($customer_id){
   $deleteClient = $this->ContactsModel->deleteClient($customer_id);
  

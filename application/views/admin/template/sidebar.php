@@ -39,16 +39,17 @@
                         <li><a href="<?php echo base_url('admin/leads/sources'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Sources</span></a>
                         </li>
                        <li><a href="<?php  echo base_url('admin/leads/statuses'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">Statuses</span></a>
-                        </li> <!-- 
-                        <li><a href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">Invoice Edit</span></a>
+                        </li> 
+                        <li><a href="<?php echo base_url('admin/leads'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">Leads</span></a>
                         </li>
+                        <!-- 
                         <li><a href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Add">Invoice Add</span></a>
                         </li> -->
                     </ul>
                 </li>
                  
-                <li class=" nav-item"><a href=""><i class="" data-icon="save"></i><span class="menu-title" data-i18n="File Manager">Leads</span></a>
-                </li> 
+                <!-- <li class=" nav-item"><a href=""><i class="" data-icon="save"></i><span class="menu-title" data-i18n="File Manager">Leads</span></a>
+                </li>  -->
                 <!-- <li class=" navigation-header"><span>UI Elements</span>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="" data-icon="retweet"></i><span class="menu-title" data-i18n="Content">Content</span></a>
