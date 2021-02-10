@@ -75,7 +75,7 @@ class App
         // @deprecated
         $this->_instance = $this->ci;
 
-        //$this->init();
+        $this->init();
 
         //hooks()->do_action('app_base_after_construct_action');
     }

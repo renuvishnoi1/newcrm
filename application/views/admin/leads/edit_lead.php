@@ -33,179 +33,202 @@
                                 <div class="card-content">
                                     <div class="card-body">
                                       <form action="<?php echo base_url('admin/update_lead'); ?>" method="POST">
-                                       <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
-                                       <div class="row">
-                                        <div class="col-md-4">
-                                            <fieldset class="form-group">
-                                                <label for="country">Status</label>
-                                                <select name="status" class="form-control">
-                                                    <option value="">Select status</option>
-                                                    <?php foreach ($status as $value) {
+                                         <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                                         <div class="row">
+                                            <div class="col-md-4">
+                                                <fieldset class="form-group">
+                                                    <label for="country">Status</label>
+                                                    <select name="status" class="form-control">
+                                                        <option value="">Select status</option>
+                                                        <?php foreach ($status as $value) {
+                                                            if($value->id == $leads->status){
+                                                                $selected = 'selected';
+                                                            }else{
+                                                                $selected ='';
+                                                            }
+                                                            ?>
+                                                            <option value="<?php echo $value->id;  ?>" <?php echo $selected; ?>> <?php echo $value->name; ?></option>
+                                                            <?php 
+                                                            # code...
+                                                        } ?>
+                                                    </select>
+                                                    <span class="text-danger"><?php echo form_error('status'); ?></span>
+                                                </fieldset>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                             <fieldset class="form-group">
+                                                <label for="country">Source</label>
+                                                <select name="source" class="form-control">
+                                                    <option value="">select Source</option>
+                                                    <?php foreach ($source as $value) {
+                                                        if($value->id == $leads->source){
+                                                            $selected='selected';
+                                                        }else{
+                                                            $selected ='';
+                                                        }
                                                         ?>
-                                                        <option value="<?php echo $value->id;  ?>"> <?php echo $value->name; ?></option>
+                                                        <option value="<?php echo $value->id;  ?>" <?php echo $selected; ?>> <?php echo $value->name; ?></option>
                                                         <?php 
                                                             # code...
                                                     } ?>
                                                 </select>
-                                                <span class="text-danger"><?php echo form_error('status'); ?></span>
+                                                <span class="text-danger"><?php echo form_error('source'); ?></span>
                                             </fieldset>
                                         </div>
                                         <div class="col-md-4">
-                                           <fieldset class="form-group">
-                                            <label for="country">Source</label>
-                                            <select name="source" class="form-control">
-                                                <option value="">select Source</option>
-                                                <?php foreach ($source as $value) {
+                                         <fieldset class="form-group">
+                                            <label for="country">Assigned</label>
+                                            <select name="assigned" class="form-control">
+                                                <option value="">select Assigned</option>
+                                                <?php foreach ($assign as $value) {
+                                                    if($value->staffid == $leads->assigned){
+                                                        $selected='selected';
+                                                    }else{
+                                                        $selected ='';
+                                                    }
                                                     ?>
-                                                    <option value="<?php echo $value->id;  ?>"> <?php echo $value->name; ?></option>
+                                                    <option value="<?php echo $value->staffid;  ?>" <?php echo  $selected; ?>> <?php echo $value->firstname." ".$value->lastname; ?></option>
                                                     <?php 
-                                                            # code...
+
                                                 } ?>
                                             </select>
-                                            <span class="text-danger"><?php echo form_error('source'); ?></span>
+
                                         </fieldset>
                                     </div>
-                                    <div class="col-md-4">
-                                       <fieldset class="form-group">
-                                        <label for="country">Assigned</label>
-                                        <select name="assigned" class="form-control">
-                                            <option value="">select Assigned</option>
-                                            <?php foreach ($assign as $value) {
-                                                ?>
+                                    <div class="col-md-12">
+                                     <fieldset class="form-group">
+                                        <label for="tag"><i class="bx bxs-purchase-tag"></i>Tag</label>
+                                        <input type="text" name="tag" class="form-control" id="basicInput" >
 
-                                                <option value="<?php echo $value->staffid;  ?>"> <?php echo $value->firstname." ".$value->lastname; ?></option>
-                                                <?php 
-
-                                            } ?>
-                                        </select>
-                                        
                                     </fieldset>
                                 </div>
-                                <div class="col-md-12">
-                                   <fieldset class="form-group">
-                                    <label for="tag"><i class="bx bxs-purchase-tag"></i>Tag</label>
-                                    <input type="text" name="tag" class="form-control" id="basicInput" >
-                                </fieldset>
-                            </div>
-                            <div class="col-md-6">
-                                <fieldset class="form-group">
-                                    <label for="basicInput">Name</label>
-                                    <input type="text" name="name" class="form-control" id="basicInput" >
-                                    <span class="text-danger"><?php echo form_error('name'); ?></span>
-                                </fieldset>
-                                <fieldset class="form-group">
-                                    <label for="title">Position</label>
-                                    <input type="text" name="title" class="form-control" id="basicInput" >
-                                    
-                                </fieldset>
-                                <fieldset class="form-group">
-                                    <label for="email">Email Address</label>
-                                    <input type="email" name="email" class="form-control" id="basicInput" >
-                                    
-                                </fieldset>
-                                <fieldset class="form-group">
-                                    <label for="website">Website</label>
-                                    <input type="text" name="website" class="form-control" id="basicInput" >
-                                   
-                                </fieldset>
-                                <fieldset class="form-group">
-                                    <label for="phonenumber">Phone</label>
-                                    <input type="text" name="phonenumber" class="form-control" id="basicInput" >
-                                    
-                                </fieldset>
-                                <fieldset class="form-group">
-                                    <label for="lead_value">Lead value</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">$</span>
+                                <div class="col-md-6">
+                                    <fieldset class="form-group">
+                                        <label for="basicInput">Name</label>
+                                        <input type="text" name="name" class="form-control" id="basicInput" value="<?php echo $leads->name; ?>">
+                                        <span class="text-danger"><?php echo form_error('name'); ?></span>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <label for="title">Position</label>
+                                        <input type="text" name="title" class="form-control" id="basicInput" value="<?php echo $leads->title; ?>">                                    
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" name="email" class="form-control" id="basicInput" value="<?php echo $leads->email; ?>">
+
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <label for="website">Website</label>
+                                        <input type="text" name="website" class="form-control" id="basicInput" value="<?php echo $leads->website; ?>" >
+
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <label for="phonenumber">Phone</label>
+                                        <input type="text" name="phonenumber" class="form-control" id="basicInput" value="<?php echo $leads->phonenumber; ?>">
+
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <label for="lead_value">Lead value</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">$</span>
+                                            </div>
+                                            <input type="number" class="form-control"  aria-describedby="basic-addon1" value="<?php echo $leads->lead_value; ?>">
                                         </div>
-                                        <input type="number" class="form-control"  aria-describedby="basic-addon1">
-                                    </div>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <label for="phonenumber">Company</label>
+                                        <input type="text" name="company" class="form-control" id="basicInput" value="<?php echo $leads->company; ?>" >
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                  <fieldset class="form-group">
+                                    <label for="basicInput">Address</label>
+                                    <input type="text" name="address" class="form-control" id="basicInput" value="<?php echo $leads->address; ?>">
+
                                 </fieldset>
                                 <fieldset class="form-group">
-                                    <label for="phonenumber">Company</label>
-                                    <input type="text" name="company" class="form-control" id="basicInput" >
-                                    
+                                    <label for="city">City</label>
+                                    <input type="text" name="city" class="form-control" id="basicInput" value="<?php echo $leads->city; ?>">
                                 </fieldset>
+                                <fieldset class="form-group">
+                                    <label for="state">State</label>
+                                    <input type="text" name="state" class="form-control" id="basicInput" value="<?php echo $leads->state; ?>">
 
-                            </div>
-                            <div class="col-md-6">
-                              <fieldset class="form-group">
-                                <label for="basicInput">Address</label>
-                                <input type="text" name="address" class="form-control" id="basicInput" >
-                               
-                            </fieldset>
-                            <fieldset class="form-group">
-                                <label for="city">City</label>
-                                <input type="text" name="city" class="form-control" id="basicInput" >
-                               
-                            </fieldset>
-                            <fieldset class="form-group">
-                                <label for="state">State</label>
-                                <input type="text" name="state" class="form-control" id="basicInput" >
-                                
-                            </fieldset>
-                            <fieldset class="form-group">
-                                <label for="country">Country</label>
-                                <select name="country" class="form-control">
-                                    <option value="">select Country</option>
-                                    <?php foreach ($country as $value) {
-                                        ?>
-                                        <option value="<?php echo $value['country_id'];  ?>"> <?php echo $value['short_name']; ?></option>
-                                        <?php 
-                                    } ?>
-                                </select>
-                                
-                            </fieldset>
-                            <fieldset class="form-group">
-                                <label for="zip">Zip Code</label>
-                                <input type="text" name="zip" class="form-control" id="basicInput" >
-                                
-                            </fieldset>
-                            <fieldset class="form-group">
-                                <label for="zip">Default Language</label>
-                                <input type="text" name="default_language" class="form-control" id="basicInput" >
-                                
-                            </fieldset>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <label for="country">Country</label>
+                                    <select name="country" class="form-control">
+                                        <option value="">select Country</option>
+                                        <?php foreach ($country as $value) {
+                                            if($value['country_id']== $leads->country){
+                                                $selected = 'selected';
+                                            }else{
+                                                $selected ='';
+                                            }
+                                            ?>
+                                            <option value="<?php echo $value['country_id'];  ?>" <?php echo $selected; ?>> <?php echo $value['short_name']; ?></option>
+                                            <?php 
+                                        } ?>
+                                    </select>
 
-                        </div>
-                        <div class="col-md-12">
-                           <fieldset class="form-group">
-                            <label for="zip">Description</label>                                                   
-                            <textarea id="w3review" class="form-control" name="description" >
-                            </textarea>
-                            
-                        </fieldset>
-                    </div>
-                    <div class="col-md-12">
-                       <fieldset class="form-group" id="lastcontact">
-                        <label for="lastcontact">Date Contacted</label>
-                        <input type="datetime-local" name="lastcontact" class="form-control" id="basicInput" >                                                   
-                        
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <label for="zip">Zip Code</label>
+                                    <input type="text" name="zip" class="form-control" id="basicInput" value="<?php echo $leads->zip; ?>">
+
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <label for="zip">Default Language</label>
+                                    <select name="default_language" id="default_language" class="form-control selectpicker" >
+
+                                        <?php foreach($this->app->get_available_languages() as $availableLanguage){
+                                         $selected = '';
+                                         if(isset($leads)){
+                                          if($leads->default_language == $availableLanguage){
+                                           $selected = 'selected';
+                                       }
+                                   }
+                                   ?>
+                                   <option value="<?php echo $availableLanguage; ?>" <?php echo $selected; ?>><?php echo ucfirst($availableLanguage); ?></option>
+                               <?php } ?>
+                           </select> 
+
+                       </fieldset>
+
+                   </div>
+                   <div class="col-md-12">
+                     <fieldset class="form-group">
+                        <label for="zip">Description</label>                                                   
+                        <textarea id="w3review" class="form-control" name="description" value="<?php echo $leads->description; ?>">
+                        </textarea>
+
                     </fieldset>
                 </div>
-                <div class="col-md-3">
-                   <fieldset class="form-group">
-                    <label for="public">Public</label>
-                    <input type="hidden" name="is_public" value="0">
-                    <input type="checkbox" name="is_public" value="1">
+                <div class="col-md-12">
+                 <fieldset class="form-group" >
+                    <label for="lastcontact">Date Contacted</label>
+                    <input type="datetime-local" name="lastcontact" class="form-control" id="basicInput" > 
                 </fieldset>
             </div>
-                 <div class="col-md-3">
-                   <fieldset class="form-group">
-                     <label for="public">Contacted Today</label>
-                    <input type="checkbox" name="contacted_today" id="checkbox" value="1" />  
-                </fieldset>
-               
-            </div>
-            <div class="col-md-12">
-                <fieldset class="form-group">
-                    <a href="<?php echo base_url('admin/leads'); ?>" class="btn btn-danger">Cancle</a>
-                    <button class="btn btn-primary " type="submit">Submit</button>
-                </fieldset>
-            </div>
+            <div class="col-md-3">
+             <fieldset class="form-group">
+                <label for="public">Public</label>
+                <input type="hidden" name="is_public" value="0">
+                <input type="checkbox" name="is_public" value="1" <?php echo ($leads->is_public==1 ? 'checked' : '');?>>
+            </fieldset>
         </div>
-    </form>
+        <input type="hidden" name="id" value="<?php echo $leads->id; ?>">
+
+        <div class="col-md-12">
+            <fieldset class="form-group">
+                <a href="<?php echo base_url('admin/leads'); ?>" class="btn btn-danger">Back</a>
+                <button class="btn btn-primary " type="submit">Submit</button>
+            </fieldset>
+        </div>
+    </div>
+</form>
 </div>
 </div>
 </div>

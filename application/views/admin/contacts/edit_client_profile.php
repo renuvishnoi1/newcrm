@@ -133,8 +133,11 @@
                   <label>Country</label>
                   <select class="form-control select2bs4" name="country" style="width: 100%;">
                     <?php foreach($country as $countries){
+                       if($countries['country_id'] == $leads->country){
+                                            $selected = 'selected';
+                       }
                       ?>
-                    <option value="<?php echo $countries['country_id'] ?>"><?php echo $countries['short_name'] ?></option>
+                    <option value="<?php echo $countries['country_id'] ?>" <?php echo $selected; ?>><?php echo $countries['short_name'] ?></option>
                     <?php 
                     } ?>
                   </select>            

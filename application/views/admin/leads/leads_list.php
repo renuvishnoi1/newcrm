@@ -32,17 +32,55 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-            <table id="lead_data" class="table table-bordered table-striped">  
-                     <thead>  
-                          <tr>  
-                               <th width="10%">Id</th>  
-                               <th width="35%">Name</th>  
-                               <th width="35%">Company</th>  
-                               <th width="10%">Edit</th>  
-                               <th width="10%">Delete</th>  
-                          </tr>  
-                     </thead>  
-                </table> 
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Sr No.</th>                  
+                  <th>Name</th> 
+                  <th>Company</th> 
+                  <th>Email</th>    
+                  <th>Phone</th> 
+                  <th>Lead Value</th> 
+                  <th>Tag</th>                    
+                  <th>Assigned</th>
+                  <th>Status</th>
+                  <th>Source</th>
+                  <th>Last Contact</th>
+                  <th>Created</th>
+                  <th>Action</th>                  
+                </tr>
+                </thead>
+                <tbody>
+                  <?php $sr=1; foreach ($records as $key => $value) { ?>
+                   <?php //echo"<pre>" ; print_r($user_list); echo"<pre>"; die;?>
+                <tr>
+				          <td><?=$sr++;?></td>
+                  <td><?php echo $value->name ?></td>
+                  <td><?php echo $value->company; ?></td>
+                  <td><?php echo $value->email; ?></td>
+                  <td><?php echo $value->phonenumber; ?></td>
+                  <td><?php echo $value->lead_value; ?></td>
+                  <td></td>
+                  <td><?php echo $value->lead_value; ?></td>
+                  <td></td>
+                  <td></td>
+                  <td><?php echo $value->status; ?></td>
+                  <td><?php echo $value->source; ?></td>
+                  <!--<td>
+                    <?php if($value->status=='1'){ ?>
+                      <a href="<?php echo base_url();?>admin/user/user_deactive/<?=$value->id?>" class="btn-success btn btn-sm">Active</a>
+                    <?php }else{ ?>
+                       <a href="<?php echo base_url();?>admin/user/user_active/<?=$value->id?>" class="btn-danger btn btn-sm">Deactive</a>
+                    <?php } ?>
+                  </td>-->
+                  <td>
+                   <a href="<?php echo base_url();?>admin/edit_lead/<?php echo $value->id; ?>" class="btn btn-primary btn-sm"><i class="bx bxs-pencil"></i></a> 
+                  <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/leads/delete_source/<?php echo $value->id; ?>" class="btn btn-danger btn-sm"><i class="bx bx-trash-alt"></i></td>
+                </tr>
+                <?php } ?>
+                </tbody>
+               
+              </table>
 
           </div>
         </div>

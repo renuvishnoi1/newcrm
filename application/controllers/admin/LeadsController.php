@@ -24,6 +24,7 @@ class LeadsController extends MY_Controller
     $data['source'] = $this->LeadsModel->get_list('tblleads_sources');
     $data['status'] = $this->LeadsModel->get_list('tblleads_status');
     $data['assign'] = $this->LeadsModel->get_assign_list('tblstaff');
+    $data['tag'] = $this->LeadsModel->get_list();
     $data['country'] = $this->ContactsModel->get_countries();
      // echo "<pre>";
      // print_r($data['assign']);
@@ -53,7 +54,6 @@ class LeadsController extends MY_Controller
         'assigned'=>$this->input->post('assigned'),
         'dateadded'=>date('Y-m-d H:i:s'),
         'status'=>$this->input->post('status'),
-        'source'=>$this->input->post('source'),
         'lastcontact'=>$this->input->post('lastcontact'),
         'email'=>$this->input->post('email'),
         'website'=>$this->input->post('website'),
@@ -93,9 +93,11 @@ class LeadsController extends MY_Controller
   public function editLead($id){
     $data['title'] = "Edit Lead";
     $data['leads'] = $this->LeadsModel->get_lead_row($id);
-     $data['source'] = $this->LeadsModel->get_list('tblleads_sources');
+    $data['source'] = $this->LeadsModel->get_list('tblleads_sources');
     $data['status'] = $this->LeadsModel->get_list('tblleads_status');
     $data['assign'] = $this->LeadsModel->get_assign_list('tblstaff');
+    $data['tag_data'] = $this->LeadsModel->get_tag_data($id);
+    $data['tag'] = $this->LeadsModel->get_list();
     $data['country'] = $this->ContactsModel->get_countries();
     // echo "<pre>";
     // print_r($data);
@@ -103,13 +105,50 @@ class LeadsController extends MY_Controller
     $this->admin_load('leads/edit_lead',$data);
   }
   public function updateLead(){
-    
+    $id = $this->input->post('id');
+     if($this->form_validation->run('edit_lead') == FALSE){
+      $data['title'] = "Edit Lead";
+      $data['leads'] = $this->LeadsModel->get_lead_row($id);
+     $data['source'] = $this->LeadsModel->get_list('tblleads_sources');
+    $data['status'] = $this->LeadsModel->get_list('tblleads_status');
+    $data['assign'] = $this->LeadsModel->get_assign_list('tblstaff');
+    $data['country'] = $this->ContactsModel->get_countries();
+      $this->admin_load('leads/add_lead',$data); 
+    }else{
+      $updateData= array(
+        'name'=>$this->input->post('name'),
+        'title'=>$this->input->post('title'),
+        'source'=>$this->input->post('source'),
+        'company'=>$this->input->post('company'),
+        'description'=>$this->input->post('description'),
+        'country'=>$this->input->post('country'),
+        'zip'=>$this->input->post('zip'),
+        'city'=>$this->input->post('city'),
+        'state'=>$this->input->post('state'),
+        'address'=>$this->input->post('address'),
+        'assigned'=>$this->input->post('assigned'),
+        'dateadded'=>date('Y-m-d H:i:s'),
+        'status'=>$this->input->post('status'),
+        'lastcontact'=>$this->input->post('lastcontact'),
+        'email'=>$this->input->post('email'),
+        'website'=>$this->input->post('website'),
+        'is_public'=>$this->input->post('is_public'),
+        'default_language'=>$this->input->post('default_language'),
+        'lead_value'=>$this->input->post('lead_value'),
+      );
+      echo "<pre>";
+      print_r($updateData);
+      die;
+      $updateLead= $this->LeadsModel->update($updateData,$id);
+
+    }
+
   }
   public function fetchLead(){
     //die('here');
     //$this->load->view();
     $fetch_data=$this->LeadsModel->make_datatables();
-    die('here');
+    //die('here');
     $data = array();
     foreach ($fetch_data as $row) {
       $sub_array = array();

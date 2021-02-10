@@ -154,10 +154,11 @@
                 },"columnDef":[
                 {
                     "targets":[0,3,4],
-                    "ordertable":false
-                }]
+                    "ordertable":false,
+                },
+                ],
             })
-        })
+        });
     </script>
     <!-- ajax cdn end -->
 

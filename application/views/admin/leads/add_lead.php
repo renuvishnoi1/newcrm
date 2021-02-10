@@ -41,8 +41,8 @@
                                                 <select name="status" class="form-control">
                                                     <option value="">Select status</option>
                                                     <?php foreach ($status as $value) {
+                                                      
                                                         ?>
-                                                        <option value="<?php echo $value->id;  ?>"> <?php echo $value->name; ?></option>
                                                         <?php 
                                                             # code...
                                                     } ?>
@@ -126,7 +126,6 @@
                                 <fieldset class="form-group">
                                     <label for="phonenumber">Company</label>
                                     <input type="text" name="company" class="form-control" id="basicInput" >
-                                   
                                 </fieldset>
 
                             </div>
@@ -149,6 +148,8 @@
                                 <select name="country" class="form-control">
                                     <option value="">select Country</option>
                                     <?php foreach ($country as $value) {
+
+                                       
                                         ?>
                                         <option value="<?php echo $value['country_id'];  ?>"> <?php echo $value['short_name']; ?></option>
                                         <?php 
@@ -161,7 +162,15 @@
                             </fieldset>
                             <fieldset class="form-group">
                                 <label for="zip">Default Language</label>
-                                <input type="text" name="default_language" class="form-control" id="basicInput" >
+                                <select name="default_language" id="default_language" class="form-control selectpicker" >
+                      
+                        <?php foreach($this->app->get_available_languages() as $availableLanguage){
+                           $selected = '';
+                          
+                           ?>
+                        <option value="<?php echo $availableLanguage; ?>" <?php echo $selected; ?>><?php echo ucfirst($availableLanguage); ?></option>
+                        <?php } ?>
+                     </select> 
                             </fieldset>
 
                         </div>
@@ -194,7 +203,7 @@
             </div>
             <div class="col-md-12">
                 <fieldset class="form-group">
-                    <a href="<?php echo base_url('admin/leads'); ?>" class="btn btn-danger">Cancle</a>
+                    <a href="<?php echo base_url('admin/leads'); ?>" class="btn btn-danger">Back</a>
                     <button class="btn btn-primary " type="submit">Submit</button>
                 </fieldset>
             </div>

@@ -50,6 +50,12 @@ class LeadsModel extends CI_Model
 		$query=$this->db->get($table);
 		return  $query->result();
 	}
+	public function get_tag_data($id){
+		$this->db->where('id',$id);
+		$q = $this->db->get('tbltaggables');
+		return $q->result_array();
+
+	}
    
 	
 	public function insert($table , $data){
@@ -74,11 +80,16 @@ class LeadsModel extends CI_Model
 		$query=$this->db->get('tblleads');
 		return $query->row();
 	}
-	// public function update($data,$id){
-	// 	$this->db->where('id',$id);
-	//  $q = $this->db->update('tblleads_sources',$data);
-	//  return $q;
-	// }
+	public function update($data,$id){
+		$this->db->where('id',$id);
+	 $q = $this->db->update('tblleads',$data);
+	 return $q;
+	}
+	public function getLeadWhereLike($field, $search)
+{
+    $query = $this->db->like($field, $search)->orderBy('id')->get('tblleads');
+    return $query->result();
+}
 	// public function delete($id){
 	// 	$this->db->where('id',$id);
 	//  $q = $this->db->delete('tblleads_sources');
