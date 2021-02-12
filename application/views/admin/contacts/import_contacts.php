@@ -100,29 +100,28 @@
             </div>
             <br>
             <div class="row">
-              <form action="<?php echo base_url(''); ?>" method="post" enctype="multipart/form-data" id="import_form">
+              <form action="<?php echo base_url('admin/import_contacts_csv'); ?>" method="post" enctype="multipart/form-data" id="import_form">
                <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
                <div class="col-lg-6">
                 <fieldset class="form-group">
                   <label for="basicInput">Choose CSV File</label>
-                  <input type="file" name="file" style="display:inline-block;" />
+                  <input type="file" name="file" style="display:inline-block;" required="" />
                 </fieldset>
                 <fieldset class="form-group">
-                  <label for="country">Status</label>
-                  <select name="status" class="form-control">
-                    <option value="">Select status</option>
-                    <?php foreach ($status as $value) {
+                  <label for="Groups">Groups</label>
+                  <select class="select2 form-control" multiple="multiple" name="groups[]" >
+                    <?php foreach($groups as $group) {
                       ?>
-                      <option></option>
-                      <?php                       
-                    } ?>
-                  </select>
+                    <option value="<?php echo $group['id']; ?>"><?php echo $group['name']; ?></option>
+                    <?php 
+                    }?>
+                    
+                  </select> 
                   <span class="text-danger"><?php echo form_error('status'); ?></span>
-                </fieldset>
-             
+                </fieldset>             
                 <fieldset class="form-group">
-                  <label for="country">Responsible (Assignee)</label>
-                   <input type="text" name="" class="form-control">
+                  <label for="country">Default password for all contacts</label>
+                   <input type="password" name="password" class="form-control">
 
                 </fieldset>
 

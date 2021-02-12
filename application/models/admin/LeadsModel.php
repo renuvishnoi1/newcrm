@@ -51,7 +51,7 @@ class LeadsModel extends CI_Model
 		return  $query->result();
 	}
 	public function get_tag_data($id){
-		$this->db->where('id',$id);
+		$this->db->where('rel_id',$id);
 		$q = $this->db->get('tbltaggables');
 		return $q->result_array();
 
