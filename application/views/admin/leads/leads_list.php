@@ -76,7 +76,7 @@
                     <?php } ?>
                   </td>-->
                   <td>
-                     <a href="<?php echo base_url();?>admin/show_lead/<?php echo $value->id; ?>" class="btn btn-info btn-sm"><i class="bx bxs-pencil"></i></a> 
+                     <a href="<?php echo base_url();?>admin/show_lead/<?php echo $value->id; ?>" class="btn btn-info btn-sm"><i class="bx bxs-show"></i></a> 
                    <a href="<?php echo base_url();?>admin/edit_lead/<?php echo $value->id; ?>" class="btn btn-primary btn-sm"><i class="bx bxs-pencil"></i></a> 
                   <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/leads/delete_source/<?php echo $value->id; ?>" class="btn btn-danger btn-sm"><i class="bx bx-trash-alt"></i></td>
                 </tr>

@@ -36,69 +36,105 @@
                                      <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
                                      <div class="row">
                                       <div class="col-md-4"><h4>Lead Information</h4>
-
                                         <b>Name</b>
                                         <p><?php if($leads->name != ''){ echo $leads->name;} else{ echo "-";}?></p>
                                         <b>Position</b>
-                                         <p><?php if($leads->title != ''){ echo $leads->title;} else{ echo "-";}?></p>
-                                         <b>Email Address</b>
-                                         <p><?php if($leads->email != ''){ echo $leads->email;} else{ echo "-";}?></p>
-                                         <b>Website</b>
-                                         <p><?php if($leads->website != ''){ echo $leads->website;} else{ echo "-";}?></p>
-                                         <b>Phone</b>
-                                         <p><?php if($leads->phonenumber != ''){ echo $leads->phonenumber;} else{ echo "-";}?></p>
-                                         <b>Lead value</b>
-                                         <p><?php if($leads->lead_value != ''){ echo $leads->lead_value;} else{ echo "-";} ?></p>
-                                         <b>Company</b>
-                                         <p><?php if($leads->company != ''){ echo $leads->company;} else{ echo "-";} ?></p>
-                                         <b>Address</b>
-                                         <p><?php if($leads->address != ''){ echo $leads->address;} else{ echo "-";} ?></p>
-                                         <b>City</b>
-                                         <p><?php if($leads->city != ''){ echo $leads->city;} else{ echo "-";} ?></p>
-                                         <b>State</b>
-                                         <p><?php if($leads->state != ''){ echo $leads->state;} else{ echo "-";} ?></p>
-                                         <b>Country</b>
-                                         <p><?php if($leads->country != ''){ echo $leads->country;} else{ echo "-";} ?></p>
-                                         <b>Zip Code</b>
-                                         <p><?php if($leads->zip != ''){ echo $leads->zip;} else{ echo "-";} ?></p>
-                                         <b>Description</b>
-                                         <p><?php if($leads->description != ''){ echo $leads->description;} else{ echo "-";} ?></p>
+                                        <p><?php if($leads->title != ''){ echo $leads->title;} else{ echo "-";}?></p>
+                                        <b>Email Address</b>
+                                        <p><?php if($leads->email != ''){ echo $leads->email;} else{ echo "-";}?></p>
+                                        <b>Website</b>
+                                        <p><?php if($leads->website != ''){ echo $leads->website;} else{ echo "-";}?></p>
+                                        <b>Phone</b>
+                                        <p><?php if($leads->phonenumber != ''){ echo $leads->phonenumber;} else{ echo "-";}?></p>
+                                        <b>Lead value</b>
+                                        <p><?php if($leads->lead_value != ''){ echo $leads->lead_value;} else{ echo "-";} ?></p>
+                                        <b>Company</b>
+                                        <p><?php if($leads->company != ''){ echo $leads->company;} else{ echo "-";} ?></p>
+                                        <b>Address</b>
+                                        <p><?php if($leads->address != ''){ echo $leads->address;} else{ echo "-";} ?></p>
+                                        <b>City</b>
+                                        <p><?php if($leads->city != ''){ echo $leads->city;} else{ echo "-";} ?></p>
+                                        <b>State</b>
+                                        <p><?php if($leads->state != ''){ echo $leads->state;} else{ echo "-";} ?></p>
+                                        <b>Country</b>
+                                        <?php foreach ($country as $value) {
+                                         if($value['country_id']== $leads->country){
+                                          ?>
+                                          <p><?php echo $value['short_name']; ?></p>
+                                          <?php 
+                                        } }?>
+                                        <b>Zip Code</b>
+                                        <p><?php if($leads->zip != ''){ echo $leads->zip;} else{ echo "-";} ?></p>
+                                        <b>Description</b>
+                                        <p><?php if($leads->description != ''){ echo $leads->description; } else{ echo "-";} ?></p>
                                       </div>
                                       <div class="col-md-4">
                                         <h4>General Information</h4>                                        
                                         <b>Status</b>
-                                        <p></p>                                        
-                                        <b>Source</b>
-                                        <p></p>                                       
-                                        <b>Default Language</b>
-                                         <p></p>                                        
-                                        <b>Assigned</b>
-                                        <p></p>
-                                         <b>Tags</b>
-                                        <p></p>
-                                       <b>Created</b>
-                                        <p></p>
-                                        <b>Last Contact</b>
-                                        <p></p>
-                                        <b>Public</b>
-                                        <p></p>
-                                        
-                                      </div>
-                        
+                                        <?php foreach ($status as $value) {
+                                          if($value->id == $leads->status){
+                                            ?><p><?php echo $value->name; ?></p>
+                                            <?php 
+                                          }}
+                                          ?>
+                                          <p></p>                                        
+                                          <b>Source</b>
+                                          <?php foreach ($source as $value) {
+                                            if($value->id == $leads->source){
+                                             ?><p><?php echo $value->name; ?></p>
+                                             <?php 
+                                           }}
+                                           ?>
+                                           <p></p>                                       
+                                           <b>Default Language</b>
+                                           <?php foreach($this->app->get_available_languages() as $availableLanguage){
+                                             if(isset($leads)){
+                                              if($leads->default_language == $availableLanguage){
+                                               ?><p><?php echo ucfirst($availableLanguage); ?></p>
+                                               <?php 
+                                             }
+                                           }}
+                                           ?>
+                                           <p></p>                                        
+                                           <b>Assigned</b>
+                                           <?php foreach ($assign as $value) {
+                                            if($value->staffid == $leads->assigned){
+                                              ?>
+                                              <p><?php echo $value->firstname." ".$value->lastname; ?></p>
+                                              <?php 
+                                            }}?>
+
+                                            <b>Tags</b>
+                                            <p></p>
+                                            <b>Created</b>
+                                            <p></p>
+                                            <b>Last Contact</b>
+                                            <p></p>
+                                            <b>Public</b>
+                                            <p></p>
+
+                                          </div>
+                                          <div class="col-md-12">
+                                            <fieldset class="form-group">
+                                              <a href="<?php echo base_url('admin/leads'); ?>" class="btn btn-info">Back</a>
+
+                                            </fieldset>
+                                          </div>
+
+                                        </div>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                          <!-- Basic Inputs end -->
+
+
+
+
+                        </div>
                       </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- Basic Inputs end -->
-
-
-
-
-      </div>
-    </div>
-  </div>
-  <!-- END: Content-->
+                    </div>
+                    <!-- END: Content-->
