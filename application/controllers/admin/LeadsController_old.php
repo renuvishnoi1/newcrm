@@ -12,7 +12,7 @@ class LeadsController extends MY_Controller
 
   }
   public function index(){
-  	$data['title'] = "Lead";
+    $data['title'] = "Lead";
     $data['records'] = $this->LeadsModel->get_list('tblleads');
      // echo "<pre>";
      // print_r($data);die;
@@ -208,8 +208,7 @@ class LeadsController extends MY_Controller
                 "dateadded" => date('Y-m-d H:i:s'),
               );
               $table_name = "tblleads";
-              $this->LeadsModel->insert($table_name, $employee_data);
-              
+              $this->LeadsModel->save($table_name, $employee_data);
             }
             $this->session->set_flashdata("success_msg", "CSV File imported successfully.");
             redirect('admin/leads');

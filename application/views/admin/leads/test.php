@@ -29,11 +29,35 @@
             <div class="card">
              <div class="card-header">
             <a href="<?php echo base_url('admin/add_lead'); ?>" class="btn btn-info mright5 test pull-left "> New Lead</a>
-           <a href="<?php echo base_url('admin/import_leads'); ?>" class="btn btn-info mright5 test pull-left ">Import Leads</a>
+            <a href="javascript:void(0);" onclick="$('#import_form').slideToggle();">Import Leads</a>
+                        <div style="color:red;">
+                            <?php
+                            $error_msg = "";
+                            if ($this->session->flashdata('error_msg') && $this->session->flashdata('error_msg') != "") {
+                                $error_msg = $this->session->flashdata('error_msg');
+                            }
+                            echo $error_msg;
+                            ?>
+                        </div>
+                        <div style="color:green;">
+                            <?php
+                            $success_msg = "";
+                            if ($this->session->flashdata('success_msg') && $this->session->flashdata('success_msg') != "") {
+                                $success_msg = $this->session->flashdata('success_msg');
+                            }
+                            echo $success_msg;
+                            ?>
+                        </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              
+               <form action="<?php echo base_url('admin/import_leads_csv'); ?>" method="post" enctype="multipart/form-data" id="import_form">
+                 <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                            <div style="margin-bottom:40px;">
+                                <input type="file" name="file" style="display:inline-block;" />
+                                <input type="submit" class="btn btn-primary" name="importBtn" value="IMPORT">
+                            </div>
+                        </form>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>

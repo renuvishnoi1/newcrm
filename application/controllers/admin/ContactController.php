@@ -346,6 +346,86 @@ public function changestatus(){
       redirect('admin/clients');
     }
 }
+// add import contact load
+public function importContacts(){
+    $data['title'] = "Contacts Import"; 
+    
+    $this->admin_load('contacts/import_contacts',$data);
+  }
 
+  //export contact sample data file
+  public function export_csv() {
+    $this->load->helper('csv');
+    $export_arr = array();
+        //$employee_details = $this->employees_model->get();
+    $title = array( "Firstname", "Lastname", "Email", "Contact phonenumber", "Position", "Company", "Vat", "Phonenumber", "Country", "City", "Zip", "State", "Address", "Website","Billing street","Billing city","Billing state","Billing zip","Billing country","Shipping street","Shipping city","Shipping state","Shipping zip","Shipping country","Longitude","Latitude","Stripe id");
+    array_push($export_arr, $title);
+        // if (!empty($employee_details)) {
+        //     foreach ($employee_details as $employee) {
+        //         array_push($export_arr, array($employee->id, $employee->name, $employee->email, $employee->mobile, $employee->created_at));
+        //     }
+        // }
+    convert_to_csv($export_arr, 'contacts-' . date('Y-m-d') . '.csv', ',');
+  }
+  public function import_csv() {
+    $this->load->library('Csvimport');
+        //Check file is uploaded in tmp folder
+    if (is_uploaded_file($_FILES['file']['tmp_name'])) {
+            //validate whether uploaded file is a csv file
+      $csvMimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
+      $mime = get_mime_by_extension($_FILES['file']['name']);
+      $fileArr = explode('.', $_FILES['file']['name']);
+      $ext = end($fileArr);
+      if (($ext == 'csv') && in_array($mime, $csvMimes)) {
+        $file = $_FILES['file']['tmp_name'];
+        $csvData = $this->csvimport->get_array($file);
+        $headerArr = array("Firstname", "Lastname", "Email", "Contact phonenumber", "Position", "Company", "Vat", "Phonenumber", "Country", "City", "Zip", "State", "Address", "Website","Billing street","Billing city","Billing state","Billing zip","Billing country","Shipping street","Shipping city","Shipping state","Shipping zip","Shipping country","Longitude","Latitude","Stripe id");
+        if (!empty($csvData)) {
+                    //Validate CSV headers
+          $csvHeaders = array_keys($csvData[0]);
+          $headerMatched = 1;
+          foreach ($headerArr as $header) {
+            if (!in_array(trim($header), $csvHeaders)) {
+              $headerMatched = 0;
+            }
+          }
+          if ($headerMatched == 0) {
+            $this->session->set_flashdata("error_msg", "CSV headers are not matched.");
+            redirect('admin/leads');
+          } else {
+            foreach ($csvData as $row) {
+              $employee_data = array(
+                "name" => $row['Name'],
+                "title" => $row['Position'],
+                "company" => $row['Company'],
+                "description" => $row['Description'],
+                "country" => $row['Country'],
+                "zip" => $row['Zip'],
+                "city" => $row['City'],
+                "state" => $row['State'],
+                "address" => $row['Address'],
+                "email" => $row['Email'],
+                "website" => $row['Website'],
+                "phonenumber" => $row['Phonenumber'],
+                "lead_value" => $row['Lead value'],
+                "dateadded" => date('Y-m-d H:i:s'),
+              );
+              $table_name = "tblleads";
+              $this->LeadsModel->insert($table_name, $employee_data);
+              
+            }
+            $this->session->set_flashdata("success_msg", "CSV File imported successfully.");
+            redirect('admin/leads');
+          }
+        }
+      } else {
+        $this->session->set_flashdata("error_msg", "Please select CSV file only.");
+        redirect('admin/leads');
+      }
+    } else {
+      $this->session->set_flashdata("error_msg", "Please select a CSV file to upload.");
+      redirect('admin/leads');
+    }
+  }
 
 }

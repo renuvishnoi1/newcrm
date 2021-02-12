@@ -58,7 +58,7 @@ class LeadsModel extends CI_Model
 	}
    
 	
-	public function insert($table , $data){
+	public function insert($table ,$data= array()){
 		$this->db->insert($table,$data);
 		 $insert_id = $this->db->insert_id();
         return  $insert_id;
@@ -95,6 +95,14 @@ class LeadsModel extends CI_Model
 	//  $q = $this->db->delete('tblleads_sources');
 	//  return $q;
 	// }
+
+
+//csv impot
+public function save($table_name, $data = array()) {
+        $insert = $this->db->insert($table_name, $data);
+        return $insert;
+    }
+
 	
 }
 ?>

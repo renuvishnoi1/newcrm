@@ -26,7 +26,7 @@
           <div class="_buttons">
               <a href="<?php echo base_url('admin/add_client') ?>" class="btn btn-info mright5 test pull-left ">
                      New Customer</a>
-              <a href="" class="btn btn-info pull-left  mright5 hidden-xs">
+              <a href="<?php echo base_url('admin/import_contacts'); ?>" class="btn btn-info pull-left  mright5 hidden-xs">
                      Import Customers</a>
               <a href="<?php echo base_url('admin/all_contact') ?>" class="btn btn-info pull-left  mright5">
                      Contacts</a>

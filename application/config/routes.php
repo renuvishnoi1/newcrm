@@ -84,10 +84,10 @@ $route['admin/edit_contact_list/(:any)'] = 'admin/ContactController/viewContactl
 
 $route['admin/delete_contact/(:num)/(:any)']='admin/ContactController/deleteContact/$1/$2';
 $route['admin/delete_client/(:any)'] = 'admin/ContactController/deleteClient/$1';
-
 $route['admin/update_client_status/(:any)'] = 'admin/ContactController/updateClientStatus/$1';
-
 $route['admin/changestatus'] = 'admin/ContactController/changestatus';
+$route['admin/import_contacts'] = 'admin/ContactController/importContacts';
+$route['admin/export_contacts_sample'] = 'admin/ContactController/export_csv'; 
 
 
 // leads source route
@@ -114,3 +114,7 @@ $route['admin/save_lead'] = 'admin/LeadsController/insertLead';
 $route['admin/edit_lead/(:any)'] = 'admin/LeadsController/editLead/$1';
 $route['admin/update_lead'] = 'admin/LeadsController/updateLead';
 $route['admin/fetch_lead']= 'admin/LeadsController/fetchLead';
+// import leads route
+$route['admin/import_leads']= 'admin/LeadsController/importLeads';
+$route['admin/import_leads_csv']= 'admin/LeadsController/import_csv';
+$route['admin/export_leads_csv']= 'admin/LeadsController/export_csv';
