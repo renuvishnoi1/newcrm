@@ -24,7 +24,7 @@ class LeadsController extends MY_Controller
     $data['source'] = $this->LeadsModel->get_list('tblleads_sources');
     $data['status'] = $this->LeadsModel->get_list('tblleads_status');
     $data['assign'] = $this->LeadsModel->get_assign_list('tblstaff');
-    $data['tag'] = $this->LeadsModel->get_list();
+    //$data['tag'] = $this->LeadsModel->get_list();
     $data['country'] = $this->ContactsModel->get_countries();
      // echo "<pre>";
      // print_r($data['assign']);
