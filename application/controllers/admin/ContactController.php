@@ -18,7 +18,7 @@ class ContactController extends MY_Controller
     // echo "<pre>";
     //     print_r($data);
     //     die;
-   $this->admin_load('contacts/client_list',$data); 
+    $this->admin_load('contacts/client_list',$data); 
   }
   public function addClient(){
    $data['groups'] = $this->ContactsModel->get_costomer_groups();
@@ -29,7 +29,7 @@ class ContactController extends MY_Controller
    $this->admin_load('contacts/add_client',$data);
  }
  public function insertClient(){
-    
+
   if ($this->form_validation->run('add_client') == FALSE)
   {
     $data['title'] = "Add Customers";
@@ -37,7 +37,6 @@ class ContactController extends MY_Controller
   }
   else
   {
-
     $company= $this->input->post('company');
     $vat= $this->input->post('vat');
     $phonenumber= $this->input->post('phonenumber');
@@ -109,7 +108,7 @@ class ContactController extends MY_Controller
 public function allContact(){
   $data['title'] = "Contacts";
   $data['records']= $this->ContactsModel->get_all_contacts();
-   $this->admin_load('contacts/contact_details/all_contact',$data);
+  $this->admin_load('contacts/contact_details/all_contact',$data);
 }
 /****edit customer *****/
 public function editClient($id){
@@ -128,7 +127,7 @@ public function editClient($id){
 // delete customer and customer's contacts
 public function deleteClient($customer_id){
   $deleteClient = $this->ContactsModel->deleteClient($customer_id);
- 
+
   return redirect('admin/clients');
 }
 
@@ -146,161 +145,161 @@ public function viewContactlistById($id){
       // delete contact by customer id and contact id
 public function deleteContact($customer_id,$contact_id){
   // die('hi');
-      $userid=$customer_id;
-      $contactDelete = $this->ContactsModel->deleteContact($customer_id,$contact_id);
+  $userid=$customer_id;
+  $contactDelete = $this->ContactsModel->deleteContact($customer_id,$contact_id);
       // echo "<pre>";
       // print_r($contactDelete->profile_image);die;
       // if(file_exists(base_url()."assets/uploads/profile_image/".$q->profile_image)){
       //     unlink(base_url()."assets/uploads/profile_image/".$q->profile_image);
       // }
-     
-      if($contactDelete){
-        redirect('admin/edit_contact_list/'.$userid);
-      }
 
-    }
-    public function addContact($id){
-            $data['title'] = "Add Contact";
-            $data['contact'] = $this->ContactsModel->getDataById($id);
-            $this->admin_load('contacts/contact_details/add_contact',$data);
-    }
-    public function inserContact(){
-       $userid = $this->input->post('userid');
-       if ($this->form_validation->run('add_contact') == FALSE)
-                {
-         $data['title'] = "Add Contact";
-         $data['contact'] = $this->ContactsModel->getDataById($userid);
-        $this->admin_load('contacts/contact_details/add_contact',$data);
-                }
-                else
-                {
-              
-       $f_name = $this->input->post('firstname');
-       $l_name = $this->input->post('lastname');
-       $phone = $this->input->post('phonenumber');
-       $email = $this->input->post('email');
-       $position = $this->input->post('title');
-       $direction = $this->input->post('direction');
-       $pass = $this->input->post('password');
-      
-       $data['firstname'] = $f_name;
-       $data['lastname'] = $l_name;
-       $data['email'] = $email;
-       $data['title'] = $position;
-       $data['direction'] = $direction;
-       $data['userid'] = $userid;
-       $data['datecreated'] =date('Y-m-d H:i:s');
-       $data['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+  if($contactDelete){
+    redirect('admin/edit_contact_list/'.$userid);
+  }
+
+}
+public function addContact($id){
+  $data['title'] = "Add Contact";
+  $data['contact'] = $this->ContactsModel->getDataById($id);
+  $this->admin_load('contacts/contact_details/add_contact',$data);
+}
+public function inserContact(){
+ $userid = $this->input->post('userid');
+ if ($this->form_validation->run('add_contact') == FALSE)
+ {
+   $data['title'] = "Add Contact";
+   $data['contact'] = $this->ContactsModel->getDataById($userid);
+   $this->admin_load('contacts/contact_details/add_contact',$data);
+ }
+ else
+ {
+
+   $f_name = $this->input->post('firstname');
+   $l_name = $this->input->post('lastname');
+   $phone = $this->input->post('phonenumber');
+   $email = $this->input->post('email');
+   $position = $this->input->post('title');
+   $direction = $this->input->post('direction');
+   $pass = $this->input->post('password');
+
+   $data['firstname'] = $f_name;
+   $data['lastname'] = $l_name;
+   $data['email'] = $email;
+   $data['title'] = $position;
+   $data['direction'] = $direction;
+   $data['userid'] = $userid;
+   $data['datecreated'] =date('Y-m-d H:i:s');
+   $data['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
 
-       if(!empty($_FILES['image']['name'])){ 
+   if(!empty($_FILES['image']['name'])){ 
           // File upload path 
-        $path= "assets/uploads/profile_image/";
+    $path= "assets/uploads/profile_image/";
           // image upload
-        $upload_file=$this->do_upload_image('image',$path);
+    $upload_file=$this->do_upload_image('image',$path);
 
-        $image_name=$upload_file['upload_data']['file_name'];
+    $image_name=$upload_file['upload_data']['file_name'];
         // create thumbnail from image code
-        $source_path = $path.$image_name;
-        $thumb_path = $path.'thumbnail/'; 
-        
-        $thumb_width = 280; 
-        $thumb_height = 175; 
+    $source_path = $path.$image_name;
+    $thumb_path = $path.'thumbnail/'; 
+
+    $thumb_width = 280; 
+    $thumb_height = 175; 
          // Image resize config 
-        $CI = & get_instance();
-        $config                   = [];
-        $config['image_library']    = 'gd2'; 
-        $config['source_image']     = $source_path; 
-        $config['new_image']         = $thumb_path; 
-        $config['maintain_ratio']     = true; 
-        $config['width']            = $thumb_width; 
-        $config['height']           = $thumb_height;
+    $CI = & get_instance();
+    $config                   = [];
+    $config['image_library']    = 'gd2'; 
+    $config['source_image']     = $source_path; 
+    $config['new_image']         = $thumb_path; 
+    $config['maintain_ratio']     = true; 
+    $config['width']            = $thumb_width; 
+    $config['height']           = $thumb_height;
          // Load and initialize image_lib library
-        $CI->image_lib->initialize($config);
-        $CI->image_lib->resize();
-        $CI->image_lib->clear();
-       $data['profile_image'] = $image_name;
-      }
-      
-      $addData = $this->ContactsModel->insertContact($data);
-      if($addData){
-        redirect('admin/edit_contact_list/'.$userid);
-      }
+    $CI->image_lib->initialize($config);
+    $CI->image_lib->resize();
+    $CI->image_lib->clear();
+    $data['profile_image'] = $image_name;
+  }
 
-       }
-    }   
-    public function editContact($id){
-          $data['title'] = "Edit Contact";
-          $data['contact'] = $this->ContactsModel->getContactById($id);
-          $this->admin_load('contacts/contact_details/edit_contact',$data);
-    }
+  $addData = $this->ContactsModel->insertContact($data);
+  if($addData){
+    redirect('admin/edit_contact_list/'.$userid);
+  }
 
-  public function updateContact(){
-       $userid = $this->input->post('userid');
-      $id = $this->input->post('id');
-        if ($this->form_validation->run('edit_contact') == FALSE)
-                {
-        $data['title'] = "Edit Contact";
-      $data['contact'] = $this->ContactsModel->getContactById($id);
-      $this->admin_load('contacts/contact_details/edit_contact',$data);
-                }
-                else
-                {
-       $f_name = $this->input->post('firstname');
-       $l_name = $this->input->post('lastname');
-       $phone = $this->input->post('phonenumber');
-       $email = $this->input->post('email');
-       $position = $this->input->post('title');
-       $direction = $this->input->post('direction');
-       $pass = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
-      
-       $data['firstname'] = $f_name;
-       $data['lastname'] = $l_name;
-       $data['email'] = $email;
-       $data['title'] = $position;
-       $data['direction'] = $direction;
-       
-       $data['phonenumber'] = $phone;
-       if($pass != ''){
-        $data['password'] = $pass;
-       }
+}
+}   
+public function editContact($id){
+  $data['title'] = "Edit Contact";
+  $data['contact'] = $this->ContactsModel->getContactById($id);
+  $this->admin_load('contacts/contact_details/edit_contact',$data);
+}
 
-       if(!empty($_FILES['image']['name'])){ 
+public function updateContact(){
+ $userid = $this->input->post('userid');
+ $id = $this->input->post('id');
+ if ($this->form_validation->run('edit_contact') == FALSE)
+ {
+  $data['title'] = "Edit Contact";
+  $data['contact'] = $this->ContactsModel->getContactById($id);
+  $this->admin_load('contacts/contact_details/edit_contact',$data);
+}
+else
+{
+ $f_name = $this->input->post('firstname');
+ $l_name = $this->input->post('lastname');
+ $phone = $this->input->post('phonenumber');
+ $email = $this->input->post('email');
+ $position = $this->input->post('title');
+ $direction = $this->input->post('direction');
+ $pass = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+
+ $data['firstname'] = $f_name;
+ $data['lastname'] = $l_name;
+ $data['email'] = $email;
+ $data['title'] = $position;
+ $data['direction'] = $direction;
+
+ $data['phonenumber'] = $phone;
+ if($pass != ''){
+  $data['password'] = $pass;
+}
+
+if(!empty($_FILES['image']['name'])){ 
           // File upload path 
-        $path= "assets/uploads/profile_image/";
+  $path= "assets/uploads/profile_image/";
           // image upload
-        $upload_file=$this->do_upload_image('image',$path);
+  $upload_file=$this->do_upload_image('image',$path);
 
-        $image_name=$upload_file['upload_data']['file_name'];
+  $image_name=$upload_file['upload_data']['file_name'];
         // create thumbnail from image code
-        $source_path = $path.$image_name;
-        $thumb_path = $path.'thumbnail/'; 
-        
-        $thumb_width = 280; 
-        $thumb_height = 175; 
+  $source_path = $path.$image_name;
+  $thumb_path = $path.'thumbnail/'; 
+
+  $thumb_width = 280; 
+  $thumb_height = 175; 
                           // Image resize config 
-        $CI = & get_instance();
-        $config                   = [];
-        $config['image_library']    = 'gd2'; 
-        $config['source_image']     = $source_path; 
-        $config['new_image']         = $thumb_path; 
-        $config['maintain_ratio']     = true; 
-        $config['width']            = $thumb_width; 
-        $config['height']           = $thumb_height;
+  $CI = & get_instance();
+  $config                   = [];
+  $config['image_library']    = 'gd2'; 
+  $config['source_image']     = $source_path; 
+  $config['new_image']         = $thumb_path; 
+  $config['maintain_ratio']     = true; 
+  $config['width']            = $thumb_width; 
+  $config['height']           = $thumb_height;
          // Load and initialize image_lib library 
 
-        $CI->image_lib->initialize($config);
-        $CI->image_lib->resize();
-        $CI->image_lib->clear();
-$data['profile_image'] = $image_name;
-      }
-      
+  $CI->image_lib->initialize($config);
+  $CI->image_lib->resize();
+  $CI->image_lib->clear();
+  $data['profile_image'] = $image_name;
+}
 
-      $updateData = $this->ContactsModel->updateContact($id,$data);
-      if($updateData){
-         redirect('admin/edit_contact_list/'.$userid);
-      }
-    }
+
+$updateData = $this->ContactsModel->updateContact($id,$data);
+if($updateData){
+ redirect('admin/edit_contact_list/'.$userid);
+}
+}
 }
 
 public function updateClientStatus($client_id){
@@ -335,17 +334,133 @@ public function do_upload_image($file, $path='') {
 } 
 public function changestatus(){
  // die('hi');
-     $status= $this->input->post('status');
-     $id= $this->input->post('id');
-     $data=array();
-     $data['active']=$status;
-    $userid = array('userid'=>$id);
-    $table= ' tblclients';
-    $statusupdate = $this->ContactsModel->updateStatus($userid,$data,$table);
-    if($statusupdate){
-      redirect('admin/clients');
-    }
+ $status= $this->input->post('status');
+ $id= $this->input->post('id');
+ $data=array();
+ $data['active']=$status;
+ $userid = array('userid'=>$id);
+ $table= ' tblclients';
+ $statusupdate = $this->ContactsModel->updateStatus($userid,$data,$table);
+ if($statusupdate){
+  redirect('admin/clients');
+}
+}
+// add import contact load
+public function importContacts(){
+  $data['title'] = "Contacts Import"; 
+  $data['groups'] = $this->ContactsModel->get_costomer_groups();
+  $this->admin_load('contacts/import_contacts',$data);
 }
 
+  //export contact sample data file
+public function export_csv() {
+  $this->load->helper('csv');
+  $export_arr = array();
+        //$employee_details = $this->employees_model->get();
+  $title = array("User Id", "Firstname", "Lastname", "Email", "Contact phonenumber", "Position", "Company", "Vat", "Phonenumber", "Country", "City", "Zip", "State", "Address", "Website","Billing street","Billing city","Billing state","Billing zip","Billing country","Shipping street","Shipping city","Shipping state","Shipping zip","Shipping country","Longitude","Latitude","Stripe id");
+  array_push($export_arr, $title);
+        // if (!empty($employee_details)) {
+        //     foreach ($employee_details as $employee) {
+        //         array_push($export_arr, array($employee->id, $employee->name, $employee->email, $employee->mobile, $employee->created_at));
+        //     }
+        // }
+  convert_to_csv($export_arr, 'contacts-' . date('Y-m-d') . '.csv', ',');
+}
+public function import_csv() {
+  $this->load->library('Csvimport');
+ 
+        //Check file is uploaded in tmp folder
+  if (is_uploaded_file($_FILES['file']['tmp_name'])) {
+            //validate whether uploaded file is a csv file
+    $csvMimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
+    $mime = get_mime_by_extension($_FILES['file']['name']);
+    $fileArr = explode('.', $_FILES['file']['name']);
+    $ext = end($fileArr);
+    if (($ext == 'csv') && in_array($mime, $csvMimes)) {
+      $file = $_FILES['file']['tmp_name'];
+      $csvData = $this->csvimport->get_array($file);
+      $headerArr = array("User Id","Firstname", "Lastname", "Email", "Contact phonenumber", "Position", "Company", "Vat", "Phonenumber", "Country", "City", "Zip", "State", "Address", "Website","Billing street","Billing city","Billing state","Billing zip","Billing country","Shipping street","Shipping city","Shipping state","Shipping zip","Shipping country","Longitude","Latitude","Stripe id");
+      if (!empty($csvData)) {
+                    //Validate CSV headers
+        $csvHeaders = array_keys($csvData[0]);
+        $headerMatched = 1;
+        foreach ($headerArr as $header) {
+          if (!in_array(trim($header), $csvHeaders)) {
+            $headerMatched = 0;
+          }
+        }
+        if ($headerMatched == 0) {
+          $this->session->set_flashdata("error_msg", "CSV headers are not matched.");
+          redirect('admin/leads');
+        } else {
+          foreach ($csvData as $row) {
+            $contact_data = array(
+              "userid" => $row['User Id'],
+              "firstname" => $row['Firstname'],
+              "lastname" => $row['Lastname'],
+              "email" => $row['Email'],
+              "password" => md5($this->input->post('password')),
+              "phonenumber" => $row['Contact phonenumber'],
+              "title" => $row['Position'],
+            );
+            $contact_tbl = "tblcontacts";
+            $contactData= $this->ContactsModel->insert($contact_tbl, $contact_data);
+             $client_data= array(
+              'company' => $row['Company'],
+              'vat' => $row['Vat'],
+              'phonenumber' => $row['Phonenumber'],
+              'country' => $row['Country'],
+              'city' => $row['City'],
+              'zip' => $row['Zip'],
+              'state' => $row['State'],
+              'address' => $row['Address'],
+              'website' => $row['Website'],
+              'billing_street' => $row['Billing street'],
+              'billing_city' => $row['Billing city'],
+              'billing_state' => $row['Billing state'],
+              'billing_zip' => $row['"Billing zip'],
+              'billing_country' => $row['Billing country'],
+              'shipping_street' => $row['Shipping street'],
+              'shipping_city' => $row['Shipping city'],
+              'shipping_state' => $row['Shipping state'],
+              'shipping_zip' => $row['Shipping zip'],                
+              'shipping_country' => $row['Shipping country'],
+              'longitude' => $row['Longitude'],
+              'latitude' => $row['Latitude'],
+              'stripe_id' => $row['Stripe id'],                            
+            );
+            $client_tbl = 'tblclients';
+            $insert_client = $this->ContactsModel->insert($client_tbl, $client_data);
+            // if($insert_client){
+            //   if(is_array($group)){
+
+            //     foreach ($group as $key => $value) {
+            //       $groupdata=array();
+            //       $groupdata['customer_id']=$insert_client;
+            //       $groupdata['groupid']=$value;
+            //       $group= $this->ContactsModel->add_group($groupdata);
+            //                   // print_r($group);
+            //                   // die('hi');
+            //       if($group){
+            //         redirect('admin/clients');
+            //       }
+            //     }
+            //   }
+            //   redirect('admin/clients');
+            // }
+          }
+          $this->session->set_flashdata("success_msg", "CSV File imported successfully.");
+          redirect('admin/clients');
+        }
+      }
+    } else {
+      $this->session->set_flashdata("error_msg", "Please select CSV file only.");
+      redirect('admin/clients');
+    }
+  } else {
+    $this->session->set_flashdata("error_msg", "Please select a CSV file to upload.");
+    redirect('admin/clients');
+  }
+}
 
 }

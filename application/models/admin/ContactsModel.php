@@ -111,6 +111,11 @@ public function deleteClient($customer_id){
         return $query;
         
     }
+    public function insert($table ,$data= array()){
+        $this->db->insert($table,$data);
+         $insert_id = $this->db->insert_id();
+        return  $insert_id;
+    }
 
 }
 ?>

@@ -84,8 +84,7 @@
                                 <div class="col-md-12">
                                    <fieldset class="form-group">
                                     <label for="tag"><i class="bx bxs-purchase-tag"></i>Tag</label>
-                                    <input type="text" name="tag" class="form-control" id="basicInput" >
-                                   
+                                    <input type="text" name="tag" class="form-control" id="basicInput" >                                   
                                 </fieldset>
                             </div>
                             <div class="col-md-6">

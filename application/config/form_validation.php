@@ -45,6 +45,11 @@ $config = [
         ['field' => 'status', 'label' => 'Status ', 'rules' => 'required'],
         ['field' => 'source', 'label' => 'Source ', 'rules' => 'required'],
     ],
+    'import_lead'=>[
+        
+        ['field' => 'status', 'label' => 'Status ', 'rules' => 'required'],
+        ['field' => 'source', 'label' => 'Source ', 'rules' => 'required'],
+    ],
     'login'=>[
         ['field' => 'email', 'label' => 'Email Address', 'rules' => 'trim|required|valid_email'],
         ['field' => 'password', 'label' => 'Password', 'rules' => 'trim|required'],

@@ -107,16 +107,17 @@
     <!-- BEGIN: Page JS-->
     <script src="<?php echo base_url();?>assets/backend/app-assets/js/scripts/pages/dashboard-ecommerce.js"></script>
     <!-- END: Page JS-->
+    <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/forms/select/select2.full.min.js"></script>
 
-     <script src="<?php echo base_url();?>assets/app-assets/js/scripts/forms/select/form-select2.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+     <script src="<?php echo base_url();?>assets/backend/app-assets/js/scripts/forms/select/form-select2.js"></script>
+   
 
      <!--  multiselect-->
-     <script type="text/javascript">
+     <!-- <script type="text/javascript">
          $(document).ready(function() {
-    $('.js-example-basic-multiple').select2();
+    $('.select2').select2();
 });
-     </script>
+     </script> -->
      
      <!-- add lead -->
      <script type="text/javascript">
