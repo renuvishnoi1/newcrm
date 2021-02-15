@@ -120,3 +120,6 @@ $route['admin/show_lead/(:any)'] = 'admin/LeadsController/showLead/$1';
 $route['admin/import_leads']= 'admin/LeadsController/importLeads';
 $route['admin/import_leads_csv']= 'admin/LeadsController/import_csv';
 $route['admin/export_leads_csv']= 'admin/LeadsController/export_csv';
+
+//calender routing 
+$route['admin/calender'] = 'admin/Calendar/index';

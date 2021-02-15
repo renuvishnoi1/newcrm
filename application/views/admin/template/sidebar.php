@@ -42,14 +42,12 @@
                         </li> 
                         <li><a href="<?php echo base_url('admin/leads'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">Leads</span></a>
                         </li>
-                        <!-- 
-                        <li><a href="#"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Add">Invoice Add</span></a>
-                        </li> -->
+                        
+                        
                     </ul>
                 </li>
-                 
-                <!-- <li class=" nav-item"><a href=""><i class="" data-icon="save"></i><span class="menu-title" data-i18n="File Manager">Leads</span></a>
-                </li>  -->
+                   <li class=" nav-item"><a href="<?php echo base_url('admin/calender'); ?>"><i class="" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Calender</span></a>
+              
                 <!-- <li class=" navigation-header"><span>UI Elements</span>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="" data-icon="retweet"></i><span class="menu-title" data-i18n="Content">Content</span></a>

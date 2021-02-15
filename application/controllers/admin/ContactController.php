@@ -189,8 +189,8 @@ public function inserContact(){
    $data['direction'] = $direction;
    $data['userid'] = $userid;
    $data['datecreated'] =date('Y-m-d H:i:s');
-   $data['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
-
+   //$data['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+   $data['password'] = md5($this->input->post('password'));
 
    if(!empty($_FILES['image']['name'])){ 
           // File upload path 
@@ -251,8 +251,8 @@ else
  $email = $this->input->post('email');
  $position = $this->input->post('title');
  $direction = $this->input->post('direction');
- $pass = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
-
+ //$pass = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+ $pass = md5($this->input->post('password'));
  $data['firstname'] = $f_name;
  $data['lastname'] = $l_name;
  $data['email'] = $email;
