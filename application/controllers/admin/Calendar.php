@@ -35,14 +35,16 @@ class Calendar extends MY_Controller {
 	{
 		$response = array();
 		$this->form_validation->set_rules('title', 'Title cant be empty ', 'required');
+		$this->form_validation->set_rules('start', 'Start Date cant be empty ', 'required');
+		$this->form_validation->set_rules('end', 'Start Date cant be empty ', 'required');
 	    if ($this->form_validation->run() == TRUE)
       	{
 			$param = $this->input->post();
 			// echo "<pre>";
 			// print_r($param);
 			// die;
-			$calendar_id = $param['calendar_id'];
-			unset($param['calendar_id']);
+			$calendar_id = $param['eventid'];
+			unset($param['eventid']);
 
 			if($calendar_id == 0)
 			{
@@ -64,7 +66,7 @@ class Calendar extends MY_Controller {
 			else
 			{	
 				$where 		= [ 'eventid'  => $calendar_id];
-	            $param['modified_at']   	= date('Y-m-d H:i:s');
+	            //$param['modified_at']   	= date('Y-m-d H:i:s');
 	          // echo "<pre>";
 	          // print_r($param);die;
 	            $update = $this->modeldb->update($this->table, $param, $where);
@@ -79,6 +81,7 @@ class Calendar extends MY_Controller {
 		        {
 		        	$response['status'] = FALSE;
 		    		$response['notif']	= 'Server wrong, please save again';
+		    		//
 		        }
 
 			}

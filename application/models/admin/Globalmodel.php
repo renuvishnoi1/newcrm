@@ -18,6 +18,7 @@ class Globalmodel extends CI_Model
 
 	public function update($table, $set, $where)
 	{
+		
 		$this->db->where($where);
 		$this->db->update($table, $set);
 		return $this->db->affected_rows();

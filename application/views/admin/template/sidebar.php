@@ -34,7 +34,7 @@
                 </li>
                 <li class=" nav-item"><a href="#"><i class="" data-icon="grid"></i><span class="menu-title" data-i18n="Kanban">Kanban</span></a>
                 </li> -->
-                <li class=" nav-item"><a href="#"><i class="" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">Leads</span></a>
+                <li class="nav-item"><a href="#"><i class="" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">Leads</span></a>
                     <ul class="menu-content">
                         <li><a href="<?php echo base_url('admin/leads/sources'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Sources</span></a>
                         </li>
