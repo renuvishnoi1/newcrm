@@ -50,6 +50,25 @@ $config = [
         ['field' => 'status', 'label' => 'Status ', 'rules' => 'required'],
         ['field' => 'source', 'label' => 'Source ', 'rules' => 'required'],
     ],
+     'add_group'=>[
+        ['field' => 'name', 'label' => 'Group Name', 'rules' => 'trim|required|min_length[2]|max_length[15]'],
+    ],
+
+     'edit_group'=>[
+        ['field' => 'name', 'label' => 'Group Name', 'rules' => 'trim|required|min_length[2]|max_length[15]'],
+    ],
+    'add_item_group'=>[
+        ['field' => 'name', 'label' => 'Group Name', 'rules' => 'trim|required|min_length[2]|max_length[15]'],
+    ],
+    'add_item'=>[
+        ['field' => 'description', 'label' => 'Description', 'rules' => 'trim|required'],
+    ],
+    'add_tax'=>[
+        ['field' => 'name', 'label' => 'Tax Name', 'rules' => 'trim|required'],
+    ],
+    'edit_tax'=>[
+        ['field' => 'name', 'label' => 'Tax Name', 'rules' => 'trim|required'],
+    ],
     'login'=>[
         ['field' => 'email', 'label' => 'Email Address', 'rules' => 'trim|required|valid_email'],
         ['field' => 'password', 'label' => 'Password', 'rules' => 'trim|required'],

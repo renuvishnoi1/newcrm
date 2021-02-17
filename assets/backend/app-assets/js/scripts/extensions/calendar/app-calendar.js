@@ -51,10 +51,12 @@
   // calendar default on click event
   cal.on({
     'clickSchedule': function (e) {
+     
       $(".tui-full-calendar-popup-top-line").css("background-color", e.calendar.color);
       $(".tui-full-calendar-calendar-dot").css("background-color", e.calendar.borderColor);
     },
     'beforeCreateSchedule': function (e) {
+
       // new schedule create and save
       saveNewSchedule(e);
     },
@@ -112,6 +114,7 @@
 
   // A listener for click the menu
   function onClickMenu(e) {
+
     var target = $(e.target).closest('[role="menuitem"]')[0];
     var action = getDataAction(target);
     var options = cal.getOptions();
@@ -195,6 +198,7 @@
     var end = event.end ? new Date(event.end.getTime()) : moment().add(1, 'hours').toDate();
 
     if (useCreationPopup) {
+     
       cal.openCreationPopup({
         start: start,
         end: end
@@ -203,6 +207,7 @@
   }
   // new schedule create
   function saveNewSchedule(scheduleData) {
+    //alert('hi');
     var calendar = scheduleData.calendar || findCalendar(scheduleData.calendarId);
     var schedule = {
       id: String(chance.guid()),

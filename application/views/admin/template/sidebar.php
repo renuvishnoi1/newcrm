@@ -24,8 +24,30 @@
                 </li>
                 <!-- <li class=" navigation-header"><span>Apps</span>
                 </li> -->
-                <li class=" nav-item"><a href="<?php echo base_url('admin/clients'); ?>"><i class="" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Customers</span></a>
+                  <li class="nav-item"><a href="#"><i class="" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">Customers</span></a>
+                    <ul class="menu-content">
+                        <li><a href="<?php echo base_url('admin/clients'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Customers</span></a>
+                        </li>
+                        <li><a href="<?php echo base_url('admin/clients/groups'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Groups</span></a>
+                        </li>
+                        
+                        
+                    </ul>
                 </li>
+                 <li class="nav-item"><a href="#"><i class="" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">Sales</span></a>
+                    <ul class="menu-content">
+                        <li><a href="<?php echo base_url('admin/invoice_items'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Items</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="#"><i class="" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">FINANCE</span></a>
+                    <ul class="menu-content">
+                        <li><a href="<?php echo base_url('admin/taxes'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Tax</span></a>
+                        </li>
+                    </ul>
+                </li>
+               <!--  <li class=" nav-item"><a href="<?php echo base_url('admin/clients'); ?>"><i class="" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Customers</span></a>
+                </li> -->
              <!--    <li class=" nav-item"><a href="#"><i class="" data-icon="comments"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="" data-icon="check-alt"></i><span class="menu-title" data-i18n="Todo">Todo</span></a>

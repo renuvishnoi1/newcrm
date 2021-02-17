@@ -15,9 +15,7 @@ class ContactController extends MY_Controller
   {
     $data['title'] = "Customers";
     $data['records']= $this->ContactsModel->getClients();
-    // echo "<pre>";
-    //     print_r($data);
-    //     die;
+    
     $this->admin_load('contacts/client_list',$data); 
   }
   public function addClient(){
@@ -25,7 +23,7 @@ class ContactController extends MY_Controller
    $data['country'] = $this->ContactsModel->get_countries();
    $data['currencies'] = $this->ContactsModel->get_currencies();
    $data['title'] = "Add Customers";
-//die($this->app->get_available_languages());
+
    $this->admin_load('contacts/add_client',$data);
  }
  public function insertClient(){

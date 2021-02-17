@@ -89,26 +89,52 @@ $route['admin/changestatus'] = 'admin/ContactController/changestatus';
 $route['admin/import_contacts'] = 'admin/ContactController/importContacts';
 $route['admin/export_contacts_sample'] = 'admin/ContactController/export_csv'; 
 $route['admin/import_contacts_csv'] = 'admin/ContactController/import_csv';
+// customer group route start
+$route['admin/clients/groups'] = 'admin/CustomersGroupController/index';
+$route['admin/clients/add_group'] = 'admin/CustomersGroupController/add';
+$route['admin/clients/insert_group'] = 'admin/CustomersGroupController/insert';
+$route['admin/clients/edit_group/(:any)'] = 'admin/CustomersGroupController/edit/$1';
+$route['admin/clients/update_group'] = 'admin/CustomersGroupController/update';
+$route['admin/clients/delete_group/(:any)'] = 'admin/CustomersGroupController/delete/$1';
+// customer group route end
+
+// Item route start  
+$route['admin/invoice_items'] = 'admin/InvoiceItemsController/index';
+$route['admin/add_invoice_items'] = 'admin/InvoiceItemsController/addItem';
+$route['admin/invoice_items/insert_item_group'] = 'admin/InvoiceItemsController/insertItem';
+$route['admin/invoice_items/item_group'] = 'admin/InvoiceItemsController/group';
+$route['admin/invoice_items/add_item_group'] = 'admin/InvoiceItemsController/addGroup';
 
 
-// leads source route
+// tax route start
+$route['admin/taxes'] = 'admin/TaxController/index';
+$route['admin/add_tax'] = 'admin/TaxController/addTax';
+$route['admin/insert_tax'] = 'admin/TaxController/insertTax';
+$route['admin/edit_tax/(:any)'] = 'admin/TaxController/editTax/$1';
+$route['admin/update_tax'] = 'admin/TaxController/update';
+$route['admin/delete_tax/(:any)'] = 'admin/TaxController/deleteTax/$1';
+
+// tax route end 
+
+// leads source route start
 $route['admin/leads/sources'] = 'admin/LeadsSourceController/index';
 $route['admin/leads/add_source'] = 'admin/LeadsSourceController/add';
 $route['admin/leads/insert_source'] = 'admin/LeadsSourceController/insert';
 $route['admin/leads/edit_source/(:any)'] = 'admin/LeadsSourceController/edit/$1';
 $route['admin/leads/update_source'] = 'admin/LeadsSourceController/update';
 $route['admin/leads/delete_source/(:any)'] = 'admin/LeadsSourceController/delete/$1';
+// leads source route end
 
-// leads statuses route
+// leads statuses route start
 $route['admin/leads/statuses'] = 'admin/LeadsStatusController/index';
 $route['admin/leads/add_status'] = 'admin/LeadsStatusController/add';
 $route['admin/leads/insert_status'] = 'admin/LeadsStatusController/insert';
 $route['admin/leads/edit_status/(:any)'] = 'admin/LeadsStatusController/edit/$1';
 $route['admin/leads/update_status'] = 'admin/LeadsStatusController/update';
 $route['admin/leads/delete_status/(:any)'] = 'admin/LeadsStatusController/delete/$1';
+// leads statuses route end
 
 // leads route
-
 $route['admin/leads'] = 'admin/LeadsController/index';
 $route['admin/add_lead'] = 'admin/LeadsController/addLead';
 $route['admin/save_lead'] = 'admin/LeadsController/insertLead';

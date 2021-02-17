@@ -51,6 +51,7 @@
   // calendar default on click event
   cal.on({
     'clickSchedule': function (e) {
+      
       $(".tui-full-calendar-popup-top-line").css("background-color", e.calendar.color);
       $(".tui-full-calendar-calendar-dot").css("background-color", e.calendar.borderColor);
     },
