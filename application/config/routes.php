@@ -104,6 +104,10 @@ $route['admin/add_invoice_items'] = 'admin/InvoiceItemsController/addItem';
 $route['admin/invoice_items/insert_item'] = 'admin/InvoiceItemsController/insertItem';
 $route['admin/edit_invoice_items/(:any)'] = 'admin/InvoiceItemsController/editItem/$1';
 $route['admin/invoice_items/update_item'] = 'admin/InvoiceItemsController/updateItem';
+$route['admin/invoice_items/delete/(:any)'] = 'admin/InvoiceItemsController/delete/$1';
+$route['admin/invoice_items/export_csv'] = 'admin/InvoiceItemsController/export_csv';
+$route['admin/invoice_items/import_item'] = 'admin/InvoiceItemsController/importItems';
+$route['admin/invoice_items/import_csv'] = 'admin/InvoiceItemsController/import_csv';
 $route['admin/invoice_items/item_group'] = 'admin/InvoiceItemsController/group';
 $route['admin/invoice_items/add_item_group'] = 'admin/InvoiceItemsController/addGroup';
 

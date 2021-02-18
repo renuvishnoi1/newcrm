@@ -12,7 +12,7 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-                <li class=" nav-item"><a href="#"><i class="" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span>
+                <li class=" nav-item"><a href="#"><i class="ficon bx bx-envelope" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span>
                     <!-- <span class="badge badge-light-danger badge-pill badge-round float-right mr-2">2</span> -->
                 </a>
                    <!--  <ul class="menu-content">

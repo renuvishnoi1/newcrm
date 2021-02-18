@@ -61,5 +61,11 @@ class invoiceItemsModel extends CI_Model
         $query = $this->db->update(db_prefix() . 'items', $data);
         return $query;
     } 
+    public function delete($table, $id)
+    {
+        $this->db->where('id',$id);
+        $this->db->delete($table);
+        return $this->db->affected_rows();
+    }
    
 }

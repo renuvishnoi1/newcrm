@@ -28,7 +28,6 @@ class LeadsController extends MY_Controller
     //$data['tag'] = $this->LeadsModel->get_list();
 
     $data['tag'] = $this->LeadsModel->get_list('tblleads');
-
     $data['country'] = $this->ContactsModel->get_countries();
      // echo "<pre>";
      // print_r($data['assign']);
@@ -261,6 +260,10 @@ class LeadsController extends MY_Controller
       }
     }
     
+  }
+  public function kanban(){
+    $data['title'] = "Kanban"; 
+    $this->admin_load( 'leads/kanban',$data);
   }
   public function fetchLead(){
     //die('here');

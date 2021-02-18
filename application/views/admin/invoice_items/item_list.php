@@ -33,7 +33,7 @@
                                     <h4 class="card-title"></h4>
                                      <a href="<?php echo base_url('admin/add_invoice_items'); ?>" type="button" class="btn btn-info mr-1 mb-1">New Item</a>
                                       <a href="<?php echo base_url('admin/invoice_items/item_group'); ?>" type="button" class="btn btn-info mr-1 mb-1">Groups</a>
-                                      <a href="<?php echo base_url(); ?>" type="button" class="btn btn-info mr-1 mb-1">Import Items</a>
+                                      <a href="<?php echo base_url('admin/invoice_items/import_item'); ?>" type="button" class="btn btn-info mr-1 mb-1">Import Items</a>
                                 </div>
                                  <hr>
                                 <div class="card-content">
@@ -66,7 +66,7 @@
                                                         <td><?php  echo $value['unit']; ?></td>
                                                         <td><?php echo $value['group_name']; ?></td>
                                                         <td> <a href="<?php echo base_url();?>admin/edit_invoice_items/<?php echo $value['itemid']; ?>" class="btn btn-light btn-sm"><i class="bx bxs-pencil"></i></a> 
-                                                            <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/delete_tax/<?php echo $value['itemid']; ?>" class="btn btn-danger btn-sm"><i class="bx bx-trash-alt"></i></a></td>
+                                                            <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/invoice_items/delete/<?php echo $value['itemid']; ?>" class="btn btn-danger btn-sm"><i class="bx bx-trash-alt"></i></a></td>
                                                     </tr>
                                                   <?php 
                                                         } ?>

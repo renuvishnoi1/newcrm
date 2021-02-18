@@ -72,6 +72,9 @@ $config = [
     'edit_tax'=>[
         ['field' => 'name', 'label' => 'Tax Name', 'rules' => 'trim|required'],
     ],
+    'import_item'=>[
+        ['field' => 'file', 'label' => 'File', 'rules' => 'required'],
+    ],
     'login'=>[
         ['field' => 'email', 'label' => 'Email Address', 'rules' => 'trim|required|valid_email'],
         ['field' => 'password', 'label' => 'Password', 'rules' => 'trim|required'],
