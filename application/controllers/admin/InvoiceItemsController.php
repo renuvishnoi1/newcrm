@@ -15,8 +15,12 @@ class InvoiceItemsController extends MY_Controller
     /* List all available items */
     public function index(){
         $data['title'] = "Item";
-        //$data['records']= $this->invoiceItemsModel->get_list();
 
+        $data['items']= $this->invoiceItemsModel->get();
+        $data['items_groups'] = $this->invoiceItemsModel->get_groups();
+        $data['taxes']        = $this->invoiceItemsModel->get_list('tbltaxes');
+    // echo "<pre>";
+    // print_r($data);die;
         $this->admin_load('invoice_items/item_list',$data); 
     }
     /* function to load add items view */
@@ -29,7 +33,7 @@ class InvoiceItemsController extends MY_Controller
    }
    /* function insert item  */
    public function insertItem(){
-    
+   
        if($this->form_validation->run('add_item') == FALSE){
           $data['title'] = "Item";
           $data['tax']= $this->invoiceItemsModel->get_list('tbltaxes');
@@ -39,7 +43,12 @@ class InvoiceItemsController extends MY_Controller
 
         $data= array(
           'description'=>$this->input->post('description'),
-          'long_description'=>$this->input->post('long_description')
+          'long_description'=>$this->input->post('long_description'),
+          'rate' => $this->input->post('rate'),
+          'tax' => $this->input->post('tax1'),
+          'tax2' => $this->input->post('tax2'),
+          'unit' => $this->input->post('unit'),
+          'group_id' => $this->input->post('group_id')
       );
         $table = 'tblitems';
         $insertData= $this->invoiceItemsModel->insert($table, $data);
@@ -49,6 +58,48 @@ class InvoiceItemsController extends MY_Controller
       }
     }
 
+    }
+    /* function to load edit items view */
+    public function editItem($id){
+       $data['title'] = "Edit Item";
+       $data['items']= $this->invoiceItemsModel->get($id);
+      $data['tax']= $this->invoiceItemsModel->get_list('tbltaxes');
+          $data['group']= $this->invoiceItemsModel->get_list('tblitems_groups');
+          // echo "<pre>";
+          // print_r($data);
+          // die;
+       $this->admin_load('invoice_items/edit_item',$data); 
+    }
+    /* function to load update items */
+    public function updateItem(){
+      // echo "<pre>";
+      // print_r($_POST);die;
+      $id = $this->input->post('id');
+     if($this->form_validation->run('edit_item') == FALSE){
+
+      $data['title'] = "Edit Item";
+       $data['items']= $this->invoiceItemsModel->get($id); 
+       $data['tax']= $this->invoiceItemsModel->get_list('tbltaxes');
+        $data['group']= $this->invoiceItemsModel->get_list('tblitems_groups');     
+       $this->admin_load('invoice_items/edit_item',$data); 
+
+      }else{
+        $data= array(
+          'description'=>$this->input->post('description'),
+          'long_description'=>$this->input->post('long_description'),
+          'rate' => $this->input->post('rate'),
+          'tax' => $this->input->post('tax1'),
+          'tax2' => $this->input->post('tax2'),
+          'unit' => $this->input->post('unit'),
+          'group_id' => $this->input->post('group_id')
+      );
+        
+        $updateData= $this->invoiceItemsModel->updateItem($id, $data);
+        if($updateData){
+
+          redirect('admin/invoice_items');
+      }
+    }
     }
 /* function to load add item group view */
 public function group(){

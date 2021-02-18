@@ -63,6 +63,9 @@ $config = [
     'add_item'=>[
         ['field' => 'description', 'label' => 'Description', 'rules' => 'trim|required'],
     ],
+    'edit_item'=>[
+        ['field' => 'description', 'label' => 'Description', 'rules' => 'trim|required'],
+    ],
     'add_tax'=>[
         ['field' => 'name', 'label' => 'Tax Name', 'rules' => 'trim|required'],
     ],

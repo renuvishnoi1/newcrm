@@ -51,19 +51,25 @@
                                                         <th>Tax 2</th>
                                                         <th>Unit</th>
                                                         <th>Group Name</th>
+                                                        <th>Options</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <?php foreach ($items as $key => $value) { ?>
+                                                       
                                                     <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td><?php echo $value['description']; ?></td>
+                                                        <td><?php echo $value['long_description']; ?></td>
+                                                        <td><?php echo "$".$value['rate']; ?></td>
+                                                        <td><?php echo $value['taxrate']; ?></td>
+                                                        <td><?php echo $value['taxrate_2']; ?></td>
+                                                        <td><?php  echo $value['unit']; ?></td>
+                                                        <td><?php echo $value['group_name']; ?></td>
+                                                        <td> <a href="<?php echo base_url();?>admin/edit_invoice_items/<?php echo $value['itemid']; ?>" class="btn btn-light btn-sm"><i class="bx bxs-pencil"></i></a> 
+                                                            <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/delete_tax/<?php echo $value['itemid']; ?>" class="btn btn-danger btn-sm"><i class="bx bx-trash-alt"></i></a></td>
                                                     </tr>
-                                                 
+                                                  <?php 
+                                                        } ?>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
@@ -74,6 +80,7 @@
                                                         <th>Tax 2</th>
                                                         <th>Unit</th>
                                                         <th>Group Name</th>
+                                                        <th>Options</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
