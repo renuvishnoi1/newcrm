@@ -34,18 +34,7 @@ $(document).ready(function () {
           image: "../../../app-assets/images/banner/banner-21.jpg",
           dueDate: "Feb 10"
         },
-        {
-          id: "13",
-          title: "Social Media Graphics",
-          border: "warning",
-          dueDate: "Jan 3",
-          comment: 23,
-          attachment: 4,
-          users: [
-            "../../../app-assets/images/portrait/small/avatar-s-1.jpg",
-            "../../../app-assets/images/portrait/small/avatar-s-18.jpg"
-          ]
-        },
+      
         {
           id: "14",
           title: "Book newspaper ads online in popular newspapers.",

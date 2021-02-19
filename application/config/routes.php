@@ -98,7 +98,7 @@ $route['admin/clients/update_group'] = 'admin/CustomersGroupController/update';
 $route['admin/clients/delete_group/(:any)'] = 'admin/CustomersGroupController/delete/$1';
 // customer group route end
 
-// Item route start  
+// Invoice Item route start  
 $route['admin/invoice_items'] = 'admin/InvoiceItemsController/index';
 $route['admin/add_invoice_items'] = 'admin/InvoiceItemsController/addItem';
 $route['admin/invoice_items/insert_item'] = 'admin/InvoiceItemsController/insertItem';
@@ -110,7 +110,10 @@ $route['admin/invoice_items/import_item'] = 'admin/InvoiceItemsController/import
 $route['admin/invoice_items/import_csv'] = 'admin/InvoiceItemsController/import_csv';
 $route['admin/invoice_items/item_group'] = 'admin/InvoiceItemsController/group';
 $route['admin/invoice_items/add_item_group'] = 'admin/InvoiceItemsController/addGroup';
+// Invoice item route end
 
+
+$route['admin/invoices'] = 'admin/InvoiceController/index';
 
 
 // tax route start
@@ -122,9 +125,14 @@ $route['admin/update_tax'] = 'admin/TaxController/update';
 $route['admin/delete_tax/(:any)'] = 'admin/TaxController/deleteTax/$1';
 
 // tax route end 
+//
+$route['admin/paymentmodes'] = 'admin/PaymentmodesController/index';
+$route['admin/add_paymentmode'] = 'admin/PaymentmodesController/add';
+$route['admin/save_paymentmodes'] = 'admin/PaymentmodesController/insert';
 
 // leads source route start
 $route['admin/leads/sources'] = 'admin/LeadsSourceController/index';
+
 $route['admin/leads/add_source'] = 'admin/LeadsSourceController/add';
 $route['admin/leads/insert_source'] = 'admin/LeadsSourceController/insert';
 $route['admin/leads/edit_source/(:any)'] = 'admin/LeadsSourceController/edit/$1';
@@ -149,6 +157,7 @@ $route['admin/edit_lead/(:any)'] = 'admin/LeadsController/editLead/$1';
 $route['admin/update_lead'] = 'admin/LeadsController/updateLead';
 $route['admin/fetch_lead']= 'admin/LeadsController/fetchLead';
 $route['admin/show_lead/(:any)'] = 'admin/LeadsController/showLead/$1';
+$route['admin/leads/kanban'] = 'admin/LeadsController/kanban';
 // import leads route
 $route['admin/import_leads']= 'admin/LeadsController/importLeads';
 $route['admin/import_leads_csv']= 'admin/LeadsController/import_csv';

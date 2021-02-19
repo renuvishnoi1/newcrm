@@ -1,28 +1,19 @@
 
      <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/vendors/css/vendors.min.css">
+   <!--  <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/vendors/css/vendors.min.css"> -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/vendors/css/jkanban/jkanban.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/vendors/css/editors/quill/quill.snow.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/vendors/css/pickers/pickadate/pickadate.css">
     <!-- END: Vendor CSS-->
 
-    <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/css/components.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/css/themes/dark-layout.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/css/themes/semi-dark-layout.css">
-    <!-- END: Theme CSS-->
+    
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/css/core/menu/menu-types/vertical-menu.css">
+   
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/css/pages/app-kanban.css">
     <!-- END: Page CSS-->
 
-    <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/assets/css/style.css">
-    <!-- END: Custom CSS-->
+   
 <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-overlay"></div>
@@ -35,9 +26,9 @@
                 <section id="kanban-wrapper">
                     <div class="row">
                         <div class="col-12">
-                            <button type="button" class="btn btn-primary mb-1" id="add-kanban">
+                            <!-- <button type="button" class="btn btn-primary mb-1" id="add-kanban">
                                 <i class='bx bx-add-to-queue mr-50'></i> Add New Board
-                            </button>
+                            </button> -->
                             <div id="kanban-app"></div>
                         </div>
                     </div>
@@ -65,17 +56,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-6">
-                                                <div class="form-group">
-                                                    <label>Label</label>
-                                                    <select class="form-control text-white">
-                                                        <option class="bg-primary" selected>Primary</option>
-                                                        <option class="bg-danger">Danger</option>
-                                                        <option class="bg-success">Success</option>
-                                                        <option class="bg-info">Info</option>
-                                                        <option class="bg-warning">Warning</option>
-                                                        <option class="bg-secondary">Secondary</option>
-                                                    </select>
-                                                </div>
+                                                
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-group">
@@ -143,10 +124,7 @@
     <!-- END: Content-->
      <!-- BEGIN: Vendor JS-->
     <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/vendors.min.js"></script>
-    <script src="<?php echo base_url();?>assets/backend/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
-    <script src="<?php echo base_url();?>assets/backend/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js"></script>
-    <script src="<?php echo base_url();?>assets/backend/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js"></script>
-    <!-- BEGIN Vendor JS-->
+  
 
     <!-- BEGIN: Page Vendor JS-->
     <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/jkanban/jkanban.min.js"></script>
@@ -155,13 +133,7 @@
     <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/pickers/pickadate/picker.date.js"></script>
     <!-- END: Page Vendor JS-->
 
-    <!-- BEGIN: Theme JS-->
-    <script src="<?php echo base_url();?>assets/backend/app-assets/js/scripts/configs/vertical-menu-dark.js"></script>
-    <script src="<?php echo base_url();?>assets/backend/app-assets/js/core/app-menu.js"></script>
-    <script src="<?php echo base_url();?>assets/backend/app-assets/js/core/app.js"></script>
-    <script src="<?php echo base_url();?>assets/backend/app-assets/js/scripts/components.js"></script>
-    <script src="<?php echo base_url();?>assets/backend/app-assets/js/scripts/footer.js"></script>
-    <!-- END: Theme JS-->
+   
 
     <!-- BEGIN: Page JS-->
     <script src="<?php echo base_url();?>assets/backend/app-assets/js/scripts/pages/app-kanban.js"></script>

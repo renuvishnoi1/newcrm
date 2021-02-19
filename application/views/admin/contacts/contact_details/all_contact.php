@@ -32,7 +32,7 @@
          <div class="card-body">
                    <br>
                    <div class="table-responsive">
-                    <table id="book-table" class="table table-bordered table-striped table-hover ">
+                    <table id="book-table" class="table zero-configuration">
                      <thead>
                        <tr>
                         <th>First Name</th>

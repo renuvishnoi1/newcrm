@@ -13,7 +13,8 @@ class LeadsController extends MY_Controller
   }
   public function index(){
   	$data['title'] = "Lead";
-    $data['records'] = $this->LeadsModel->get_list('tblleads');
+   // $data['records'] = $this->LeadsModel->get_list('tblleads');
+    $data['records'] = $this->LeadsModel->get();
      // echo "<pre>";
      // print_r($data);die;
 
@@ -263,6 +264,7 @@ class LeadsController extends MY_Controller
   }
   public function kanban(){
     $data['title'] = "Kanban"; 
+    $data['records'] = $this->LeadsModel->get();
     $this->admin_load( 'leads/kanban',$data);
   }
   public function fetchLead(){

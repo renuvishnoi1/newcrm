@@ -75,6 +75,9 @@ $config = [
     'import_item'=>[
         ['field' => 'file', 'label' => 'File', 'rules' => 'required'],
     ],
+    'add_paymentmode'=>[
+        ['field' => 'name', 'label' => 'Paymentmode Name', 'rules' => 'trim|required'],
+    ],
     'login'=>[
         ['field' => 'email', 'label' => 'Email Address', 'rules' => 'trim|required|valid_email'],
         ['field' => 'password', 'label' => 'Password', 'rules' => 'trim|required'],
