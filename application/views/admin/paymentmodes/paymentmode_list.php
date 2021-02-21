@@ -56,8 +56,8 @@
                                                         <td><?php echo $value->name; ?></td>
                                                         <td><?php echo $value->description; ?></td>
                                                         <td></td>
-                                                        <td> <a href="<?php echo base_url();?>admin/edit_invoice_items/<?php echo $value->id;  ?>" class="btn btn-light btn-sm"><i class="bx bxs-pencil"></i></a> 
-                                                            <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/invoice_items/delete/<?php echo $value->id; ?>" class="btn btn-danger btn-sm"><i class="bx bx-trash-alt"></i></a></td>
+                                                        <td> <a href="<?php echo base_url();?>admin/edit_paymentmode/<?php echo $value->id;  ?>" class="btn btn-light btn-sm"><i class="bx bxs-pencil"></i></a> 
+                                                            <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/delete_paymentmode/<?php echo $value->id; ?>" class="btn btn-danger btn-sm"><i class="bx bx-trash-alt"></i></a></td>
                                                     </tr>
                                                   <?php 
                                                         } ?>

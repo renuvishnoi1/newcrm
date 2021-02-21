@@ -129,6 +129,9 @@ $route['admin/delete_tax/(:any)'] = 'admin/TaxController/deleteTax/$1';
 $route['admin/paymentmodes'] = 'admin/PaymentmodesController/index';
 $route['admin/add_paymentmode'] = 'admin/PaymentmodesController/add';
 $route['admin/save_paymentmodes'] = 'admin/PaymentmodesController/insert';
+$route['admin/edit_paymentmode/(:any)'] = 'admin/PaymentmodesController/edit/$1';
+$route['admin/update_paymentmode'] = 'admin/PaymentmodesController/update';
+$route['admin/delete_paymentmode/(:any)'] = 'admin/PaymentmodesController/delete/$1';
 
 // leads source route start
 $route['admin/leads/sources'] = 'admin/LeadsSourceController/index';

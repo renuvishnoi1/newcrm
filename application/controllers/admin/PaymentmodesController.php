@@ -46,17 +46,16 @@ class PaymentmodesController extends MY_Controller
 }
 public function edit($id){
     //echo $id;die;
-  $data['title'] = "Edit Lead source";
-  $data['source']=$this->LeadsSourceModel->get_source_row($id);     
-  $this->admin_load('leads/sources/edit_source',$data);
+  $data['title'] = "Edit Payment Mode";
+  $data['paymentmode']=$this->PaymentmodesModel->get_row($id);     
+  $this->admin_load('paymentmodes/edit_paymentmode',$data);
 }
 public function update(){
- $id= $this->input->post('id');
+ $id= $this->input->post('id');   
  if($this->form_validation->run('edit_source')== FALSE){
-  $data['title'] = "Edit Lead source";
-  $data['source']=$this->LeadsSourceModel->get_source_row($id);
-  
-  $this->admin_load('leads/sources/edit_source',$data);
+  $data['title'] = "Edit Payment Mode";
+  $data['paymentmode']=$this->PaymentmodesModel->get_row($id);     
+  $this->admin_load('paymentmodes/edit_paymentmode',$data);
 }else{
       //$name= $this->input->post('name');
   $data= array(
