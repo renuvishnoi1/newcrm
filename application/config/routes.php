@@ -112,8 +112,20 @@ $route['admin/invoice_items/item_group'] = 'admin/InvoiceItemsController/group';
 $route['admin/invoice_items/add_item_group'] = 'admin/InvoiceItemsController/addGroup';
 // Invoice item route end
 
+// Invoice route start
 
 $route['admin/invoices'] = 'admin/InvoiceController/index';
+$route['admin/add_invoices'] = 'admin/InvoiceController/addInvoice';
+// invoice route end
+ 
+ //project route start 
+$route['admin/projects'] = 'admin/ProjectController/index'; 
+$route['admin/add_projects'] = 'admin/ProjectController/addProject';
+// project route end
+
+//Task route start
+$route['admin/tasks'] = 'admin/TaskController/index';
+//task route end
 
 
 // tax route start

@@ -14,6 +14,11 @@ class InvoiceController extends MY_Controller
     // $data['records'] = $this->LeadsSourceModel->get_list('tblleads_sources');
    $this->admin_load('invoices/invoice_list',$data);  	
   }
+  public function addInvoice(){
+     $data['title'] = "Add Invoices";
+    
+   $this->admin_load('invoices/add_invoice',$data);  
+  }
   
   
 

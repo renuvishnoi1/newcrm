@@ -63,7 +63,9 @@
                         
                     </ul>
                 </li>
-                   <li class=" nav-item"><a href="<?php echo base_url('admin/calender'); ?>"><i class="" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Calender</span></a>
+                   <li class=" nav-item"><a href="<?php echo base_url('admin/calender'); ?>"><i class="" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Calender</span></a></li>
+                   <li class=" nav-item "><a href="<?php echo base_url('admin/projects'); ?>"><i class="" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Project</span></a></li>
+                   <li class=" nav-item "><a href="<?php echo base_url('admin/tasks'); ?>"><i class="" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Tasks</span></a></li>
               
           
             </ul>

@@ -10,7 +10,7 @@
                 <section class="invoice-edit-wrapper">
                     <div class="row">
                         <!-- invoice view page -->
-                        <div class="col-xl-9 col-md-8 col-12">
+                        <div class="col-xl-12 col-md-8 col-12">
                             <div class="card">
                                 <div class="card-content">
                                     <div class="card-body pb-0 mx-25">
@@ -69,9 +69,52 @@
                                         </div>
                                         <hr>
                                     </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                        <!-- invoice action  -->
+                          <div class="col-xl-12 col-md-8 col-12">
+                            <div class="card">
+                                <div class="card-content">
+                                   
                                     <div class="card-body pt-50">
+                                       
+                                            <div class="row">
+                                                  <div class=" col-md-4 form-group">
+                                                                    <select class="form-control invoice-item-select">
+                                                                        <option value="Frest Admin Template">Frest Admin Template</option>
+                                                                        <option value="Stack Admin Template">Stack Admin Template</option>
+                                                                        <option value="Robust Admin Template">Robust Admin Template</option>
+                                                                        <option value="Apex Admin Template">Apex Admin Template</option>
+                                                                        <option value="Modern Admin Template">Modern Admin Template</option>
+                                                                    </select>
+                                                                </div>
+                                                                 <div class=" col-md-3 form-group">
+                                                                    <select class="form-control invoice-item-select">
+                                                                        <option value="Frest Admin Template">Frest Admin Template</option>
+                                                                        <option value="Stack Admin Template">Stack Admin Template</option>
+                                                                        <option value="Robust Admin Template">Robust Admin Template</option>
+                                                                        <option value="Apex Admin Template">Apex Admin Template</option>
+                                                                        <option value="Modern Admin Template">Modern Admin Template</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class=" col-md-5 form-group">                               
+                                                                     <fieldset>
+                                                   <span>Show quantity as: </span>
+                                                  <input type="radio" name=""> 
+                                                  <label for="disabledInput">Qty</label>
+                                                  <input type="radio" name=""> 
+                                                  <label for="">Hours</label>
+                                                  <input type="radio" name=""> 
+                                                  <label for="disabledInput">Qty/Hours</label>
+                                                </fieldset>
+                                                                </div>
+                                              <div class="col-md-12">
+                                              
+                                                <div class="card-body pt-50">
                                         <!-- product details table-->
-                                        <div class="invoice-product-details ">
+                                       <!--  <div class="invoice-product-details ">
                                             <form class="form invoice-item-repeater">
                                                 <div data-repeater-list="group-a">
                                                     <div data-repeater-item>
@@ -83,15 +126,7 @@
                                                         </div>
                                                         <div class="invoice-item d-flex border rounded mb-1">
                                                             <div class="invoice-item-filed row pt-1 px-1">
-                                                                <div class="col-12 col-md-4 form-group">
-                                                                    <select class="form-control invoice-item-select">
-                                                                        <option value="Frest Admin Template">Frest Admin Template</option>
-                                                                        <option value="Stack Admin Template">Stack Admin Template</option>
-                                                                        <option value="Robust Admin Template">Robust Admin Template</option>
-                                                                        <option value="Apex Admin Template">Apex Admin Template</option>
-                                                                        <option value="Modern Admin Template">Modern Admin Template</option>
-                                                                    </select>
-                                                                </div>
+                                                               
                                                                 <div class="col-md-3 col-12 form-group">
                                                                     <input type="text" class="form-control" placeholder="0">
                                                                 </div>
@@ -165,7 +200,20 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                        </div>
+                                        </div> -->
+                                        <table><thead>
+                                            <th>Item</th>
+                                            <th>Description</th>
+                                            <th>Qty</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                         <!-- invoice subtotal -->
                                         <hr>
                                         <div class="invoice-subtotal pt-50">
@@ -215,83 +263,39 @@
                                             </div>
                                         </div>
                                     </div>
+                                              </div>
+                                            </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                          <!-- invoice view page -->
+                        <div class="col-xl-12 col-md-8 col-12">
+                            <div class="card">
+                                <div class="card-content">
+                                   
+                                    <div class="card-body pt-50">
+                                       
+                                            <div class="row">
+                                              <div class="col-md-12">
+                                                   <fieldset class="form-group">
+                                                    <label for="disabledInput">Client Note</label>
+                                                   <textarea class="form-control" id="horizontalTextarea" rows="5" name=""></textarea>
+                                                </fieldset>
+                                                 <fieldset class="form-group">
+                                                    <label for="disabledInput">Terms & Conditions</label>
+                                                   <textarea class="form-control" id="horizontalTextarea" rows="5" name=""></textarea>
+                                                </fieldset>
+                                              </div>
+                                            </div>
+                                       
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!-- invoice action  -->
-                        <div class="col-xl-3 col-md-4 col-12">
-                            <div class="card invoice-action-wrapper shadow-none border">
-                                <div class="card-body">
-                                    <div class="invoice-action-btn mb-1">
-                                        <button class="btn btn-primary btn-block invoice-send-btn">
-                                            <i class="bx bx-send"></i>
-                                            <span>Send Invoice</span>
-                                        </button>
-                                    </div>
-                                    <div class="invoice-action-btn mb-1">
-                                        <button class="btn btn-light-primary btn-block">
-                                            <span>Download Invoice</span>
-                                        </button>
-                                    </div>
-                                    <div class="invoice-action-btn mb-1 d-flex">
-                                        <div class="preview w-50 mr-50">
-                                            <button class="btn btn-light-primary btn-block">
-                                                <span class="text-nowrap">Preview</span>
-                                            </button>
-                                        </div>
-                                        <div class="save w-50">
-                                            <button class="btn btn-light-primary btn-block">
-                                                <span class="text-nowrap">Save</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="invoice-action-btn mb-1">
-                                        <button class="btn btn-success btn-block">
-                                            <i class='bx bx-dollar'></i>
-                                            <span>Add Payment</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="invoice-payment">
-                                <div class="invoice-payment-option mb-2">
-                                    <p>Accept payments via</p>
-                                    <select name="payment" id="paymentOption" class="form-control bg-transparent">
-                                        <option value="DebitCard">Debit Card</option>
-                                        <option value="DebitCard">Credit Card</option>
-                                        <option value="DebitCard">Paypal</option>
-                                        <option value="DebitCard">Internet Banking</option>
-                                        <option value="DebitCard">UPI Transfer</option>
-                                    </select>
-                                </div>
-                                <div class="invoice-terms">
-                                    <div class="d-flex justify-content-between py-50">
-                                        <span class="invoice-terms-title">Payment Terms</span>
-                                        <div class="custom-control custom-switch custom-switch-glow">
-                                            <input type="checkbox" class="custom-control-input" checked id="paymentTerm">
-                                            <label class="custom-control-label" for="paymentTerm">
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between py-50">
-                                        <span class="invoice-terms-title">Client Notes</span>
-                                        <div class="custom-control custom-switch custom-switch-glow">
-                                            <input type="checkbox" class="custom-control-input" checked id="clientNote">
-                                            <label class="custom-control-label" for="clientNote">
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between py-50">
-                                        <span class="invoice-terms-title">Payment Stub</span>
-                                        <div class="custom-control custom-switch custom-switch-glow">
-                                            <input type="checkbox" class="custom-control-input" id="paymentstub">
-                                            <label class="custom-control-label" for="paymentstub">
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+               
                     </div>
                 </section>
 
