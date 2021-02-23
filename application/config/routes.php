@@ -180,3 +180,23 @@ $route['admin/export_leads_csv']= 'admin/LeadsController/export_csv';
 
 //calender routing 
 $route['admin/calender'] = 'admin/Calendar/index';
+//
+
+
+// Contracts type route start 
+$route['admin/contracts/types'] = 'admin/ContractTypeController/index';
+$route['admin/contracts/add_type'] = 'admin/ContractTypeController/addType';
+$route['admin/contracts/save_type'] = 'admin/ContractTypeController/insertType';
+$route['admin/contracts/edit_type/(:any)'] = 'admin/ContractTypeController/editType/$1';
+$route['admin/contracts/update_type'] = 'admin/ContractTypeController/updateType';
+$route['admin/contracts/delete/(:any)'] = 'admin/ContractTypeController/delete/$1';
+// contract type route end 
+
+// contract route start
+$route['admin/contracts'] = 'admin/ContractController/index';
+$route['admin/add_contract'] = 'admin/ContractController/addContract';
+$route['admin/save_contract'] = 'admin/ContractController/saveContract';
+$route['admin/edit_contract/(:any)'] = 'admin/ContractController/editContract/$1';
+$route['admin/update_contract'] = 'admin/ContractController/updateContract';
+$route['admin/delete_contract/(:any)'] = 'admin/ContractController/delete/$1';
+// contract route end

@@ -81,6 +81,18 @@ $config = [
     'edit_paymentmode'=>[
         ['field' => 'name', 'label' => 'Paymentmode Name', 'rules' => 'trim|required'],
     ],
+      'add_c_type'=>[
+        ['field' => 'name', 'label' => 'Contract Type Name', 'rules' => 'trim|required'],
+    ],
+    'add_contract'=>[
+        ['field' => 'subject', 'label' => 'Subject', 'rules' => 'trim|required'],
+        ['field' => 'client', 'label' => 'Customer', 'rules' => 'required'],
+    ],
+     'edit_contract'=>[
+        ['field' => 'subject', 'label' => 'Subject', 'rules' => 'trim|required'],
+        ['field' => 'client', 'label' => 'Customer', 'rules' => 'required'],
+    ],
+
     'login'=>[
         ['field' => 'email', 'label' => 'Email Address', 'rules' => 'trim|required|valid_email'],
         ['field' => 'password', 'label' => 'Password', 'rules' => 'trim|required'],
