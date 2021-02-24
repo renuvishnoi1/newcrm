@@ -125,6 +125,7 @@ $route['admin/add_projects'] = 'admin/ProjectController/addProject';
 
 //Task route start
 $route['admin/tasks'] = 'admin/TaskController/index';
+$route['admin/add_task'] = 'admin/TaskController/addTask';
 //task route end
 
 
@@ -200,3 +201,6 @@ $route['admin/edit_contract/(:any)'] = 'admin/ContractController/editContract/$1
 $route['admin/update_contract'] = 'admin/ContractController/updateContract';
 $route['admin/delete_contract/(:any)'] = 'admin/ContractController/delete/$1';
 // contract route end
+
+
+

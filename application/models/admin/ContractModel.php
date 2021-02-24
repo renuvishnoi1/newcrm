@@ -95,7 +95,15 @@ public function add($data)
         return false;
     }
 
-
+ public function get_list($table){
+        $query = $this->db->get($table);
+        return $query->result_array();
+    }
+     public function get_contract_list($table){
+        $this->db->where('rel_type','contract');
+        $query = $this->db->get($table);
+        return $query->result_array();
+    }
 
 }
 ?>

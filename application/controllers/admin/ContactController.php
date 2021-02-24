@@ -106,6 +106,7 @@ class ContactController extends MY_Controller
 public function allContact(){
   $data['title'] = "Contacts";
   $data['records']= $this->ContactsModel->get_all_contacts();
+  $data['records']= $this->ContactsModel->get_list('tbltemplates');
   $this->admin_load('contacts/contact_details/all_contact',$data);
 }
 /****edit customer *****/
@@ -119,6 +120,7 @@ public function editClient($id){
 
     $this->admin_load('contacts/edit_client_profile',$data);
   }
+  
   /********update customer *****/
 
 }

@@ -31,7 +31,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title"></h4>
-                                     <a href="<?php echo base_url('admin/add_tax'); ?>" type="button" class="btn btn-info mr-1 mb-1">New Task</a>
+                                     <a href="<?php echo base_url('admin/add_task'); ?>" type="button" class="btn btn-info mr-1 mb-1">New Task</a>
                                      
                                 </div>
                                  <hr>
@@ -54,7 +54,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php foreach ($records as $key => $value) {?>
+                                                   
                                                     <tr>
                                                         <td></td>
                                                         <td></td>
@@ -65,9 +65,7 @@
                                                         <td></td>
                                                         <td></td>                                                       
                                                     </tr> 
-                                                    <?php 
-                                                      
-                                                    } ?>                                                
+                                                                                                
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>

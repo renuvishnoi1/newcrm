@@ -14,7 +14,7 @@ class TaskController extends MY_Controller
   public function index()
   {
     $data['title'] = "Tasks";
-    //$data['records']= $this->ContactsModel->getClients();
+    $data['records']= $this->TaskModel->get_list('tbltasks');
     
     $this->admin_load('tasks/task_list',$data); 
   }

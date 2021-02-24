@@ -7,7 +7,7 @@ class ContractController extends MY_Controller
   {
     parent::__construct();
     $this->load->model('admin/ContractModel');
-     $this->load->model('admin/ContractTypeModel');
+    $this->load->model('admin/ContractTypeModel');
     
 
   }
@@ -27,16 +27,16 @@ class ContractController extends MY_Controller
    $data['title'] = "Add Contract";
    $data['customer']= $this->ContractModel->get_client();
    $data['contract_type'] = $this->ContractTypeModel->get();
-  
+
    $this->admin_load('contracts/add_contract',$data);
  }
  public function saveContract(){
- 
+
   if($this->form_validation->run('add_contract') == FALSE){
    $data['title'] = "Add Contract";
    $data['customer']= $this->ContractModel->get_client();
    $data['contract_type'] = $this->ContractTypeModel->get();
-  
+
    $this->admin_load('contracts/add_contract',$data);
  }else{
 
@@ -59,10 +59,12 @@ class ContractController extends MY_Controller
 }
 public function editContract($id)
 {
-   $data['title'] = "Contract";
-    $data['customer']= $this->ContractModel->get_client();
-   $data['contract_type'] = $this->ContractTypeModel->get();
-    $data['contracts']= $this->ContractModel->get($id);
+  $data['title'] = "Contract";
+  $data['customer']= $this->ContractModel->get_client();
+  $data['contract_type'] = $this->ContractTypeModel->get();
+  $data['contracts']= $this->ContractModel->get($id);
+  $data['template']= $this->ContractModel->get_list('tbltemplates');
+  $data['task']= $this->ContractModel->get_contract_list('tbltasks');
     // echo "<pre>";
     // print_r($data);
     // die;
@@ -75,11 +77,11 @@ public function updateContract(){
 
   if($this->form_validation->run('edit_contract')== FALSE){
    $data['title'] = "Contract";
-    $data['customer']= $this->ContractModel->get_client();
+   $data['customer']= $this->ContractModel->get_client();
    $data['contract_type'] = $this->ContractTypeModel->get();
-    $data['contracts']= $this->ContractModel->get($id);
-    $this->admin_load('contracts/edit_contract',$data);
-  }else{    
+   $data['contracts']= $this->ContractModel->get($id);
+   $this->admin_load('contracts/edit_contract',$data);
+ }else{    
 
    $u_data= array(
     'subject'=>$this->input->post('subject'),
@@ -90,13 +92,11 @@ public function updateContract(){
     'contract_type'=>$this->input->post('contract_type'),
     'description'=>$this->input->post('description')
   );
-    
-    $update = $this->ContractModel->update($u_data, $id);
-    if($update){
-      redirect('admin/contracts');
-    }
-
+   $update = $this->ContractModel->update($u_data, $id);
+   if($update){
+    redirect('admin/contracts');
   }
+}
 }
 public function delete($id){
   $delete= $this->ContractModel->delete( $id);
