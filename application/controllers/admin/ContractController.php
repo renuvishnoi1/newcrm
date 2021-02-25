@@ -16,10 +16,7 @@ class ContractController extends MY_Controller
   {
     $data['title'] = "Contract ";
     $data['records']= $this->ContractModel->get();
-  // echo "<pre>";
-  // print_r($data);
-  // die;
-    
+ 
     $this->admin_load('contracts/contract_list',$data); 
   }
   public function addContract(){
@@ -65,9 +62,7 @@ public function editContract($id)
   $data['contracts']= $this->ContractModel->get($id);
   $data['template']= $this->ContractModel->get_list('tbltemplates');
   $data['task']= $this->ContractModel->get_contract_list('tbltasks');
-    // echo "<pre>";
-    // print_r($data);
-    // die;
+  
   $this->admin_load('contracts/edit_contract',$data);
 }
 
@@ -104,5 +99,48 @@ public function delete($id){
     redirect('admin/contracts');
   }
 }
+public function store_template_data()
+   {
+    // echo "<pre>";
+    // print_r($_POST);die;
+       $this->load->database();
+
+
+       $insert = $this->input->post();
+
+       $this->db->insert('tbltemplates', $insert);
+       $id = $this->db->insert_id();
+       $q = $this->db->get_where('tbltemplates', array('id' => $id));
+
+
+       echo json_encode($q->row());
+    }
+    public function ajax_delete($id)
+    {
+        $this->person->delete_by_id($id);
+        echo json_encode(array("status" => TRUE));
+    }
+public function store_contarct_comment_data()
+   {
+    
+       $this->load->database();
+
+
+       $insert = $this->input->post();
+
+       $this->db->insert('tblcontract_comments', $insert);
+       $id = $this->db->insert_id();
+       $q = $this->db->get_where('tblcontract_comments', array('id' => $id));
+
+
+       echo json_encode($q->row());
+    }
+
+
+
+
+
+
+
 
 }

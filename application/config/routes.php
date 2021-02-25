@@ -126,6 +126,10 @@ $route['admin/add_projects'] = 'admin/ProjectController/addProject';
 //Task route start
 $route['admin/tasks'] = 'admin/TaskController/index';
 $route['admin/add_task'] = 'admin/TaskController/addTask';
+$route['admin/fetch_related_data'] = 'admin/TaskController/fetchRelatedData';
+
+
+
 //task route end
 
 
@@ -200,6 +204,8 @@ $route['admin/save_contract'] = 'admin/ContractController/saveContract';
 $route['admin/edit_contract/(:any)'] = 'admin/ContractController/editContract/$1';
 $route['admin/update_contract'] = 'admin/ContractController/updateContract';
 $route['admin/delete_contract/(:any)'] = 'admin/ContractController/delete/$1';
+$route['admin/store_template_data']= 'admin/ContractController/store_template_data';
+$route['admin/store_contarct_comment_data']= 'admin/ContractController/store_contarct_comment_data';
 // contract route end
 
 

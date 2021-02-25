@@ -79,6 +79,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script  src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <!-- <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script> -->
     <script type="text/javascript">
         $(document).ready(function(){
@@ -116,6 +117,79 @@
 };
    </script>     
   
+<script type="text/javascript">
+  $("#rel_type").on("change",function(){
+    var value = $(this).val();
+   var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+    csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+    var dataJson = { [csrfName]: csrfHash, value:value};
+    alert(value);
+    $.ajax({
+         url : "<?php echo base_url().'admin/fetch_related_data'; ?>",
+         type: "post",
+         data: dataJson,
+         success : function(data){
+             $("#list2").html(data);
+         },
+    });
+});
+</script>
+<script type="text/javascript">
+    /* Create new template in contract module */
+$(".crud-submit").click(function(e){
+
+
+    e.preventDefault();
+    var form_action = $("#create-item").find("form").attr("action");
+    var name = $("#name").val();
+
+    var content = $("#content").val();
+ var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+    csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+
+    var dataJson = { [csrfName]: csrfHash, name:name,content:content,"type":"contract"};
+    $.ajax({
+        type:'POST',
+        url: form_action,
+        data:dataJson,
+        success:function(data){
+            $('#alert-msg').html('<div class="alert alert-success text-center">Data saved successfully!</div>');
+            //$("#create-item").modal('hide');
+        }
+    });
+
+
+});
+
+</script>
+<!-- contract comment save -->
+<script type="text/javascript">
+    $(".comment-submit").click(function(e){
+
+
+    e.preventDefault();
+    var form_action = "<?php echo base_url().'admin/store_contarct_comment_data'; ?>";
+
+    var content = $("#content").val();
+    //alert(content);
+    var contract_id= $('#contract_id').val();
+    var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+    csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+
+    var dataJson = { [csrfName]: csrfHash,content:content,contract_id:contract_id};
+    $.ajax({
+        type:'POST',
+        url: form_action,
+        data:dataJson,
+        success:function(data){
+           location.reload();
+           
+        }
+    });
+
+
+});
+</script>
 
 </body>
 <!-- END: Body-->

@@ -23,6 +23,17 @@ class TaskController extends MY_Controller
     
     $this->admin_load('tasks/add_task',$data); 
   }
-  
+  public function fetchRelatedData(){
+    die('hi');
+     $value = $this->input->post("value");
+      //$data = $this->mymodal->get_data($value);
+      $option ="";
+      foreach($data as $d)
+      {
+         $option .= "<option value='".$d->id."' >".$d->name."</option>";
+      }
+       echo $option;
+  }
+
 
 }
