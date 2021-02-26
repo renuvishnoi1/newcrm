@@ -36,6 +36,8 @@
                 </li>
                  <li class="nav-item"><a href="#"><i class="" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">Sales</span></a>
                     <ul class="menu-content">
+                        <li><a href="<?php echo base_url('admin/proposals'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Proposals</span></a>
+                        </li>
                         <li><a href="<?php echo base_url('admin/invoice_items'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Items</span></a>
                         </li>
                         <li><a href="<?php echo base_url('admin/invoices'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Invoices</span></a>
@@ -55,7 +57,7 @@
                     <ul class="menu-content">
                         <li><a href="<?php echo base_url('admin/leads/sources'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Sources</span></a>
                         </li>
-                       <li><a href="<?php  echo base_url('admin/leads/statuses'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">Statuses</span></a>
+                       <li><a href="<?php  echo base_url('admin/leads/statuses'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">Status</span></a>
                         </li> 
                         <li><a href="<?php echo base_url('admin/leads'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">Leads</span></a>
                         </li>

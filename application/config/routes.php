@@ -112,6 +112,10 @@ $route['admin/invoice_items/item_group'] = 'admin/InvoiceItemsController/group';
 $route['admin/invoice_items/add_item_group'] = 'admin/InvoiceItemsController/addGroup';
 // Invoice item route end
 
+// proposals route start
+$route['admin/proposals'] = 'admin/ProposalController/index';
+$route['admin/add_proposals'] = 'admin/ProposalController/addProposal';
+//proposals route end 
 // Invoice route start
 
 $route['admin/invoices'] = 'admin/InvoiceController/index';
@@ -207,6 +211,8 @@ $route['admin/delete_contract/(:any)'] = 'admin/ContractController/delete/$1';
 $route['admin/store_template_data']= 'admin/ContractController/store_template_data';
 $route['admin/store_contarct_comment_data']= 'admin/ContractController/store_contarct_comment_data';
 // contract route end
+
+
 
 
 

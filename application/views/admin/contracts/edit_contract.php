@@ -193,6 +193,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="tab-pane" id="comment-just" role="tabpanel" aria-labelledby="messages-tab-justified">
+                                                    <div id="div_id"></div>
                                                     <form >
                                                   <div class="form-group">
                                                     <label class="control-label" for="title">Comment:</label>
@@ -339,22 +340,22 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title" id="myModalLabel">Create Item</h4>
+        <h4 class="modal-title" id="myModalLabel">Add Template</h4>
     </div>
     <div class="modal-body">
         <form data-toggle="validator" action="<?php echo base_url('admin/store_template_data'); ?>" method="POST">
             <div class="form-group">
-                <label class="control-label" for="title">Title:</label>
+                <label class="control-label" for="title"> Template Title:</label>
                 <input type="text" id="name" name="name" class="form-control" data-error="Please enter title." required />
                 <div class="help-block with-errors"></div>
             </div>
             <div class="form-group">
-                <label class="control-label" for="title">Description:</label>
+                <label class="control-label" for="title">Template Content:</label>
                 <textarea name="content" id="content" class="form-control" data-error="Please enter description." required></textarea>
                 <div class="help-block with-errors"></div>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn crud-submit btn-success">Submit</button>
+                <button type="submit" class="btn crud-submit btn-success">Save</button>
             </div>
         </form>
 

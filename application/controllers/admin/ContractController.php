@@ -130,11 +130,18 @@ public function store_contarct_comment_data()
 
        $this->db->insert('tblcontract_comments', $insert);
        $id = $this->db->insert_id();
-       $q = $this->db->get_where('tblcontract_comments', array('id' => $id));
+       //$q = $this->db->get_where('tblcontract_comments', array('id' => $id));
+$q = $this->db->get('tblcontract_comments');
 
-
-       echo json_encode($q->row());
+       echo json_encode($q->result_array());
     }
+     public function template_edit($id)
+ {
+ $q =  $this->db->get_where('tblcontract_comments', array('id' => $id));
+ $data = $q->row();
+ echo json_encode($data);
+ }
+
 
 
 
