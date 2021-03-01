@@ -117,29 +117,7 @@
 };
    </script>     
   
-<script type="text/javascript">
-    $(document).ready(function(){
-         $("#customer").hide();
-    $("#lead").hide();
-  $("#rel_type").on("change",function(){
-   
-    var selected_option = $(this).val();
-    if(selected_option == '0'){
-        $("#customer").hide();
-        $("#lead").hide();
-    }
-     else if (selected_option == 'lead') {
-    $('#lead').show();
-    $("#customer").hide();
-  }
-  else if (selected_option == 'customer') {
-     $('#customer').show();
-    $("#lead").hide();
-  }else{}
-});
-});
- 
-</script>
+
 <script type="text/javascript">
     /* Create new template in contract module */
 $(".crud-submit").click(function(e){

@@ -31,11 +31,21 @@ class ProposalController extends MY_Controller
     $data['assignee']= $this->ProposalModel->get_list('tblstaff');
     $data['country']= $this->ProposalModel->get_list('tblcountries');
     $data['items']= $this->ProposalModel->get_list('tblitems');
+    $data['tax']= $this->ProposalModel->get_list('tbltaxes');
     // echo "<pre>";
     // print_r($data);die;
 
    $this->admin_load('proposals/add_proposal',$data); 
  }
+  public function getItemDataById(){
+ 
+ $id = $this->input->post('id');
+  $data= $this->ProposalModel->get($id);
+  // echo$id ;
+  // print_r($data);
+  // die;
+   echo json_encode($data);
+}
  /* function insert item  */
 //  public function insertItem(){
 
