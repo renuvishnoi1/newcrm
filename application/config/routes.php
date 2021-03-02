@@ -116,6 +116,11 @@ $route['admin/invoice_items/add_item_group'] = 'admin/InvoiceItemsController/add
 $route['admin/proposals'] = 'admin/ProposalController/index';
 $route['admin/add_proposals'] = 'admin/ProposalController/addProposal';
 //proposals route end 
+
+//estimates routing start 
+$route['admin/estimates'] = 'admin/EstimateController/index';
+
+//estimate routing end 
 // Invoice route start
 
 $route['admin/invoices'] = 'admin/InvoiceController/index';

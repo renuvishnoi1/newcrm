@@ -193,7 +193,10 @@
                                                     </p>
                                                 </div>
                                                 <div class="tab-pane" id="comment-just" role="tabpanel" aria-labelledby="messages-tab-justified">
-                                                    <div id="div_id"></div>
+                                                    <table>
+                                                        <thead><tr><th>data</th></tr></thead>
+                                                        <tbody id="comment_data"></tbody>
+                                                    </table>
                                                     <form >
                                                   <div class="form-group">
                                                     <label class="control-label" for="title">Comment:</label>
@@ -382,3 +385,18 @@
 </div>
 </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script  src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+      $(document).ready(function() {
+        $.ajax({
+        url: "<?php echo base_url("admin/ContractController/getComments");?>",
+        type: "POST",
+        cache: false,
+        success: function(data){
+            alert(data);
+            $('#comment_data').html(data); 
+        }
+    });
+    });
+</script>

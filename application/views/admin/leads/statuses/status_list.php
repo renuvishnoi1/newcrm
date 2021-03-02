@@ -49,8 +49,8 @@
                     <td><?php echo $value->name ?></td>
                     
                     <td>
-                     <a href="<?php echo base_url();?>admin/leads/edit_status/<?php echo $value->id; ?>" class="btn btn-primary btn-sm"><i class="bx bxs-pencil"></i></a> 
-                     <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/leads/delete_status/<?php echo $value->id; ?>" class="btn btn-danger btn-sm"><i class="bx bx-trash-alt"></i></td>
+                     <a href="<?php echo base_url();?>admin/leads/edit_status/<?php echo $value->id; ?>" class="btn btn-icon btn-primary glow mr-1 mb-1"><i class="bx bxs-pencil"></i></a> 
+                     <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/leads/delete_status/<?php echo $value->id; ?>" class="btn btn-icon btn-danger glow mr-1 mb-1"><i class="bx bx-trash-alt"></i></td>
                      </tr>
                    <?php } ?>
                  </tbody>

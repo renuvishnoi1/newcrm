@@ -28,7 +28,7 @@
         <div class="col-md-12">
           <div class="card">
            <div class="card-header">
-            <a href="<?php echo base_url('admin/clients/add_group') ?>" class="btn btn-info mright5 test pull-left ">
+            <a href="<?php echo base_url('admin/clients/add_group') ?>" class="btn mr-1 mb-1 btn-info ">
             Add Group</a>
           </div>
           <!-- /.card-header -->
@@ -52,8 +52,8 @@
                   <td><?php echo $value->name; ?></td>
                   
                   <td>
-                   <a href="<?php echo base_url();?>admin/clients/edit_group/<?php echo $value->id; ?>" class="btn btn-primary btn-sm"><i class="bx bxs-pencil"></i></a> 
-                   <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/clients/delete_group/<?php echo $value->id; ?>" class="btn btn-danger btn-sm"><i class="bx bx-trash-alt"></i></td>
+                   <a href="<?php echo base_url();?>admin/clients/edit_group/<?php echo $value->id; ?>" class="btn btn-icon btn-primary glow mr-1 mb-1"><i class="bx bxs-pencil"></i></a> 
+                   <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/clients/delete_group/<?php echo $value->id; ?>" class="btn btn-icon btn-danger glow mr-1 mb-1"><i class="bx bx-trash-alt"></i></td>
                    </tr>
                  <?php } ?>
                </tbody>

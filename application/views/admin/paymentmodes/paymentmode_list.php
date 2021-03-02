@@ -31,7 +31,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title"></h4>
-                                     <a href="<?php echo base_url('admin/add_paymentmode'); ?>" type="button" class="btn btn-info mr-1 mb-1">New Payment Mode</a>
+                                     <a href="<?php echo base_url('admin/add_paymentmode'); ?>" type="button" class="btn mr-1 mb-1 btn-info ">New Payment Mode</a>
                                    
                                 </div>
                                  <hr>
@@ -56,8 +56,8 @@
                                                         <td><?php echo $value->name; ?></td>
                                                         <td><?php echo $value->description; ?></td>
                                                         <td></td>
-                                                        <td> <a href="<?php echo base_url();?>admin/edit_paymentmode/<?php echo $value->id;  ?>" class="btn btn-light btn-sm"><i class="bx bxs-pencil"></i></a> 
-                                                            <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/delete_paymentmode/<?php echo $value->id; ?>" class="btn btn-danger btn-sm"><i class="bx bx-trash-alt"></i></a></td>
+                                                        <td> <a href="<?php echo base_url();?>admin/edit_paymentmode/<?php echo $value->id;  ?>" class="btn btn-icon btn-primary glow mr-1 mb-1"><i class="bx bxs-pencil"></i></a> 
+                                                            <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/delete_paymentmode/<?php echo $value->id; ?>" class="btn btn-icon btn-danger glow mr-1 mb-1"><i class="bx bx-trash-alt"></i></a></td>
                                                     </tr>
                                                   <?php 
                                                         } ?>

@@ -141,7 +141,11 @@ $q = $this->db->get('tblcontract_comments');
  $data = $q->row();
  echo json_encode($data);
  }
-
+public function getComments(){
+  $data=$this->ContractModel->get_list('tblcontract_comments');
+   
+ echo json_encode($data);
+}
 
 
 

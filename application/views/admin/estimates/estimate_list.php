@@ -31,8 +31,8 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title"></h4>
-                                     <a href="<?php echo base_url('admin/add_tax'); ?>" type="button" class="btn btn-info mr-1 mb-1">New Tax</a>
-                                     
+                                     <a href="<?php echo base_url('admin/add_proposals'); ?>" type="button" class="btn btn-info mr-1 mb-1">Create New Estimate</a>
+                                      
                                 </div>
                                  <hr>
                                 <div class="card-content">
@@ -43,34 +43,22 @@
                                             <table class="table zero-configuration">
                                                 <thead>
                                                     <tr>
-                                                        <th>ID</th>
-                                                        <th>Tax Name</th>
-                                                        <th>Rate(Percent)</th>                                                       
-                                                        <th>Options</th>
+                                                        <th>Estimate</th>
+                                                        <th>Amount</th>
+                                                        <th>Total Tax</th>
+                                                        <th>Customer</th>
+                                                        <th>Project</th>
+                                                        <th>Tags</th>
+                                                        <th>Date</th>
+                                                        <th>Expiry Date</th>
+                                                        <th>Reference #</th>
+                                                        <th>Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php foreach ($records as $key => $value) {?>
-                                                    <tr>
-                                                        <td><?php echo $value['id']; ?></td>
-                                                        <td><?php echo $value['name']; ?></td>
-                                                        <td><?php echo $value['taxrate']; ?></td>
-                                                        <td>
-                                                            <a href="<?php echo base_url();?>admin/edit_tax/<?php echo $value['id']; ?>" class="btn btn-icon btn-primary glow mr-1 mb-1"><i class="bx bxs-pencil"></i></a> 
-                                                            <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/delete_tax/<?php echo $value['id']; ?>" class="btn btn-icon btn-danger glow mr-1 mb-1"><i class="bx bx-trash-alt"></i></a></td>                                                       
-                                                    </tr> 
-                                                    <?php 
-                                                      
-                                                    } ?>                                                
+                                                   
                                                 </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Tax Name</th>
-                                                        <th>Rate(Percent)</th>                                                       
-                                                        <th>Options</th>
-                                                    </tr>
-                                                </tfoot>
+                                               
                                             </table>
                                         </div>
                                     </div>

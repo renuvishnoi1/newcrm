@@ -38,7 +38,9 @@
                     <ul class="menu-content">
                         <li><a href="<?php echo base_url('admin/proposals'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Proposals</span></a>
                         </li>
-                        <li><a href="<?php echo base_url('admin/invoice_items'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Items</span></a>
+                        <li><a href="<?php echo base_url('admin/estimates'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Estimates</span></a>
+                        </li>
+                        <li><a href="<?php echo base_url('admin/invoice_items'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Items</span></a> 
                         </li>
                         <li><a href="<?php echo base_url('admin/invoices'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Invoices</span></a>
                         </li>

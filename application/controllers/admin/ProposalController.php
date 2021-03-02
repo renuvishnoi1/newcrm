@@ -37,16 +37,29 @@ class ProposalController extends MY_Controller
 
    $this->admin_load('proposals/add_proposal',$data); 
  }
+ /* function for get item data by item id  */
   public function getItemDataById(){
  
  $id = $this->input->post('id');
   $data= $this->ProposalModel->get($id);
-  // echo$id ;
-  // print_r($data);
-  // die;
+
    echo json_encode($data);
 }
- /* function insert item  */
+public function getCustomerDataById(){
+   $id = $this->input->post('id');
+  $data = $this->ProposalModel->getCustomer($id);
+// echo "<pre>";
+// print_r($data);
+// die;
+   echo json_encode($data);
+}
+
+/* function insert proposal  */
+public function insertProposal(){
+
+ 
+}
+/* function insert item  */
 //  public function insertItem(){
 
 //    if($this->form_validation->run('add_item') == FALSE){

@@ -32,7 +32,7 @@
                                </div>
                                <div class="card-content">
                                 <div class="card-body">
-                                    <form action="<?php echo base_url('admin/invoice_items/insert_item'); ?>" method="POST">
+                                    <form action="<?php echo base_url(); ?>" method="POST">
                                         <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
                                         <div class="row">                                            
                                             <div class="col-md-6 border-right" >
@@ -66,7 +66,7 @@
                                            </fieldset>
                                            <fieldset class="form-group" id="customer">
                                             <label for="basicInput" id="customer">Customer</label>
-                                            <select name="rel_type" id="rel_type" class="form-control" onchange="customerget(this)">
+                                            <select name="rel_type" id="rel_type" class="form-control">
                                                 <option value="0"></option>
                                                 <?php foreach ($clients as $key => $value) {
                                                    ?><option value="<?php  echo $value['userid']; ?>"><?php echo $value['company']; ?>></option><?php 
@@ -273,7 +273,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <div class="control-group after-add-more">
+                                                    <div class=" control-group after-add-more">
                                                     <tr class="after-add-more">
                                                         <td> <fieldset class="form-group">
                                                             <textarea class="form-control" id="item_description" rows="3" placeholder="Description"></textarea>
@@ -322,6 +322,26 @@
                                                        <td><button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button></td>
                                                    </tr>
                                                     </div>
+   <!--  <div class="input-group control-group after-add-more">
+          <input type="text" name="addmore[]" class="form-control" placeholder="Enter Name Here">
+          <div class="input-group-btn"> 
+            <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+          </div>
+        </div> -->
+
+
+        
+
+
+        <!-- Copy Fields -->
+     <!--    <div class="copy hide">
+          <div class="control-group input-group" style="margin-top:10px">
+            <input type="text" name="addmore[]" class="form-control" placeholder="Enter Name Here">
+            <div class="input-group-btn"> 
+              <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+            </div>
+          </div>
+        </div> -->
                                                </tbody>
                                            </table>
                                        </div>
@@ -345,8 +365,8 @@
                             <tbody>
                                 <tr>
                                     <td ><div class="col-md-7">
-                                        <span class="bold">Discount</span><input type="text" name="" class="form-control">
-                                    </div> </td>
+                                        <span class="bold">Discount</span>
+                                    </div><input type="text" name=""></td>
                                     <td>-$0.00</td>
                                 </tr>
                                 <tr>
@@ -385,6 +405,7 @@
 
 
     $(document).ready(function() {
+
 
       $(".add-more").click(function(){ 
           var html = $(".copy").html();
@@ -457,31 +478,5 @@
 </script>
 
 <script type="text/javascript">
-    // on select customer show other field data
-    function customerget(that) {
-        if (that.value != "") {
-          var id = that.value;
-   alert(id);
-   var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
-   csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
-   var dataJson = { [csrfName]: csrfHash, id:id};
-   $.ajax({
-    url:"<?php echo base_url('admin/ProposalController/getCustomerDataById'); ?>",
-    type:"POST",
-    data:dataJson,
-    success:function(data)
-    {
-        data = jQuery.parseJSON(data);
-        // $('#item_description').html(data.description);
-        // $('#item_description').html(data.long_description);
-        // $('#item_unit').html(data.unit);
-        // $('#item_rate').html(data.rate);
-        console.log(data);
-    }
-});
-
-} else {
-    document.getElementById("ifYes").style.display = "none";
-}
-}
+    
 </script>

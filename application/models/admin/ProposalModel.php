@@ -67,5 +67,11 @@ class ProposalModel extends CI_Model
         $this->db->delete($table);
         return $this->db->affected_rows();
     }
+    public function getCustomer($id){
+        // echo $id;
+        // die;
+         $this->db->where('userid', $id);
+        return $this->db->get('tblclients')->row();
+    }
    
 }
