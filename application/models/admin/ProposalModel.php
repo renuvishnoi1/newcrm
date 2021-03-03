@@ -73,5 +73,11 @@ class ProposalModel extends CI_Model
          $this->db->where('userid', $id);
         return $this->db->get('tblclients')->row();
     }
+     public function getLead($id){
+        // echo $id;
+        // die;
+         $this->db->where('id', $id);
+        return $this->db->get('tblleads')->row();
+    }
    
 }

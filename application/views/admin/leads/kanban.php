@@ -25,7 +25,7 @@
                 <div class="kanban-overlay"></div>
                 <section id="kanban-wrapper">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-4">
                             <!-- <button type="button" class="btn btn-primary mb-1" id="add-kanban">
                                 <i class='bx bx-add-to-queue mr-50'></i> Add New Board
                             </button> -->
@@ -57,7 +57,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 
-                                            </div>
+                                            </div><input type="hidden" id="base" value="<?php echo base_url('admin/LeadsController/getKanbanData'); ?>">
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label>Member</label>

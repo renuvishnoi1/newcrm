@@ -290,5 +290,12 @@ class LeadsController extends MY_Controller
 
     }
   }
+  public function getKanbanData(){
+     $data= $this->LeadsModel->get();
+     // echo "<pre>";
+     // print_r($data);
+     // die;
+      echo json_encode($data);
+  }
 }
 ?>

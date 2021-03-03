@@ -54,7 +54,7 @@
                                                 </fieldset>
                                                 <fieldset class="form-group" id="lead">
                                                     <label for="basicInput" >Lead</label>
-                                                    <select name="rel_type" id="rel_type" class="form-control" onchange="leadget(this)">
+                                                    <select name="rel_type" id="rel_type" class="form-control">
                                                       <option value="0"></option>
                                                       <?php foreach ($leads as $key => $value) {
                                                        ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?>></option><?php 
@@ -88,6 +88,7 @@
                                             <div class="row">
                                                <div class="col-md-6">
                                                 <div class="form-group" ><label for="date" > <small class="req text-danger">* </small> Currency</label>
+
                                                     <select class="form-control">
                                                         <option value=""></option>
                                                         <option value="1">USD</option>
@@ -98,9 +99,11 @@
                                                     <div class="form-group" >
                                                         <label for="open_till" >Discount Type</label>
                                                         <select class="form-control">
+
                                                             <option value=""></option>
                                                             <option value="1">Before Tax</option>
                                                             <option value="2">After Tax</option>
+
                                                         </select>
                                                     </div> </div>
                                                 </div>
@@ -111,8 +114,11 @@
                                                         <?php foreach ($tags as $key => $value) {
                                                            ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?>></option><?php 
                                                        } ?>
+
                                                    </select>
                                                </fieldset>
+
+
                                            </div> 
                                            <div class="col-md-6 " >
                                             <div class="row">
@@ -120,12 +126,14 @@
                                                 <div class="form-group" >
                                                     <label for="open_till" >Status</label>
                                                     <select class="form-control">
-                                                        <option value="6">Draft</option>
-                                                        <option value="4">Sent</option>
-                                                        <option value="1">Open</option>
-                                                        <option value="5">Revised</option>
-                                                        <option value="2">Declined</option>
-                                                        <option value="3">Accepted</option>
+
+                                                        <option value="">Draft</option>
+                                                        <option value="1">Sent</option>
+                                                        <option value="2">Open</option>
+                                                        <option>Revised</option>
+                                                        <option>Declined</option>
+                                                        <option>Accepted</option>
+
                                                     </select>
                                                 </div> </div>
 
@@ -133,38 +141,40 @@
                                                     <div class="form-group" >
                                                         <label for="open_till" >Assignee</label>
                                                         <select class="form-control">
+
                                                             <option value=""></option>
                                                             <?php foreach ($tags as $key => $value) {
                                                                ?><option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']."" .$value['firstname']; ?>></option><?php 
                                                            } ?>
+
                                                        </select>
                                                    </div> </div></div>
                                                    <fieldset class="form-group">
                                                     <label for="disabledInput">To</label>
-                                                    <input type="text" name="to" id="to" class="form-control">
+                                                    <input type="text" name="to" class="form-control">
                                                 </fieldset>
                                                 <fieldset class="form-group">
                                                     <label for="disabledInput">Address</label>
-                                                    <textarea class="form-control" id="address" rows="5" name="address"></textarea> 
+                                                    <textarea class="form-control" id="horizontalTextarea" rows="5" name="address"></textarea> 
                                                 </fieldset>
                                                 <div class="row">
                                                  <div class="col-md-6">
                                                     <div class="form-group" >
                                                         <label for="open_till" >City</label>
-                                                        <input type="text" name="city" id="city" class="form-control">
+                                                        <input type="text" name="city" class="form-control">
                                                     </div> </div>
 
                                                     <div class="col-md-6">
                                                         <div class="form-group" >
                                                             <label for="open_till" >State</label>
-                                                            <input type="text" name="state" id="state" class="form-control">
+                                                            <input type="text" name="state" class="form-control">
                                                         </div> </div>
                                                     </div>
                                                     <div class="row">
                                                      <div class="col-md-6">
                                                         <div class="form-group" >
                                                             <label for="open_till" >Country</label>
-                                                            <select class="form-control" id="country">
+                                                            <select class="form-control">
 
                                                                 <option value=""></option>
                                                                 <?php foreach ($country as $key => $value) {
@@ -178,21 +188,21 @@
                                                    <div class="col-md-6">
                                                     <div class="form-group" >
                                                         <label for="open_till" >Zip Code</label>
-                                                        <input type="text" name="zip" id="zip"  class="form-control">
+                                                        <input type="text" name="state" class="form-control">
                                                     </div> </div>
                                                 </div>
                                                 <div class="row">
                                                  <div class="col-md-6">
                                                     <div class="form-group" >
                                                         <label for="open_till" >Email</label>
-                                                        <input type="email" name="email" id="email" class="form-control">
+                                                        <input type="email" name="email" class="form-control">
                                                     </div> 
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group" >
                                                         <label for="open_till" >Phone</label>
-                                                        <input type="text" name="phone" id="phonenumber" class="form-control">
+                                                        <input type="text" name="phone" class="form-control">
                                                     </div> </div>
                                                 </div>
                                             </div>
@@ -227,7 +237,7 @@
 
                                             <option ></option>
                                             <?php foreach ($items as $key => $value) {
-                                               ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['description']; ?> <small ><?php echo $value['long_description']; ?></small></option><?php 
+                                               ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['description']; ?>> <small class="req text-danger"><?php echo $value['long_description']; ?></small></option><?php 
                                            } ?>
                                        </select>
                                    </div> 
@@ -262,42 +272,8 @@
                                                         <th>Amount</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody class="tbody">
-                                                    
-                                                    <tr class="after-add-more">
-                                                        <td> <fieldset class="form-group">
-                                                            <textarea class="form-control" id="description" rows="3" placeholder="Description"></textarea>
-                                                        </fieldset></td>
-                                                        <td><fieldset class="form-group">
-                                                            <textarea class="form-control" id="long_description" rows="3" placeholder="Long Description"></textarea>
-                                                        </fieldset></td>
-                                                        <td><fieldset class="form-group">
-                                                            <input type="number" name="unit" id="unit" class="form-control">
-                                                        </fieldset></td>
-                                                        <td><fieldset class="form-group">
-                                                            <input type="number" name="rate" id="rate" class="form-control">
-                                                        </fieldset></td>
-                                                        <td><fieldset class="form-group">
-                                                            <select name="tax_rate" class="form-control" id="tax">
-                                                                <option>No Tax</option>
-                                                                <?php foreach ($tax as $key => $value) {
-                                                                   ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['taxrate']; ?><p class="font-small-1" >Small sm text size.</p></option><?php 
-                                                               } ?>
-                                                           </select>
-                                                       </fieldset>
-                                                   </td>
-                                                       <td><button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button></td>
-                                                   </tr>
-                                                   
-                                               </tbody>
-                                           </table>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                       <div class="dt">
-                        <div class="copy hide" style="display: none;">
+                                                <tbody>
+                                                    <div class="control-group after-add-more">
                                                     <tr class="after-add-more">
                                                         <td> <fieldset class="form-group">
                                                             <textarea class="form-control" id="item_description" rows="3" placeholder="Description"></textarea>
@@ -312,7 +288,31 @@
                                                             <input type="number" name="rate" id="item_rate" class="form-control">
                                                         </fieldset></td>
                                                         <td><fieldset class="form-group">
-                                                            <select name="tax_rate" class="form-control" id="tax">
+                                                            <select name="tax_rate" class="form-control" id="item_tax">
+                                                                <option></option>
+                                                                <?php foreach ($tax as $key => $value) {
+                                                                   ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?>> </option><?php 
+                                                               } ?>
+                                                           </select>
+                                                       </fieldset></td>
+                                                       <td><button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button></td>
+                                                   </tr></div>
+                                                    <div class="copy hide" >
+                                                    <tr class="control-group ">
+                                                        <td> <fieldset class="form-group">
+                                                            <textarea class="form-control" id="item_description" rows="3" placeholder="Description"></textarea>
+                                                        </fieldset></td>
+                                                        <td><fieldset class="form-group">
+                                                            <textarea class="form-control" id="item_long_description" rows="3" placeholder="Long Description"></textarea>
+                                                        </fieldset></td>
+                                                        <td><fieldset class="form-group">
+                                                            <input type="number" name="unit" id="item_unit" class="form-control">
+                                                        </fieldset></td>
+                                                        <td><fieldset class="form-group">
+                                                            <input type="number" name="rate" id="item_rate" class="form-control">
+                                                        </fieldset></td>
+                                                        <td><fieldset class="form-group">
+                                                            <select name="tax_rate" class="form-control" id="item_tax">
                                                                 <option></option>
                                                                 <?php foreach ($tax as $key => $value) {
                                                                    ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?>> </option><?php 
@@ -322,7 +322,13 @@
                                                        <td><button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button></td>
                                                    </tr>
                                                     </div>
-                                                </div>
+                                               </tbody>
+                                           </table>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
                        <!-- Table head options end -->
                        <!-- Table head options start -->
                        <div class="row" >
@@ -381,11 +387,8 @@
     $(document).ready(function() {
 
       $(".add-more").click(function(){ 
-          var html = $(".dt").html();
-
-         
-          alert(html);
-        //  $(".tbody").append(html);
+          var html = $(".copy").html();
+          $(".after-add-more").after(html);
       });
 
 
@@ -415,15 +418,16 @@
     success:function(data)
     {
         data = jQuery.parseJSON(data);
-        $('#description').val(data.description);
-        $('#description').val(data.long_description);
-        $('#unit').val(data.unit);
-        $('#rate').val(data.rate);
-        $('#tax').val(data.taxid);
+        $('#item_description').html(data.description);
+        $('#item_description').html(data.long_description);
+        $('#item_unit').html(data.unit);
+        $('#item_rate').html(data.rate);
         console.log(data);
     }
 });
 
+} else {
+    document.getElementById("ifYes").style.display = "none";
 }
 }
 </script>
@@ -457,7 +461,7 @@
     function customerget(that) {
         if (that.value != "") {
           var id = that.value;
-   //alert(id);
+   alert(id);
    var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
    csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
    var dataJson = { [csrfName]: csrfHash, id:id};
@@ -467,52 +471,17 @@
     data:dataJson,
     success:function(data)
     {
-    //alert(data);
         data = jQuery.parseJSON(data);
-
-         $('#zip').val(data.zip);
-         $('#country').val(data.country);
-         $('#city').val(data.city);
-         $('#phonenumber').val(data.phonenumber);
-         $('#state').val(data.state);
-         $('#address').val(data.address);
-         $('#to').val(data.company);
-         $('#email').val(data.website);
-        //console.log(data);
+        // $('#item_description').html(data.description);
+        // $('#item_description').html(data.long_description);
+        // $('#item_unit').html(data.unit);
+        // $('#item_rate').html(data.rate);
+        console.log(data);
     }
 });
 
-} 
+} else {
+    document.getElementById("ifYes").style.display = "none";
 }
-// on select customer show other field data
-    function leadget(that) {
-        if (that.value != "") {
-          var id = that.value;
-   //alert(id);
-   var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
-   csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
-   var dataJson = { [csrfName]: csrfHash, id:id};
-   $.ajax({
-    url:"<?php echo base_url('admin/ProposalController/getLeadDataById'); ?>",
-    type:"POST",
-    data:dataJson,
-    success:function(data)
-    {//alert(data);
-        data = jQuery.parseJSON(data);
-
-         $('#zip').val(data.zip);
-         $('#country').val(data.country);
-         $('#city').val(data.city);
-         $('#phonenumber').val(data.phonenumber);
-         $('#state').val(data.state);
-         $('#address').val(data.address);
-         $('#to').val(data.name);
-         $('#email').val(data.website);
-         
-        //console.log(data);
-    }
-});
-
-} 
 }
 </script>

@@ -53,7 +53,14 @@ public function getCustomerDataById(){
 // die;
    echo json_encode($data);
 }
-
+public function getLeadDataById(){
+   $id = $this->input->post('id');
+  $data = $this->ProposalModel->getLead($id);
+// echo "<pre>";
+// print_r($data);
+// die;
+   echo json_encode($data);
+}
 /* function insert proposal  */
 public function insertProposal(){
 

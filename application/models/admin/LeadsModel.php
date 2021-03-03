@@ -113,7 +113,7 @@ class LeadsModel extends CI_Model
 		}
 		$this->db->select($rateCurrencyColumns . 'leads.id as lead_id,leads.name as lead_name,leads.company,leads.email as lead_email,leads.phonenumber as lead_phone,leads.lead_value,
 			source.name as source_name,
-			status.name as status_name,staff.firstname as f_name ,staff.lastname as l_name');
+			status.name as status_name,status.id as status_id,staff.firstname as f_name ,staff.lastname as l_name');
 		$this->db->from(db_prefix() . 'leads as leads');
 		$this->db->join('' . db_prefix() . 'leads_sources as  source', 'source.id = leads.source', 'left');
 		$this->db->join('' . db_prefix() . 'leads_status as  status', 'status.id = leads.status', 'left');
