@@ -12,7 +12,7 @@ class Auth extends MY_Controller
 	}
 	function index(){
         
-		$data['page_title']='Dashboard';
+		$data['title']='Dashboard';
 		//$data['user_list']=$this->Setting_model->get_list('tblstaff');
 		
 		$this->admin_load('dashboard',$data);

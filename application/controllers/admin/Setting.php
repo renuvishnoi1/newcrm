@@ -727,65 +727,85 @@ function send_notification($user_id='',$user_name='',$email='',$phone='',$latitu
 	
 	function edit_profile(){
 		$id=$this->session->userdata('sessiondata')['id'];
-		$data['page_title']='Edit Profile';
-		$data['edit_profile']=$this->Setting_model->get_details($id,'tbl_admin');
-		$this->admin_load('edit_profile',$data);
+		$data['title']='Edit Profile';
+		$data['edit_profile']=$this->Setting_model->get_details($id,'tblstaff');
+		// echo "<pre>";
+		// print_r($data);
+		// die;
+		$this->admin_load('profile/edit_profile',$data);
 	
 	}
 	function update_profile(){
+		// echo "<pre>";
+		// print_r($_POST);die;
 		$id=$this->session->userdata('sessiondata')['id'];
-	    $name=$this->input->post('name');
-	    $phone=$this->input->post('phone');
-	    $address=$this->input->post('address');
+	    $firstname=$this->input->post('firstname');
+	    $lastname=$this->input->post('lastname');
+	    $email=$this->input->post('email');
+	    $phone=$this->input->post('phonenumber');
+	    $facebook=$this->input->post('facebook');
+	    $linkedin=$this->input->post('linkedin');
+	     $skype=$this->input->post('skype');
+	    
+	   // $address=$this->input->post('address');
 		
-			if($name && $phone && $address){
+			if($firstname && $phone){
 				
+			
 		    $uploadfile='';
-		    if($_FILES['image']['name']){
-			$config['upload_path']='assets/bacend/dist/img';
+		    if($_FILES['profile_image']['name']){
+			$config['upload_path']='assets/backend/profile_images';
 			$config['allowed_types']='png|jpg|gif';
 			$config['max_size']=0;
-			$newfile=time().'_'.$_FILES['image']['name'];
+			$newfile=time().'_'.$_FILES['profile_image']['name'];
 			$config['file_name']=$newfile;
+
 			$this->load->library('upload',$config);
-				if($this->upload->do_upload('image')){
+			$this->upload->initialize($config);
+				if($this->upload->do_upload('profile_image')){
 					$uploadfile=$this->upload->data();
+					$pic = $uploadfile['file_name'];
 				}
 			}
+
 			if($uploadfile)
 			{
 			$data=array(
-	        'name'=>$name,
-	        'phone'=>$phone,
-	        'address'=>$address,
-			'profile_pic'=>@$uploadfile['file_name'],
-			'updated_date'=>date('Y-m-d H:i:s'),
+	        'firstname'=>$firstname,
+	        'lastname'=>$lastname,
+	        'phonenumber'=>$phone,
+	        'facebook' =>$facebook,
+	        'linkedin'=>$linkedin,
+	        'skype'=>$skype,
+			'profile_image'=>$pic
 	        );
 				
 			}else{
 			$data=array(
-	        'name'=>$name,
-	        'phone'=>$phone,
-	        'address'=>$address,
-			'updated_date'=>date('Y-m-d H:i:s'),
+	       'firstname'=>$firstname,
+	        'lastname'=>$lastname,
+	        'phonenumber'=>$phone,
+	        'facebook' =>$facebook,
+	        'linkedin'=>$linkedin,
+	        'skype'=>$skype,
 	        );
 			}
 			
-	        $this->db->where('id',$id);
-	        $this->db->update('tbl_admin',$data);
+	        $this->db->where('staffid',$id);
+	        $this->db->update('tblstaff',$data);
 			
-			$data=$this->Setting_model->get_details($id,'tbl_admin');
+			$data=$this->Setting_model->get_details($id,'tblstaff');
 			
 			$session=array(
 				'email'=>$data->email,
-				'id'=>$data->id,
-				'name'=>$data->name,
-				'pic'=>$data->profile_pic,
+				'id'=>$data->staffid,
+				'name'=>$data->firstname,
+				'pic'=>$data->profile_image
 			);
 			$this->session->set_userdata('sessiondata',$session);
 			
 	        $this->session->set_flashdata('success','Update Successfully');
-	        	redirect('admin/setting/edit_profile');
+	        	redirect('admin/');
 		}
 		else{
 			$this->session->set_flashdata('error','All star fields are required....');

@@ -24,7 +24,7 @@ class Setting_model extends CI_Model
 	}
 	
 	function get_details($id,$table){
-		$this->db->where('id',$id);
+		$this->db->where('staffid',$id);
 		$query=$this->db->get($table);
 		return  $query->row();
 	}

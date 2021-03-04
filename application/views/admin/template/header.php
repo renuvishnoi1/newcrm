@@ -78,9 +78,12 @@
                     <ul class="nav navbar-nav float-right">
                      
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                                <div class="user-nav d-sm-flex d-none"><span class="user-name">John Doe</span><span class="user-status text-muted">Available</span></div><span><img class="round" src="<?php echo base_url();?>assets/backend/app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"></span>
+                                <div class="user-nav d-sm-flex d-none"><span class="user-name"><?php echo $this->session->userdata('sessiondata')['name']; ?></span><span class="user-status text-muted">Available</span></div><span><img class="round" src="<?=base_url()."assets/backend/profile_images/".$this->session->userdata('sessiondata')['pic'];?>" alt="avatar" height="40" width="40"></span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right pb-0"><a class="dropdown-item" href="page-user-profile.html"><i class="bx bx-user mr-50"></i> Edit Profile</a><a class="dropdown-item" href="app-email.html"><i class="bx bx-envelope mr-50"></i> My Inbox</a><a class="dropdown-item" href="app-todo.html"><i class="bx bx-check-square mr-50"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="bx bx-message mr-50"></i> Chats</a>
+                            <div class="dropdown-menu dropdown-menu-right pb-0"><a class="dropdown-item" href="<?=base_url();?>admin/setting/edit_profile"><i class="bx bx-user mr-50"></i> Edit Profile</a>
+                                <!-- <a class="dropdown-item" href="app-email.html"><i class="bx bx-envelope mr-50"></i> My Inbox</a>
+                                <a class="dropdown-item" href="app-todo.html"><i class="bx bx-check-square mr-50"></i> Task</a>
+                                <a class="dropdown-item" href="app-chat.html"><i class="bx bx-message mr-50"></i> Chats</a> -->
                                 <div class="dropdown-divider mb-0"></div><a class="dropdown-item" href="<?php echo base_url('admin/auth/logout');?> "><i class="bx bx-power-off mr-50"></i> Logout</a>
                             </div>
                         </li>

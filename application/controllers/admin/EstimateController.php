@@ -22,6 +22,9 @@ class EstimateController extends MY_Controller
     // print_r($data);die;
     $this->admin_load('estimates/estimate_list',$data); 
   }
-
+public function addEstimate(){
+  $data['title'] = "Add Estimates";
+  $this->admin_load('estimates/add_estimate',$data);
+}
 
 }

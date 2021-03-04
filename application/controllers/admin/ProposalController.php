@@ -40,7 +40,7 @@ class ProposalController extends MY_Controller
  /* function for get item data by item id  */
   public function getItemDataById(){
  
- $id = $this->input->post('id');
+  $id = $this->input->post('id');
   $data= $this->ProposalModel->get($id);
 
    echo json_encode($data);
