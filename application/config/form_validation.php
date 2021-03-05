@@ -92,6 +92,12 @@ $config = [
         ['field' => 'subject', 'label' => 'Subject', 'rules' => 'trim|required'],
         ['field' => 'client', 'label' => 'Customer', 'rules' => 'required'],
     ],
+    'add_proposal'=>[
+        ['field' => 'subject', 'label' => 'Subject', 'rules' => 'trim|required'],
+        ['field' => 'rel_type', 'label' => 'Related To', 'rules' => 'required'],
+        ['field' => 'proposal_to', 'label' => 'To', 'rules' => 'required'],
+        ['field' => 'email', 'label' => 'Email Address', 'rules' => 'trim|required|valid_email'],
+    ],
 
     'login'=>[
         ['field' => 'email', 'label' => 'Email Address', 'rules' => 'trim|required|valid_email'],

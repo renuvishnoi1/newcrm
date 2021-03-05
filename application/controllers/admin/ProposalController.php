@@ -18,8 +18,7 @@ class ProposalController extends MY_Controller
 
     $data['proposal']= $this->ProposalModel->get();
   
-    // echo "<pre>";
-    // print_r($data);die;
+   
     $this->admin_load('proposals/proposal_list',$data); 
   }
   /* function to load add items view */
@@ -32,9 +31,7 @@ class ProposalController extends MY_Controller
     $data['country']= $this->ProposalModel->get_list('tblcountries');
     $data['items']= $this->ProposalModel->get_list('tblitems');
     $data['tax']= $this->ProposalModel->get_list('tbltaxes');
-    // echo "<pre>";
-    // print_r($data);die;
-
+  
    $this->admin_load('proposals/add_proposal',$data); 
  }
  /* function for get item data by item id  */
@@ -48,67 +45,94 @@ class ProposalController extends MY_Controller
 public function getCustomerDataById(){
    $id = $this->input->post('id');
   $data = $this->ProposalModel->getCustomer($id);
-// echo "<pre>";
-// print_r($data);
-// die;
+
    echo json_encode($data);
 }
 public function getLeadDataById(){
    $id = $this->input->post('id');
   $data = $this->ProposalModel->getLead($id);
-// echo "<pre>";
-// print_r($data);
-// die;
+
    echo json_encode($data);
 }
 /* function insert proposal  */
 public function insertProposal(){
-
+// echo "<pre>";
+// print_r($_POST);
+// die;
  
+  $allow_comments=$this->input->post('allow_comments');
+  if (!isset($allow_comments)) $allow_comments = 0;
+    
+  $tag = $this->input->post('tag');
+  if($this->form_validation->run('add_proposal') == FALSE){
+    $data['title'] = "Proposal";
+    $data['clients'] = $this->ProposalModel->get_list('tblclients');
+    $data['leads'] = $this->ProposalModel->get_list('tblleads');
+    $data['tags'] = $this->ProposalModel->get_list('tbltags');
+    $data['assignee'] = $this->ProposalModel->get_list('tblstaff');
+    $data['country'] = $this->ProposalModel->get_list('tblcountries');
+    $data['items'] = $this->ProposalModel->get_list('tblitems');
+    $data['tax'] = $this->ProposalModel->get_list('tbltaxes');
+    $this->admin_load('proposals/add_proposal',$data); 
+  }else{
+  
+    $data = array(
+      'subject' => $this->input->post('subject'),
+      'rel_type' => $this->input->post('rel_type'),
+      'rel_id' => $this->input->post('rel_id'),
+      'date' => $this->input->post('date'),
+      'open_till' => $this->input->post('open_till'),
+      'currency' => $this->input->post('currency'),
+      'discount_type' => $this->input->post('discount_type'),
+      'status' => $this->input->post('status'),
+      'assigned' => $this->input->post('assigned'),
+      'proposal_to' => $this->input->post('proposal_to'),
+      'address' => $this->input->post('address'),
+      'city' => $this->input->post('city'),
+      'country' => $this->input->post('country'),
+      'zip' => $this->input->post('zip'),
+      'state' => $this->input->post('state'),
+      'email' => $this->input->post('email'),
+      'phone' => $this->input->post('phone'),
+      'allow_comments' =>$allow_comments
+    ) ;
+    $table = 'tblproposals';
+    $insertData = $this->ProposalModel->insert($table, $data);
+    if($insertData){
+           if(is_array($group)){
+        foreach ($tag as $key => $value) {
+          $tagdata=array();
+          $tagdata['rel_id']=$insertData;
+          $tagdata['tag_id']=$value;
+          $tagdata['rel_type']=$this->input->post('rel_type');
+
+          $table = 'tbltaggables';   
+          $tag= $this->ProposalModel->insert($tagdata);
+                 
+          if($tag){
+             redirect('admin/proposals');
+          }
+        }
+      }
+     
+        
+        redirect('admin/proposals');
+      }
+  }
 }
-/* function insert item  */
-//  public function insertItem(){
 
-//    if($this->form_validation->run('add_item') == FALSE){
-//     $data['title'] = "Item";
-//     $data['tax']= $this->invoiceItemsModel->get_list('tbltaxes');
-//     $data['group']= $this->invoiceItemsModel->get_list('tblitems_groups');
-//     $this->admin_load('invoice_items/add_item',$data); 
-//   }else{
-
-//     $data= array(
-//       'description'=>$this->input->post('description'),
-//       'long_description'=>$this->input->post('long_description'),
-//       'rate' => $this->input->post('rate'),
-//       'tax' => $this->input->post('tax1'),
-//       'tax2' => $this->input->post('tax2'),
-//       'unit' => $this->input->post('unit'),
-//       'group_id' => $this->input->post('group_id')
-//     );
-//     $table = 'tblitems';
-//     $insertData= $this->invoiceItemsModel->insert($table, $data);
-//     if($insertData){
-
-//       redirect('admin/invoice_items');
-//     }
-//   }
-
-// }
 // /* function to load edit items view */
 // public function editItem($id){
 //  $data['title'] = "Edit Item";
 //  $data['items']= $this->invoiceItemsModel->get($id);
 //  $data['tax']= $this->invoiceItemsModel->get_list('tbltaxes');
 //  $data['group']= $this->invoiceItemsModel->get_list('tblitems_groups');
-//           // echo "<pre>";
-//           // print_r($data);
-//           // die;
+
 //  $this->admin_load('invoice_items/edit_item',$data); 
 // }
 // /* function to load update items */
 // public function updateItem(){
-//       // echo "<pre>";
-//       // print_r($_POST);die;
+
 //   $id = $this->input->post('id');
 //   if($this->form_validation->run('edit_item') == FALSE){
 

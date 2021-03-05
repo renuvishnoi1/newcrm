@@ -92,8 +92,7 @@ class ContactController extends MY_Controller
           $groupdata['customer_id']=$insert_contact;
           $groupdata['groupid']=$value;
           $group= $this->ContactsModel->add_group($groupdata);
-                    // print_r($group);
-                    // die('hi');
+                 
           if($group){
             redirect('admin/clients');
           }
