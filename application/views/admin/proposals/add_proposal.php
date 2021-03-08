@@ -84,7 +84,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group" ><label for="open_till" >Open Till</label><div class="input-group date"><input type="date"  name="open_till" class="form-control datepicker" autocomplete="off"><div class="input-group-addon">
                                                     <i class="fa fa-calendar calendar-icon"></i>
-                                                </div></div></div>                          </div>
+                                                </div></div></div>                          
+                                            </div>
                                             </div>
                                             <div class="row">
                                                <div class="col-md-6">
@@ -142,8 +143,8 @@
                                                         <label for="open_till" >Assignee</label>
                                                         <select class="form-control" name="assigned">
                                                             <option value=""></option>
-                                                            <?php foreach ($tags as $key => $value) {
-                                                               ?><option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']."" .$value['firstname']; ?>></option><?php 
+                                                            <?php foreach ($assignee as $key => $value) {
+                                                               ?><option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." " .$value['firstname']; ?>></option><?php 
                                                            } ?>
                                                        </select>
                                                    </div> </div></div>

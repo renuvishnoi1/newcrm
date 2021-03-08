@@ -53,7 +53,11 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" > -->
 <!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap.min.css'; ?>"> -->
 
-
+<style type="text/css">
+    #ex1Slider .slider-selection {
+    background: #BABABA;
+}
+</style>
   
     
 </head>

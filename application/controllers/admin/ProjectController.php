@@ -6,8 +6,8 @@ class ProjectController extends MY_Controller
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('admin/TaskModel');
-    $this->load->model('admin/ContactsModel');
+    $this->load->model('admin/ProjectModel');
+   
     
 
   }
@@ -21,10 +21,12 @@ class ProjectController extends MY_Controller
   }
   public function addProject(){
    $data['title'] = "Add Project";
+   $data['tags']= $this->ProjectModel->get_list('tbltags');
+   $data['clients']= $this->ProjectModel->get_list('tblclients');
+   $data['member']= $this->ProjectModel->get_list('tblstaff');
+   
+   $this->admin_load('projects/add_project',$data); 
+ }
 
-    $data['customer']= $this->ContactsModel->getClients();
-    $this->admin_load('projects/add_project',$data); 
-  }
-  
 
 }

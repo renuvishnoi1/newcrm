@@ -41,7 +41,7 @@
                                             <h6>
                                                 <i class="step-icon"></i>
                                                 <span class="fonticon-wrap">
-                                                    <i class="livicon-evo" data-options="name:user.svg; size: 50px; style:lines; strokeColor:#adb5bd;"></i>
+                                                   <!--  <i class="livicon-evo" data-options="name:user.svg; size: 50px; style:lines; strokeColor:#adb5bd;"></i> -->
                                                 </span>
                                                 <span>Basic Details</span>
                                             </h6>
