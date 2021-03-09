@@ -111,11 +111,11 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script> -->
       
-   <script type="text/javascript">
+  <!--  <script type="text/javascript">
        document.getElementById('yourBox').onchange = function() {
     document.getElementById('yourText').disabled = !this.checked;
 };
-   </script>     
+   </script>  -->    
   
 
 <script type="text/javascript">

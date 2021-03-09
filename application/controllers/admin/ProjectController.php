@@ -27,6 +27,20 @@ class ProjectController extends MY_Controller
    
    $this->admin_load('projects/add_project',$data); 
  }
+ public function saveProject(){
+   if ($this->form_validation->run('add_project') == FALSE)
+  {
+    $data['title'] = "Add Project";
+   $data['tags']= $this->ProjectModel->get_list('tbltags');
+   $data['clients']= $this->ProjectModel->get_list('tblclients');
+   $data['member']= $this->ProjectModel->get_list('tblstaff');
+   
+   $this->admin_load('projects/add_project',$data); 
+  }
+  else
+  {
+  }
+ }
 
 
 }

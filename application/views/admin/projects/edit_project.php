@@ -13,7 +13,7 @@
           <div class="col-xl-8 col-md-8 col-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Add New Project</h4>
+                <h4 class="card-title">Edit Project</h4>
               </div>
               <div class="card-content">
 
