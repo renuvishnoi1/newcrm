@@ -99,10 +99,9 @@ $config = [
         ['field' => 'email', 'label' => 'Email Address', 'rules' => 'trim|required|valid_email'],
     ],
     'add_project'=>[
-        ['field' => 'subject', 'label' => 'Subject', 'rules' => 'trim|required'],
-        ['field' => 'rel_type', 'label' => 'Related To', 'rules' => 'required'],
-        ['field' => 'proposal_to', 'label' => 'To', 'rules' => 'required'],
-        ['field' => 'email', 'label' => 'Email Address', 'rules' => 'trim|required|valid_email'],
+        ['field' => 'name', 'label' => 'Name', 'rules' => 'trim|required'],
+        ['field' => 'customer', 'label' => 'Customer', 'rules' => 'required']
+       
     ],
     'login'=>[
         ['field' => 'email', 'label' => 'Email Address', 'rules' => 'trim|required|valid_email'],

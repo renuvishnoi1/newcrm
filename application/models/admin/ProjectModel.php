@@ -11,5 +11,10 @@ public function get_project(){
         $query = $this->db->get($table);
         return $query->result_array();
     }
+     public function insert($table ,$data= array()){
+		$this->db->insert($table,$data);
+		 $insert_id = $this->db->insert_id();
+        return  $insert_id;
+	}
 }
 ?>

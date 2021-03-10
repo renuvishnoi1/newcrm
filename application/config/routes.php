@@ -131,12 +131,15 @@ $route['admin/add_invoices'] = 'admin/InvoiceController/addInvoice';
  //project route start 
 $route['admin/projects'] = 'admin/ProjectController/index'; 
 $route['admin/add_projects'] = 'admin/ProjectController/addProject';
+$route['admin/save_project'] = 'admin/ProjectController/saveProject';
+$route['admin/edit_project/(:any)'] = 'admin/ProjectController/editProject/$1';
 // project route end
 
 //Task route start
 $route['admin/tasks'] = 'admin/TaskController/index';
 $route['admin/add_task'] = 'admin/TaskController/addTask';
 $route['admin/fetch_related_data'] = 'admin/TaskController/fetchRelatedData';
+
 
 
 

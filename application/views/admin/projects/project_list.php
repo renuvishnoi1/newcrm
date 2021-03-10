@@ -51,19 +51,25 @@
                                                         <th>Deadline</th>
                                                         <th>Members</th>
                                                         <th>Status</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php foreach ($records as $key => $value) {?>
+                                                    <?php foreach ($records as $key => $value) { ?>
                                                     <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td> 
+                                                        <td><?php echo $value['id']; ?></td>
+                                                        <td><?php echo $value['name']; ?></td>
                                                         <td></td>
                                                         <td></td> 
+                                                        <td><?php echo $value['start_date']; ?></td>
+                                                        <td><?php echo $value['deadline']; ?></td> 
                                                         <td></td>
-                                                        <td></td>                                                       
+                                                        <td></td> 
+                                                        <td>
+                                                            <!-- <a href="<?php echo base_url();?>admin/show_lead/<?php echo $value['id']; ?>" class="btn btn-icon btn-light glow mr-1 mb-1"><i class="bx bxs-show"></i></a>  -->
+                   <a href="<?php echo base_url();?>admin/edit_project/<?php echo $value['id']; ?>" class="btn btn-icon btn-primary mr-1 mb-1"><i class="bx bxs-pencil"></i></a> 
+                  <!-- <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/leads/delete_source/<?php echo $value['id']; ?>" class="btn btn-icon btn-danger mr-1 mb-1"><i class="bx bx-trash-alt"></i></a> -->
+              </td>                                                      
                                                     </tr> 
                                                     <?php 
                                                       
