@@ -18,7 +18,7 @@
               <div class="card-content">
 
                 <div class="card-body">
-                  <form action="<?php echo base_url(''); ?>" method="POST">
+                  <form action="<?php echo base_url('admin/update_project'); ?>" method="POST">
                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
                    <div class="row">
                     <div class="col-md-12">

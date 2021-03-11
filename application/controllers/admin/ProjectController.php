@@ -85,70 +85,85 @@ class ProjectController extends MY_Controller
  }
 }
 public function editProject($id){
+
    $data['title'] = "Edit Project";
-   $data['tags']= $this->ProjectModel->get_list('tbltags');
-   $data['clients']= $this->ProjectModel->get_list('tblclients');
-   $data['member']= $this->ProjectModel->get_list('tblstaff');
+    $data['project']= $this->ProjectModel->get_data_by_id($id,'tblprojects');
+    $data['tag']= $this->ProjectModel->get_tag_data_by_id($id);
+      // echo "<pre>";print_r($data);
+      // die;
+
+   // $data['clients']= $this->ProjectModel->get_list('tblclients');
+   // $data['member']= $this->ProjectModel->get_list('tblstaff');
    
    $this->admin_load('projects/edit_project',$data);
 }
-public function project($id = '')
-    {
-        if (!has_permission('projects', '', 'edit') && !has_permission('projects', '', 'create')) {
-            access_denied('Projects');
-        }
+public function viewProject($id){
 
-        if ($this->input->post()) {
-            $data                = $this->input->post();
-            $data['description'] = html_purify($this->input->post('description', false));
-            if ($id == '') {
-                if (!has_permission('projects', '', 'create')) {
-                    access_denied('Projects');
-                }
-                $id = $this->projects_model->add($data);
-                if ($id) {
-                    set_alert('success', _l('added_successfully', _l('project')));
-                    redirect(admin_url('projects/view/' . $id));
-                }
-            } else {
-                if (!has_permission('projects', '', 'edit')) {
-                    access_denied('Projects');
-                }
-                $success = $this->projects_model->update($data, $id);
-                if ($success) {
-                    set_alert('success', _l('updated_successfully', _l('project')));
-                }
-                redirect(admin_url('projects/view/' . $id));
-            }
-        }
-        if ($id == '') {
-            $title                            = _l('add_new', _l('project_lowercase'));
-            $data['auto_select_billing_type'] = $this->projects_model->get_most_used_billing_type();
-        } else {
-            $data['project']                               = $this->projects_model->get($id);
-            $data['project']->settings->available_features = unserialize($data['project']->settings->available_features);
+   $data['title'] = " Project";
+    $data['project']= $this->ProjectModel->get_data_by_id($id,'tblprojects');
+    $data['tag']= $this->ProjectModel->get_tag_data_by_id($id);
+      // echo "<pre>";print_r($data);
+      // die;
+   
+   $this->admin_load('projects/view_project',$data);
+}
+// public function project($id = '')
+//     {
+//         if (!has_permission('projects', '', 'edit') && !has_permission('projects', '', 'create')) {
+//             access_denied('Projects');
+//         }
 
-            $data['project_members'] = $this->projects_model->get_project_members($id);
-            $title                   = _l('edit', _l('project_lowercase'));
-        }
+//         if ($this->input->post()) {
+//             $data                = $this->input->post();
+//             $data['description'] = html_purify($this->input->post('description', false));
+//             if ($id == '') {
+//                 if (!has_permission('projects', '', 'create')) {
+//                     access_denied('Projects');
+//                 }
+//                 $id = $this->projects_model->add($data);
+//                 if ($id) {
+//                     set_alert('success', _l('added_successfully', _l('project')));
+//                     redirect(admin_url('projects/view/' . $id));
+//                 }
+//             } else {
+//                 if (!has_permission('projects', '', 'edit')) {
+//                     access_denied('Projects');
+//                 }
+//                 $success = $this->projects_model->update($data, $id);
+//                 if ($success) {
+//                     set_alert('success', _l('updated_successfully', _l('project')));
+//                 }
+//                 redirect(admin_url('projects/view/' . $id));
+//             }
+//         }
+//         if ($id == '') {
+//             $title                            = _l('add_new', _l('project_lowercase'));
+//             $data['auto_select_billing_type'] = $this->projects_model->get_most_used_billing_type();
+//         } else {
+//             $data['project']                               = $this->projects_model->get($id);
+//             $data['project']->settings->available_features = unserialize($data['project']->settings->available_features);
 
-        if ($this->input->get('customer_id')) {
-            $data['customer_id'] = $this->input->get('customer_id');
-        }
+//             $data['project_members'] = $this->projects_model->get_project_members($id);
+//             $title                   = _l('edit', _l('project_lowercase'));
+//         }
 
-        $data['last_project_settings'] = $this->projects_model->get_last_project_settings();
+//         if ($this->input->get('customer_id')) {
+//             $data['customer_id'] = $this->input->get('customer_id');
+//         }
 
-        if (count($data['last_project_settings'])) {
-            $key                                          = array_search('available_features', array_column($data['last_project_settings'], 'name'));
-            $data['last_project_settings'][$key]['value'] = unserialize($data['last_project_settings'][$key]['value']);
-        }
+//         $data['last_project_settings'] = $this->projects_model->get_last_project_settings();
 
-        $data['settings'] = $this->projects_model->get_settings();
-        $data['statuses'] = $this->projects_model->get_project_statuses();
-        $data['staff']    = $this->staff_model->get('', ['active' => 1]);
+//         if (count($data['last_project_settings'])) {
+//             $key                                          = array_search('available_features', array_column($data['last_project_settings'], 'name'));
+//             $data['last_project_settings'][$key]['value'] = unserialize($data['last_project_settings'][$key]['value']);
+//         }
 
-        $data['title'] = $title;
-        $this->load->view('admin/projects/project', $data);
-    }
+//         $data['settings'] = $this->projects_model->get_settings();
+//         $data['statuses'] = $this->projects_model->get_project_statuses();
+//         $data['staff']    = $this->staff_model->get('', ['active' => 1]);
+
+//         $data['title'] = $title;
+//         $this->load->view('admin/projects/project', $data);
+//     }
 
 }
