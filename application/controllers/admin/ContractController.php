@@ -46,6 +46,7 @@ class ContractController extends MY_Controller
     'contract_type'=>$this->input->post('contract_type'),
     'description'=>$this->input->post('description')
   );
+  
 
   $insertData= $this->ContractModel->add( $data);
   if($insertData){

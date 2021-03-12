@@ -12,8 +12,10 @@ class ProjectController extends MY_Controller
   public function index()
   {
     $data['title'] = "Project";
-    $data['records']= $this->ProjectModel->get_list('tblprojects');
-    
+     $data['tag']= $this->ProjectModel->get_tag_data();
+    $data['records']= $this->ProjectModel->get_project_data();
+     $data['member']= $this->ProjectModel->get_list('tblstaff');
+ 
     $this->admin_load('projects/project_list',$data); 
   }
   public function addProject(){
@@ -27,7 +29,7 @@ class ProjectController extends MY_Controller
  public function saveProject(){
   // echo "<pre>";
   // print_r($_POST);die;
-     $tag = $this->input->post('tag');
+ 
    if ($this->form_validation->run('add_project') == FALSE)
   {
    $data['title'] = "Add Project";
@@ -56,24 +58,29 @@ class ProjectController extends MY_Controller
     $table='tblprojects';
     $projectData = $this->ProjectModel->insert($table,$data);
     if($projectData){
-      $tag_table ='tbltaggables';
+      $memberProject= array(
+        'project_id'=>$projectData,
+        'staff_id'=>$this->input->post('member'),
+       );
+      $memberData = $this->ProjectModel->insert('tblproject_members',$memberProject);
+       $tag = $this->input->post('tag_id');
         if(is_array($tag)){
         foreach ($tag as $key => $value) {
           $tagdata=array();
           $tagdata['rel_id']=$projectData;
           $tagdata['tag_id']=$value;
            $tagdata['rel_type']='project';
-          $tag= $this->ProjectModel->insert($tag_table,$tagdata);
+          
+          $tagInsert= $this->ProjectModel->insert('tbltaggables',$tagdata);
                  
-          if($tag){
+          if($tagInsert){
              $Specilized_category = $this->input->post('setting');
              // echo "<pre>";
              // print_r($Specilized_category);die;
              //if($Specilized_category)
     $data=array(
       'name'=>'',
-    'value'=> unserialize($Specilized_category)
-      
+    'value'=> serialize($Specilized_category)      
   
 );
             redirect('admin/projects');
@@ -82,6 +89,7 @@ class ProjectController extends MY_Controller
     }
     redirect('admin/projects');
   }
+  redirect('admin/projects');
  }
 }
 public function editProject($id){
@@ -97,6 +105,68 @@ public function editProject($id){
    
    $this->admin_load('projects/edit_project',$data);
 }
+public function updateProject(){
+  $id= $this->input->post('id');
+  if ($this->form_validation->run('edit_project') == FALSE)
+  {
+   $data['title'] = "Edit Project";
+    $data['project']= $this->ProjectModel->get_data_by_id($id,'tblprojects');
+    $data['tag']= $this->ProjectModel->get_tag_data_by_id($id);
+   $this->admin_load('projects/edit_project',$data);
+  }
+  else
+  {    
+    $data= array(
+      'name'=>$this->input->post('name'),
+      'clientid'=>$this->input->post('customer'),
+      'progress'=>$this->input->post('progress'),
+      'billing_type'=>$this->input->post('billing_type'),
+      'status'=>$this->input->post('status'),
+      'project_cost'=>$this->input->post('project_cost'),
+      'project_rate_per_hour'=>$this->input->post('project_rate_per_hour'),
+      'estimated_hours'=>$this->input->post('estimated_hours'),
+      'description'=>$this->input->post('editor1'),
+      'start_date' =>$this->input->post('start_date'),
+      'deadline' =>$this->input->post('deadline'),
+      'project_created' =>date('Y-m-d')
+    );
+    $table='tblprojects';
+    $projectData = $this->ProjectModel->insert($table,$data);
+    if($projectData){
+      $memberProject= array(
+        'project_id'=>$projectData,
+        'staff_id'=>$this->input->post('member'),
+       );
+      $memberData = $this->ProjectModel->insert('tblproject_members',$memberProject);
+       $tag = $this->input->post('tag_id');
+        if(is_array($tag)){
+        foreach ($tag as $key => $value) {
+          $tagdata=array();
+          $tagdata['rel_id']=$projectData;
+          $tagdata['tag_id']=$value;
+           $tagdata['rel_type']='project';
+          
+          $tagInsert= $this->ProjectModel->insert('tbltaggables',$tagdata);
+                 
+          if($tagInsert){
+             $Specilized_category = $this->input->post('setting');
+             // echo "<pre>";
+             // print_r($Specilized_category);die;
+             //if($Specilized_category)
+    $data=array(
+      'name'=>'',
+    'value'=> serialize($Specilized_category)      
+  
+);
+            redirect('admin/projects');
+          }
+        }
+    }
+    redirect('admin/projects');
+  }
+  redirect('admin/projects');
+ }
+}
 public function viewProject($id){
 
    $data['title'] = " Project";
@@ -106,6 +176,12 @@ public function viewProject($id){
       // die;
    
    $this->admin_load('projects/view_project',$data);
+}
+public function delete($id){
+  $deleteProject = $this->ProjectModel->delete($id);
+  if($deleteProject){
+    redirect('admin/projects');
+  }
 }
 // public function project($id = '')
 //     {

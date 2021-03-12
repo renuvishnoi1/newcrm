@@ -37,8 +37,7 @@
                                  <hr>
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">
-                                        <!-- <p class="card-text">DataTables has most features enabled by default, so all you need to do to
-                                            use it with your own tables is to call the construction function: $().DataTable();.</p> -->
+                                        <h4>Projects Summary</h4>
                                         <div class="table-responsive">
                                             <table class="table zero-configuration">
                                                 <thead>
@@ -57,18 +56,24 @@
                                                 <tbody>
                                                     <?php foreach ($records as $key => $value) { ?>
                                                     <tr>
-                                                        <td><?php echo $value['id']; ?></td>
-                                                        <td><?php echo $value['name']; ?></td>
-                                                        <td></td>
-                                                        <td></td> 
-                                                        <td><?php echo $value['start_date']; ?></td>
-                                                        <td><?php echo $value['deadline']; ?></td> 
-                                                        <td></td>
-                                                        <td></td> 
+                                                        <td><?php echo $value->id; ?></td>
+                                                        <td><?php echo $value->name; ?></td>
+                                                        <td><?php echo $value->company; ?></td>
+                                                        <td><?php foreach ($tag as $key => $tags) {
+                                                          if (($tags->rel_id == $value->id) && ($tags->rel_type == 'project' )) { 
+                                                            ?>
+                                                          <span><?php echo $tags->tag_name; ?></span>
+                                                           <?php 
+                                                          }
+                                                        } ?></td> 
+                                                        <td><?php echo $value->start_date; ?></td>
+                                                        <td><?php echo $value->deadline; ?></td> 
+                                                        <td><a href=""><img class="round" src="<?=base_url()."assets/backend/profile_images/" ?>" alt="avatar" height="40" width="40"></a></td>
+                                                        <td><?php echo $value->status; ?></td> 
                                                         <td>
-                                                            <a href="<?php echo base_url();?>admin/view_project/<?php echo $value['id']; ?>" class="btn btn-icon btn-light glow mr-1 mb-1"><i class="bx bxs-show"></i></a> 
-                   <a href="<?php echo base_url();?>admin/edit_project/<?php echo $value['id']; ?>" class="btn btn-icon btn-primary mr-1 mb-1"><i class="bx bxs-pencil"></i></a> 
-                  <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/leads/delete_project/<?php echo $value['id']; ?>" class="btn btn-icon btn-danger mr-1 mb-1"><i class="bx bx-trash-alt"></i></a>
+                                                            <a href="<?php echo base_url();?>admin/view_project/<?php echo $value->id; ?>" class="btn btn-icon btn-light glow mr-1 mb-1"><i class="bx bxs-show"></i></a> 
+                   <a href="<?php echo base_url();?>admin/edit_project/<?php echo $value->id; ?>" class="btn btn-icon btn-primary mr-1 mb-1"><i class="bx bxs-pencil"></i></a> 
+                  <a onclick="return confirm('Are you sure delete this record ?..')" href="<?php echo base_url();?>admin/delete_project/<?php echo $value->id; ?>" class="btn btn-icon btn-danger mr-1 mb-1"><i class="bx bx-trash-alt"></i></a>
               </td>                                                      
                                                     </tr> 
                                                     <?php 

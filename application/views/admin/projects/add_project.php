@@ -77,15 +77,13 @@
                <div class="col-md-12" id="project_cost">
                  <fieldset class="form-group" >
                   <label for="basicInput">Total Rate</label>
-                  <input type="text" name="project_cost" class="form-control" id="project_cost" placeholder="Enter Lead Status Name">
-                  <span class="text-danger"><?php echo form_error('name'); ?></span>
+                  <input type="number" name="project_cost" class="form-control" id="project_cost" >                  
                 </fieldset>
               </div> 
               <div class="col-md-12" id="project_rate_per_hour">
                <fieldset class="form-group" >
                 <label for="basicInput">Rate Per Hour</label>
-                <input type="text" name="project_rate_per_hour" class="form-control" id="project_rate_per_hour" placeholder="Enter Lead Status Name">
-                <span class="text-danger"><?php echo form_error('name'); ?></span>
+                <input type="number" name="project_rate_per_hour" class="form-control" id="project_rate_per_hour" >               
               </fieldset>
             </div>
           </div>
@@ -102,7 +100,9 @@
              <select class="select2 form-control" name="member"  multiple="multiple">
                <option value="0"></option>
                <?php foreach ($member as $key => $value) {
-                 ?><option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." ".$value['lastname']; ?>></option><?php 
+                 ?>
+                 <option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." ".$value['lastname']; ?>></option>
+                 <?php 
                } ?>
              </select>
            </fieldset>
@@ -126,7 +126,7 @@
        <div class="col-md-6">
         <fieldset class="form-group">
           <label>Tags</label>
-          <select class="form-control" name="tag_id">
+          <select class="form-control" name="tag_id[]" multiple="">
             <option></option>
             <?php foreach ($tags as $key => $value) {
              ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?>></option><?php 

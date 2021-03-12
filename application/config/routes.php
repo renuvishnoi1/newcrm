@@ -135,6 +135,7 @@ $route['admin/save_project'] = 'admin/ProjectController/saveProject';
 $route['admin/edit_project/(:any)'] = 'admin/ProjectController/editProject/$1';
 $route['admin/update_project'] = 'admin/ProjectController/updateProject';
 $route['admin/view_project/(:any)'] = 'admin/ProjectController/viewProject/$1';
+$route['admin/delete_project/(:any)'] = 'admin/ProjectController/delete/$1';
 // project route end
 
 //Task route start

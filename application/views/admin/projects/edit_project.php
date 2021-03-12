@@ -24,9 +24,10 @@
                     <div class="col-md-12">
                       <fieldset class="form-group">
                         <label for="basicInput">Project Name</label>
-                        <input type="text" name="name" class="form-control" id="basicInput" placeholder="Enter Project Name">
+                        <input type="text" name="name" value="<?php echo $project->name; ?>" class="form-control" id="basicInput" placeholder="Enter Project Name">
                         <span class="text-danger"><?php echo form_error('name'); ?></span>
-                      </fieldset>                                               
+                      </fieldset>   
+                      <input type="hidden" name="id" value="<?php echo $project->id; ?>">                                            
                       <fieldset class="form-group">
                         <label for="basicInput">Customer</label>
                         <select class="select2 form-control">
@@ -53,21 +54,21 @@
                     <label>* Billing Type</label>
                     <select id="billing_type" class="form-control" >
                       <option value=""></option>
-                      <option value="1">Fixed Rate</option>
-                      <option value="2">Project Hours</option>
-                      <option value="3">Task Hours</option>                                                 
+                      <option value="1" <?php if (isset($value['billing_type']) == 1) { echo ' selected="selected"'; } ?>>Fixed Rate</option>
+                      <option value="2"  <?php if (isset($value['billing_type']) == 2) { echo ' selected="selected"'; } ?>>Project Hours</option>
+                      <option value="3"  <?php if (isset($value['billing_type']) == 3) { echo ' selected="selected"'; } ?>>Task Hours</option>                                                 
                     </select>
                   </fieldset>                                               
                 </div>
                 <div class="col-md-6"> 
                   <fieldset class="form-group" id="fixed">
                    <label for="basicInput">Status</label>
-                   <select class="form-control">
+                   <select class="form-control" name="status">
                      <option value="0"></option>
-                     <option value="1">In Progress</option>
-                     <option value="2">On Hold</option>
-                     <option value="3">Cancelled</option>
-                     <option value="4">Finished</option>
+                     <option value="1" <?php if (isset($value['status']) == 1) { echo ' selected="selected"'; } ?>>In Progress</option>
+                     <option value="2" <?php if (isset($value['status']) == 2) { echo ' selected="selected"'; } ?>>On Hold</option>
+                     <option value="3" <?php if (isset($value['status']) == 3) { echo ' selected="selected"'; } ?>>Cancelled</option>
+                     <option value="4" <?php if (isset($value['status']) == 4) { echo ' selected="selected"'; } ?>>Finished</option>
                    </select>
                  </fieldset>
                </div>
@@ -76,14 +77,14 @@
                <div class="col-md-12" id="project_cost">
                  <fieldset class="form-group" >
                   <label for="basicInput">Total Rate</label>
-                  <input type="text" name="project_cost" class="form-control" id="project_cost" placeholder="Enter Lead Status Name">
+                  <input type="text" name="project_cost" class="form-control" id="project_cost" value="<?php echo $project->project_cost; ?>">
                   <span class="text-danger"><?php echo form_error('name'); ?></span>
                 </fieldset>
               </div> 
               <div class="col-md-12" id="project_rate_per_hour">
                <fieldset class="form-group" >
                 <label for="basicInput">Rate Per Hour</label>
-                <input type="text" name="project_rate_per_hour" class="form-control" id="project_rate_per_hour" placeholder="Enter Lead Status Name">
+                <input type="text" name="project_rate_per_hour" class="form-control" id="project_rate_per_hour" value="<?php echo $project->project_rate_per_hour; ?>">
                 <span class="text-danger"><?php echo form_error('name'); ?></span>
               </fieldset>
             </div>
@@ -92,7 +93,7 @@
            <div class="col-md-6">
             <fieldset class="form-group">
               <label>Estimated Hours</label>
-              <input type="number" name="estimated_hours" class="form-control">
+              <input type="number" name="estimated_hours" class="form-control" value="<?php echo $project->estimated_hours; ?>">
             </fieldset>                                               
           </div>
           <div class="col-md-6"> 
@@ -139,7 +140,7 @@
      <div class="col-md-12">
        <fieldset class="form-group">
         <label for="basicInput">Description</label>
-        <textarea name="editor1"></textarea>
+        <textarea name="editor1"><?php echo $project->description; ?></textarea>
       </fieldset>
     </div>
   </div>
