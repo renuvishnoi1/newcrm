@@ -54,9 +54,9 @@
                     <label>* Billing Type</label>
                     <select id="billing_type" class="form-control" >
                       <option value=""></option>
-                      <option value="1" <?php if (isset($value['billing_type']) == 1) { echo ' selected="selected"'; } ?>>Fixed Rate</option>
-                      <option value="2"  <?php if (isset($value['billing_type']) == 2) { echo ' selected="selected"'; } ?>>Project Hours</option>
-                      <option value="3"  <?php if (isset($value['billing_type']) == 3) { echo ' selected="selected"'; } ?>>Task Hours</option>                                                 
+                      <option value="1" <?php if (isset($value['billing_type']) == '1') { echo ' selected'; } ?>>Fixed Rate</option>
+                      <option value="2"  <?php if (isset($value['billing_type']) == 2) { echo ' selected'; } ?>>Project Hours</option>
+                      <option value="3"  <?php if (isset($value['billing_type']) == 3) { echo ' selected'; } ?>>Task Hours</option>                                                 
                     </select>
                   </fieldset>                                               
                 </div>
@@ -65,10 +65,10 @@
                    <label for="basicInput">Status</label>
                    <select class="form-control" name="status">
                      <option value="0"></option>
-                     <option value="1" <?php if (isset($value['status']) == 1) { echo ' selected="selected"'; } ?>>In Progress</option>
-                     <option value="2" <?php if (isset($value['status']) == 2) { echo ' selected="selected"'; } ?>>On Hold</option>
-                     <option value="3" <?php if (isset($value['status']) == 3) { echo ' selected="selected"'; } ?>>Cancelled</option>
-                     <option value="4" <?php if (isset($value['status']) == 4) { echo ' selected="selected"'; } ?>>Finished</option>
+                     <option value="1" <?php if (isset($value['status']) == 1) { echo ' selected'; } ?>>In Progress</option>
+                     <option value="2" <?php if (isset($value['status']) == 2) { echo ' selected'; } ?>>On Hold</option>
+                     <option value="3" <?php if (isset($value['status']) == 3) { echo ' selected'; } ?>>Cancelled</option>
+                     <option value="4" <?php if (isset($value['status']) == 4) { echo ' selected'; } ?>>Finished</option>
                    </select>
                  </fieldset>
                </div>
@@ -112,13 +112,13 @@
          <div class="col-md-6">
           <fieldset class="form-group">
             <label>Start Date</label>
-            <input type="date" name="estimated_hours" class="form-control">
+            <input type="date" name="start_date" value="<?php echo $project->start_date; ?>" class="form-control">
           </fieldset>                                               
         </div>
         <div class="col-md-6"> 
           <fieldset class="form-group">
            <label for="basicInput">Deadline</label>
-           <input type="date" name="estimated_hours" class="form-control">
+           <input type="date" name="deadline" value="<?php echo $project->deadline; ?>"  class="form-control">
          </fieldset>
        </div>
      </div>
@@ -169,7 +169,7 @@
         <div class="col-md-12">
          <fieldset class="form-group">
           <label for="">Visible Tabs</label>
-          <select class="select2 form-control" multiple="multiple" id="available_features">
+          <select class="select2 form-control" name="available_features[]" multiple="multiple" id="available_features">
             <option value="project_tasks">Task</option>
             <option value="project_timesheets" >Timesheets</option>
             <option value="project_milestones">Milestones</option>
@@ -193,99 +193,98 @@
         </fieldset>
         <div >
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="view_tasks" checked/>
+            <input type="checkbox" id="view_tasks" name="settings[]" value="view_tasks" checked/>
             <label for="basicInput">Allow customer to view tasks</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="create_tasks" checked/>
+            <input type="checkbox" name="settings[]" value="create_tasks" id="create_tasks" checked/>
             <label for="basicInput">Allow customer to create tasks</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="edit_tasks" checked/>
+            <input type="checkbox" name="settings[]" value="edit_tasks" id="edit_tasks" checked/>
             <label for="basicInput">Allow customer to edit tasks (only tasks created from contact)</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="view_task_comments" checked/>
+            <input type="checkbox" name="settings[]" value="view_task_comments" id="view_task_comments" checked/>
             <label for="basicInput">Allow customer to comment on project tasks</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="comment_on_tasks" checked/>
+            <input type="checkbox" name="settings[]" value="comment_on_tasks" id="comment_on_tasks" checked/>
             <label for="basicInput">Allow customer to view task comments</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="view_task_attachments" checked/>
+            <input type="checkbox" name="settings[]" value="view_task_attachments" id="view_task_attachments" checked/>
             <label for="basicInput">Allow customer to view task attachments</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="view_task_checklist_items" checked/>
+            <input type="checkbox" name="settings[]" value="view_task_checklist_items" id="view_task_checklist_items" checked/>
             <label for="basicInput">Allow customer to view task checklist items</label>
           </fieldset> 
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="upload_on_tasks" checked/>
+            <input type="checkbox" name="settings[]" value="upload_on_tasks" id="upload_on_tasks" checked/>
             <label for="basicInput">Allow customer to upload attachments on tasks</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="view_task_total_logged_time" checked/>
+            <input type="checkbox" name="settings[]" value="view_task_total_logged_time" id="view_task_total_logged_time" checked/>
             <label for="basicInput">Allow customer to view task total logged time</label>
           </fieldset> 
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="view_finance_overview" checked/>
+            <input type="checkbox" name="settings[]" value="view_finance_overview" id="view_finance_overview" checked/>
             <label for="basicInput">Allow customer to view finance overview</label>
           </fieldset> 
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="upload_files" checked/>
+            <input type="checkbox" name="settings[]" value="upload_files" id="upload_files" checked/>
             <label for="basicInput">Allow customer to upload files</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="open_discussions" checked/>
+            <input type="checkbox" name="settings[]" value="open_discussions" id="open_discussions" checked/>
             <label for="basicInput">Allow customer to open discussions</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="view_milestones" checked/>
+            <input type="checkbox" name="settings[]" value="view_milestones" id="view_milestones" checked/>
             <label for="basicInput">Allow customer to view milestones</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="view_gantt" checked/>
+            <input type="checkbox" name="settings[]" value="view_gantt" id="view_gantt" checked/>
             <label for="basicInput">Allow customer to view Gantt</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="view_timesheets" checked/>
+            <input type="checkbox" name="settings[]" value="view_timesheets" id="view_timesheets" checked/>
             <label for="basicInput">Allow customer to view timesheets</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="view_activity_log" checked/>
+            <input type="checkbox" name="settings[]" value="view_activity_log" id="view_activity_log" checked/>
             <label for="basicInput">Allow customer to view activity log</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="view_team_members" checked/>
+            <input type="checkbox" name="settings[]" value="view_team_members" id="view_team_members" checked/>
             <label for="basicInput">Allow customer to view team members</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="hide_tasks_on_main_tasks_table" />
+            <input type="checkbox" name="settings[]" value="hide_tasks_on_main_tasks_table" id="hide_tasks_on_main_tasks_table" />
             <label for="basicInput">Hide project tasks on main tasks table (admin area)</label>
           </fieldset>
 
         </div>
       </div>
     </div>
-
 
 
   </div>

@@ -36,23 +36,23 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Billing Type</td>
-                                                    <td ></td>
+                                                    <td></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Status</td>
-                                                    <td ></td>
+                                                    <td ><?php echo $project->status; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Date Created</td>
-                                                    <td></td>
+                                                    <td><?php echo $project->project_created; ?></td>
                                                 </tr>
                                                  <tr>
                                                     <td>Start Date</td>
-                                                    <td></td>
+                                                    <td><?php echo $project->start_date; ?></td>
                                                 </tr>
                                                  <tr>
                                                     <td>Deadline</td>
-                                                    <td></td>
+                                                    <td><?php echo $project->deadline; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Total Logged Hours</td>
@@ -73,16 +73,34 @@
                                               </div></div>
                                         </div>
                                     </div><hr>
-                                    <div ><b>Tag</b>
-                                        <p></p>
+                                    <div ><i class="bx bx-tag"></i><b>Tag</b>
+                                       <?php foreach ($tag as $key => $value) {
+                                            ?>
+                                           <p></p>
+                                         <?php } ?>
                                     </div>
                                     <hr>
                                     <div ><b>DESCRIPTION</b>
-                                        <p></p>
+                                        <p><?php echo $project->description; ?></p>
                                     </div>
                                     <hr>
                                     <div><b>MEMBERS</b>
-                                        <p></p>
+                                        <table><tr><td></td></tr></table>
+                                        <?php foreach ($prject_member as $key => $value) {
+                                            ?><div class="media-list">
+                                            <div class="media">
+
+                                                <a class="pr-1" href="#">
+                                                    <img class="round" src="<?=base_url()."assets/backend/profile_images/" ?><?php echo $value['profile_image']; ?>" alt="avatar" height="40" width="40" />
+                                                </a>
+                                                <div class="media-body"> 
+                                                  <?php echo $value['email']; ?>
+                                                </div>
+                                            </div>
+                                           
+                                        </div><?php
+                                            # code...
+                                        } ?> 
                                     </div>
                                     </div>
                                    

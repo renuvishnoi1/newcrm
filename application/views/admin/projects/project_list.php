@@ -68,7 +68,14 @@
                                                         } ?></td> 
                                                         <td><?php echo $value->start_date; ?></td>
                                                         <td><?php echo $value->deadline; ?></td> 
-                                                        <td><a href=""><img class="round" src="<?=base_url()."assets/backend/profile_images/" ?>" alt="avatar" height="40" width="40"></a></td>
+                                                        <td>
+                                                            <?php foreach ($members as $key => $member) {
+                                                                # code...
+                                                             if($value->id == $member->project_id){
+                                                                ?><a href=""><img class="round" src="<?=base_url()."assets/backend/profile_images/" ?><?php echo $member->profile_image; ?>" alt="avatar" height="40" width="40"></a>
+                                                                <?php
+
+                                                            }} ?></td>
                                                         <td><?php echo $value->status; ?></td> 
                                                         <td>
                                                             <a href="<?php echo base_url();?>admin/view_project/<?php echo $value->id; ?>" class="btn btn-icon btn-light glow mr-1 mb-1"><i class="bx bxs-show"></i></a> 
