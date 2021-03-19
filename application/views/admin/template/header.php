@@ -171,9 +171,10 @@ body {
                       <li><?php //echo $this->lang->line('name'); ?>
                         <select onchange="javascript:window.location.href='<?php echo base_url(); ?>admin/LanguageSwitcher/switchLang/'+this.value;" class="nav-link">
                                 <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
-                                <option value="spanish" <?php if($this->session->userdata('site_lang') == 'spanish') echo 'selected="selected"'; ?>>spanish</option>
+                                <!-- <option value="spanish" <?php if($this->session->userdata('site_lang') == 'spanish') echo 'selected="selected"'; ?>>spanish</option>
                                <option value="swedish" <?php if($this->session->userdata('site_lang') == 'swedish') echo 'selected="selected"'; ?>>swedish</option>
-                                <option value="turkish" <?php if($this->session->userdata('site_lang') == 'turkish') echo 'selected="selected"'; ?>>turkish</option>  
+                                <option value="turkish" <?php if($this->session->userdata('site_lang') == 'turkish') echo 'selected="selected"'; ?>>turkish</option> --> 
+                                 <option value="french" <?php if($this->session->userdata('site_lang') == 'french') echo 'selected="selected"'; ?>>french</option> 
                             </select>
                       </li>
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
