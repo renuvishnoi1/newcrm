@@ -6,9 +6,9 @@ class LanguageLoader
         $ci->load->helper('language');
         $siteLang = $ci->session->userdata('site_lang');
         if ($siteLang) {
-            $ci->lang->load('msg',$siteLang);
+            $ci->lang->load($siteLang,$siteLang);
         } else {
-            $ci->lang->load('msg','english');
+            $ci->lang->load('english','english');
         }
     }
 }

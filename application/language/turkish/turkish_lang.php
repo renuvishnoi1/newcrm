@@ -2,6 +2,7 @@
 
 # Version 1.0.0
 # General
+
 $lang['id']                   = 'NO';
 $lang['name']                 = 'Adı';
 $lang['options']              = 'Seçenekler';

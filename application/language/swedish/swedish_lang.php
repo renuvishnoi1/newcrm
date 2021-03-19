@@ -3,6 +3,7 @@
 # Version 1.0.0
 #
 # General
+
 $lang['id']                   = 'ID';
 $lang['name']                 = 'Namn';
 $lang['options']              = 'Alternativ';
