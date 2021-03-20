@@ -30,10 +30,7 @@ class ProjectController extends MY_Controller
    $this->admin_load('projects/add_project',$data); 
  }
  public function saveProject(){
-   echo "<pre>";
-   print_r($_POST['settings']);
-   die;
-
+  
 
    if ($this->form_validation->run('add_project') == FALSE)
   {

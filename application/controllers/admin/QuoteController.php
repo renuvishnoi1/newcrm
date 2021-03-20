@@ -2,60 +2,60 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class ProposalController extends MY_Controller
+class QuoteController extends MY_Controller
 {
 
 
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('admin/ProposalModel');
+    $this->load->model('admin/QuoteModel');
   }
 
   /* List all available items */
   public function index(){
-    $data['title'] = "Proposals";
+    $data['title'] = "Quote";
 
-    $data['proposal']= $this->ProposalModel->get();
+    $data['proposal']= $this->QuoteModel->get();
   
    
-    $this->admin_load('proposals/proposal_list',$data); 
+    $this->admin_load('quote/quote_list',$data); 
   }
   /* function to load add items view */
-  public function addProposal(){
-   $data['title'] = "Proposal";
-    $data['clients']= $this->ProposalModel->get_list('tblclients');
-    $data['leads']= $this->ProposalModel->get_list('tblleads');
-    $data['tags']= $this->ProposalModel->get_list('tbltags');
-    $data['assignee']= $this->ProposalModel->get_list('tblstaff');
-    $data['country']= $this->ProposalModel->get_list('tblcountries');
-    $data['items']= $this->ProposalModel->get_list('tblitems');
-    $data['tax']= $this->ProposalModel->get_list('tbltaxes');
+  public function addQuote(){
+   $data['title'] = "Quote";
+    $data['clients']= $this->QuoteModel->get_list('tblclients');
+    $data['leads']= $this->QuoteModel->get_list('tblleads');
+    $data['tags']= $this->QuoteModel->get_list('tbltags');
+    $data['assignee']= $this->QuoteModel->get_list('tblstaff');
+    $data['country']= $this->QuoteModel->get_list('tblcountries');
+    $data['items']= $this->QuoteModel->get_list('tblitems');
+    $data['tax']= $this->QuoteModel->get_list('tbltaxes');
   
-   $this->admin_load('proposals/add_proposal',$data); 
+   $this->admin_load('quote/add_quote',$data); 
  }
  /* function for get item data by item id  */
   public function getItemDataById(){
  
   $id = $this->input->post('id');
-  $data= $this->ProposalModel->get($id);
+  $data= $this->QuoteModel->get($id);
 
    echo json_encode($data);
 }
 public function getCustomerDataById(){
    $id = $this->input->post('id');
-  $data = $this->ProposalModel->getCustomer($id);
+  $data = $this->QuoteModel->getCustomer($id);
 
    echo json_encode($data);
 }
 public function getLeadDataById(){
    $id = $this->input->post('id');
-  $data = $this->ProposalModel->getLead($id);
+  $data = $this->QuoteModel->getLead($id);
 
    echo json_encode($data);
 }
-/* function insert proposal  */
-public function insertProposal(){
+/* function insert quote  */
+public function insertQuote(){
 // echo "<pre>";
 // print_r($_POST);
 // die;
@@ -64,16 +64,16 @@ public function insertProposal(){
   if (!isset($allow_comments)) $allow_comments = 0;
     
   $tag = $this->input->post('tag');
-  if($this->form_validation->run('add_proposal') == FALSE){
-    $data['title'] = "Proposal";
-    $data['clients'] = $this->ProposalModel->get_list('tblclients');
-    $data['leads'] = $this->ProposalModel->get_list('tblleads');
-    $data['tags'] = $this->ProposalModel->get_list('tbltags');
-    $data['assignee'] = $this->ProposalModel->get_list('tblstaff');
-    $data['country'] = $this->ProposalModel->get_list('tblcountries');
-    $data['items'] = $this->ProposalModel->get_list('tblitems');
-    $data['tax'] = $this->ProposalModel->get_list('tbltaxes');
-    $this->admin_load('proposals/add_proposal',$data); 
+  if($this->form_validation->run('add_quote') == FALSE){
+    $data['title'] = "Quote";
+    $data['clients'] = $this->QuoteModel->get_list('tblclients');
+    $data['leads'] = $this->QuoteModel->get_list('tblleads');
+    $data['tags'] = $this->QuoteModel->get_list('tbltags');
+    $data['assignee'] = $this->QuoteModel->get_list('tblstaff');
+    $data['country'] = $this->QuoteModel->get_list('tblcountries');
+    $data['items'] = $this->QuoteModel->get_list('tblitems');
+    $data['tax'] = $this->QuoteModel->get_list('tbltaxes');
+    $this->admin_load('quote/add_quote',$data); 
   }else{
   
     $data = array(
@@ -97,7 +97,7 @@ public function insertProposal(){
       'allow_comments' =>$allow_comments
     ) ;
     $table = 'tblproposals';
-    $insertData = $this->ProposalModel->insert($table, $data);
+    $insertData = $this->QuoteModel->insert($table, $data);
     if($insertData){
            if(is_array($group)){
         foreach ($tag as $key => $value) {
@@ -107,16 +107,16 @@ public function insertProposal(){
           $tagdata['rel_type']=$this->input->post('rel_type');
 
           $table = 'tbltaggables';   
-          $tag= $this->ProposalModel->insert($tagdata);
+          $tag= $this->QuoteModel->insert($tagdata);
                  
           if($tag){
-             redirect('admin/proposals');
+             redirect('admin/quote');
           }
         }
       }
      
         
-        redirect('admin/proposals');
+        redirect('admin/quote');
       }
   }
 }

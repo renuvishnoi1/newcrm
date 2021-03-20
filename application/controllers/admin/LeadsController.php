@@ -40,7 +40,15 @@ class LeadsController extends MY_Controller
    // print_r($_POST);
    // die;
     if($this->form_validation->run('add_lead') == FALSE){
-      $data['title'] = "Lead";
+       $data['title'] = "Lead";
+    $data['source'] = $this->LeadsModel->get_list('tblleads_sources');
+    $data['status'] = $this->LeadsModel->get_list('tblleads_status');
+    $data['assign'] = $this->LeadsModel->get_assign_list('tblstaff');
+
+    //$data['tag'] = $this->LeadsModel->get_list();
+
+    $data['tag'] = $this->LeadsModel->get_list('tblleads');
+    $data['country'] = $this->ContactsModel->get_countries();
       $this->admin_load('leads/add_lead',$data); 
     }else{
 

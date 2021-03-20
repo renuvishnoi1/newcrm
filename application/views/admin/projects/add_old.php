@@ -13,29 +13,29 @@
           <div class="col-xl-8 col-md-8 col-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Edit Project</h4>
+                <h4 class="card-title">Add New Project</h4>
               </div>
               <div class="card-content">
 
                 <div class="card-body">
-                  <form action="<?php echo base_url('admin/update_project'); ?>" method="POST">
+                  <form action="<?php echo base_url('admin/save_project'); ?>" method="POST">
                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
                    <div class="row">
                     <div class="col-md-12">
                       <fieldset class="form-group">
                         <label for="basicInput">Project Name</label>
-                        <input type="text" name="name" value="<?php echo $project->name; ?>" class="form-control" id="basicInput" placeholder="Enter Project Name">
+                        <input type="text" name="name" class="form-control" id="basicInput" placeholder="Enter Project Name">
                         <span class="text-danger"><?php echo form_error('name'); ?></span>
-                      </fieldset>   
-                      <input type="hidden" name="id" value="<?php echo $project->id; ?>">                                            
+                      </fieldset>                                               
                       <fieldset class="form-group">
                         <label for="basicInput">Customer</label>
-                        <select class="select2 form-control">
+                        <select class="select2 form-control" name="customer">
                           <option></option>
                           <?php foreach ($clients as $key => $value) {
                            ?><option value="<?php  echo $value['userid']; ?>"><?php echo $value['company']; ?>></option><?php 
                          } ?>
                        </select>
+                       <span class="text-danger"><?php echo form_error('customer'); ?></span>
                      </fieldset>
                      <fieldset class="form-group">                                                   
                       <input type="checkbox" checked id="progress_from_tasks" />
@@ -44,7 +44,7 @@
                     <fieldset class="form-group">
                       <label>Progress <span id="slider_value">0</span></label>   
                       <br />                     
-                      <input type="range" id="slider" value="0" min="1" max="100" step="1" class="form-control" /> 
+                      <input type="range" name="progress" id="slider" value="0" min="1" max="100" step="1" disabled="" class="form-control" /> 
                     </fieldset>
                   </div>
                 </div>
@@ -52,11 +52,11 @@
                  <div class="col-md-6">
                   <fieldset class="form-group">
                     <label>* Billing Type</label>
-                    <select id="billing_type" class="form-control" >
+                    <select id="billing_type" name="billing_type" class="form-control" >
                       <option value=""></option>
-                      <option value="1" <?php if (isset($value['billing_type']) == '1') { echo ' selected'; } ?>>Fixed Rate</option>
-                      <option value="2"  <?php if (isset($value['billing_type']) == 2) { echo ' selected'; } ?>>Project Hours</option>
-                      <option value="3"  <?php if (isset($value['billing_type']) == 3) { echo ' selected'; } ?>>Task Hours</option>                                                 
+                      <option value="1">Fixed Rate</option>
+                      <option value="2">Project Hours</option>
+                      <option value="3">Task Hours</option>                                                 
                     </select>
                   </fieldset>                                               
                 </div>
@@ -65,10 +65,10 @@
                    <label for="basicInput">Status</label>
                    <select class="form-control" name="status">
                      <option value="0"></option>
-                     <option value="1" <?php if (isset($value['status']) == 1) { echo ' selected'; } ?>>In Progress</option>
-                     <option value="2" <?php if (isset($value['status']) == 2) { echo ' selected'; } ?>>On Hold</option>
-                     <option value="3" <?php if (isset($value['status']) == 3) { echo ' selected'; } ?>>Cancelled</option>
-                     <option value="4" <?php if (isset($value['status']) == 4) { echo ' selected'; } ?>>Finished</option>
+                     <option value="1">In Progress</option>
+                     <option value="2">On Hold</option>
+                     <option value="3">Cancelled</option>
+                     <option value="4">Finished</option>
                    </select>
                  </fieldset>
                </div>
@@ -77,15 +77,13 @@
                <div class="col-md-12" id="project_cost">
                  <fieldset class="form-group" >
                   <label for="basicInput">Total Rate</label>
-                  <input type="text" name="project_cost" class="form-control" id="project_cost" value="<?php echo $project->project_cost; ?>">
-                  <span class="text-danger"><?php echo form_error('name'); ?></span>
+                  <input type="number" name="project_cost" class="form-control" id="project_cost" >                  
                 </fieldset>
               </div> 
               <div class="col-md-12" id="project_rate_per_hour">
                <fieldset class="form-group" >
                 <label for="basicInput">Rate Per Hour</label>
-                <input type="text" name="project_rate_per_hour" class="form-control" id="project_rate_per_hour" value="<?php echo $project->project_rate_per_hour; ?>">
-                <span class="text-danger"><?php echo form_error('name'); ?></span>
+                <input type="number" name="project_rate_per_hour" class="form-control" id="project_rate_per_hour" >               
               </fieldset>
             </div>
           </div>
@@ -93,16 +91,18 @@
            <div class="col-md-6">
             <fieldset class="form-group">
               <label>Estimated Hours</label>
-              <input type="number" name="estimated_hours" class="form-control" value="<?php echo $project->estimated_hours; ?>">
+              <input type="number" name="estimated_hours" class="form-control">
             </fieldset>                                               
           </div>
           <div class="col-md-6"> 
             <fieldset class="form-group">
              <label for="basicInput">Members</label>
-             <select class="select2 form-control"  multiple="multiple">
+             <select class="select2 form-control" name="member[]"  multiple="multiple">
                <option value="0"></option>
-               <?php foreach ($member as $key => $value) {
-                 ?><option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." ".$value['lastname']; ?>></option><?php 
+               <?php foreach ($project_members as $key => $value) {
+                 ?>
+                 <option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." ".$value['lastname']; ?></option>
+                 <?php 
                } ?>
              </select>
            </fieldset>
@@ -112,13 +112,13 @@
          <div class="col-md-6">
           <fieldset class="form-group">
             <label>Start Date</label>
-            <input type="date" name="start_date" value="<?php echo $project->start_date; ?>" class="form-control">
+            <input type="date" name="start_date" class="form-control">
           </fieldset>                                               
         </div>
         <div class="col-md-6"> 
           <fieldset class="form-group">
            <label for="basicInput">Deadline</label>
-           <input type="date" name="deadline" value="<?php echo $project->deadline; ?>"  class="form-control">
+           <input type="date" name="deadline" class="form-control">
          </fieldset>
        </div>
      </div>
@@ -126,7 +126,7 @@
        <div class="col-md-6">
         <fieldset class="form-group">
           <label>Tags</label>
-          <select class="form-control">
+          <select class="select2 form-control" name="tag_id[]" multiple="">
             <option></option>
             <?php foreach ($tags as $key => $value) {
              ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?>></option><?php 
@@ -140,19 +140,19 @@
      <div class="col-md-12">
        <fieldset class="form-group">
         <label for="basicInput">Description</label>
-        <textarea name="editor1"><?php echo $project->description; ?></textarea>
+        <textarea name="deditor1" ></textarea>
       </fieldset>
     </div>
   </div>
-   <div class="row">
-     <div class="col-md-12">
-       <fieldset class="form-group">
-        <input type="checkbox" name="">
-        <label for="basicInput">Send project created email</label>
-      </fieldset>
-    </div>
+ <!--  <div class="row">
+   <div class="col-md-12">
+     <fieldset class="form-group">
+      <input type="checkbox" name="send_mail">
+      <label for="basicInput">Send project created email</label>
+    </fieldset>
   </div>
-</form>
+</div> -->
+
 </div>
 </div>
 </div>
@@ -192,28 +192,7 @@
 
         </fieldset>
         <div >
-          <fieldset class="form-group"> 
-          <?php
-          $settings=array(
-            'view_tasks'=>'Allow customer to view tasks',
-            'create_tasks'=>'Allow customer to create tasks',
-            'edit_tasks'=>'Allow customer to edit tasks (only tasks created from contact)',
-            'view_task_comments'=>'Allow customer to comment on project tasks',
-            'comment_on_tasks'=>'Allow customer to view task comments',
-            'view_task_attachments'=>'Allow customer to view task attachments',
-            'view_task_checklist_items'=>'Allow customer to view task checklist items',
-            'upload_on_tasks'=>'Allow customer to upload attachments on tasks',
-            'view_task_total_logged_time'=>'Allow customer to view task total logged time',
-            'view_finance_overview'=>'Allow customer to view finance overview',
-            'upload_files'=>'Allow customer to upload files',
-            'open_discussions'=>'Allow customer to open discussions',
-            'view_milestones'=>'Allow customer to view milestones',
-            'view_gantt'=>'Allow customer to view Gantt',
-            'view_timesheets'=>'Allow customer to view timesheets',
-            'view_activity_log'=>'Allow customer to view activity log',
-          );
-
-          ?>                                                  
+          <fieldset class="form-group">                                                   
             <input type="checkbox" id="view_tasks" name="settings[]" value="view_tasks" checked/>
             <label for="basicInput">Allow customer to view tasks</label>
           </fieldset>
@@ -313,15 +292,16 @@
 </div>
 </div>
 </div>
-
-
 </div>
 </section>
 
 </div>
- <div class="card-footer border-top p-1">
-                   <input type="button" name="submit" class="btn btn-info" value="save">
-                </div>
+<div class="card-footer border-top p-1">
+ <div class="btn-bottom-toolbar btn-toolbar-container-out text-right">
+  <button class="btn btn-info only-save customer-form-submiter">Save </button>
+
+</div>            
+</div></form>
 </div>
 </div>
 <!-- END: Content-->
@@ -411,27 +391,29 @@ $(document).ready(function (){
       });
       });
         //on checkbox unselect disable progress
-      $(function() {
-    $('#progress_from_tasks').click(function() {
-        if ($(this).is(':checked')) {
-            $('#slider').attr('disabled', 'disabled');
-        } else {
-            $('#slider').removeAttr('disabled');
+        $(function() {
+
+          $('#progress_from_tasks').click(function() {
+            if(!$('#progress_from_tasks').is(':checked')){
+          //alert('unchecked');
+          $('#slider').removeAttr('disabled');
+        }else if ($('#progress_from_tasks').is(':checked')) {
+          $('#slider').attr('disabled', 'disabled');
         }
-    });
-});
+      });
+        });
       // progress slider code
       $(document).on('input', '#slider', function() {
         $('#slider_value').html( $(this).val()+'%' );
 
       });
 
-    
+
     </script>
     <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js">
 
     </script>
     <script>
 
-      CKEDITOR.replace( 'editor1' );
+      CKEDITOR.replace( 'deditor1' );
     </script>

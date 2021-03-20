@@ -19,8 +19,7 @@ class InvoiceItemsController extends MY_Controller
     $data['items']= $this->invoiceItemsModel->get();
     $data['items_groups'] = $this->invoiceItemsModel->get_groups();
     $data['taxes']        = $this->invoiceItemsModel->get_list('tbltaxes');
-    // echo "<pre>";
-    // print_r($data);die;
+    
     $this->admin_load('invoice_items/item_list',$data); 
   }
   /* function to load add items view */
@@ -28,7 +27,8 @@ class InvoiceItemsController extends MY_Controller
    $data['title'] = "Item";
    $data['group']= $this->invoiceItemsModel->get_list('tblitems_groups');
    $data['tax']= $this->invoiceItemsModel->get_list('tbltaxes');
-
+// echo "<pre>";
+//     print_r($data);die;
    $this->admin_load('invoice_items/add_item',$data); 
  }
  /* function insert item  */

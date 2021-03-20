@@ -113,9 +113,9 @@ $route['admin/invoice_items/add_item_group'] = 'admin/InvoiceItemsController/add
 // Invoice item route end
 
 // proposals route start
-$route['admin/proposals'] = 'admin/ProposalController/index';
-$route['admin/add_proposals'] = 'admin/ProposalController/addProposal';
-$route['admin/save_proposal'] = 'admin/ProposalController/insertProposal';
+$route['admin/quote'] = 'admin/QuoteController/index';
+$route['admin/add_quote'] = 'admin/QuoteController/addQuote';
+$route['admin/save_quote'] = 'admin/QuoteController/insertQuote';
 //proposals route end 
 
 //estimates routing start 

@@ -101,7 +101,7 @@
                <option value="0"></option>
                <?php foreach ($project_members as $key => $value) {
                  ?>
-                 <option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." ".$value['lastname']; ?>></option>
+                 <option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." ".$value['lastname']; ?></option>
                  <?php 
                } ?>
              </select>
@@ -144,14 +144,14 @@
       </fieldset>
     </div>
   </div>
-  <div class="row">
+ <!--  <div class="row">
    <div class="col-md-12">
      <fieldset class="form-group">
       <input type="checkbox" name="send_mail">
       <label for="basicInput">Send project created email</label>
     </fieldset>
   </div>
-</div>
+</div> -->
 
 </div>
 </div>
@@ -193,26 +193,26 @@
         </fieldset>
         <div >
           <fieldset class="form-group">                                                   
-            <input type="checkbox" id="view_tasks" name="settings[]" value="view_tasks" checked/>
+            <input type="checkbox" id="view_tasks" name="settings[][view_tasks]"  checked/>
             <label for="basicInput">Allow customer to view tasks</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" name="settings[]" value="create_tasks" id="create_tasks" checked/>
+            <input type="checkbox" name="settings[][create_tasks]"  id="create_tasks" checked/>
             <label for="basicInput">Allow customer to create tasks</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" name="settings[]" value="edit_tasks" id="edit_tasks" checked/>
+            <input type="checkbox" name="settings[][edit_tasks]"  id="edit_tasks" checked/>
             <label for="basicInput">Allow customer to edit tasks (only tasks created from contact)</label>
           </fieldset>
           <hr>
           <fieldset class="form-group">                                                   
-            <input type="checkbox" name="settings[]" value="view_task_comments" id="view_task_comments" checked/>
+            <input type="checkbox" name="settings[][view_task_comments]"  id="view_task_comments" checked/>
             <label for="basicInput">Allow customer to comment on project tasks</label>
           </fieldset>
           <hr>
-          <fieldset class="form-group">                                                   
+         <!--  <fieldset class="form-group">                                                   
             <input type="checkbox" name="settings[]" value="comment_on_tasks" id="comment_on_tasks" checked/>
             <label for="basicInput">Allow customer to view task comments</label>
           </fieldset>
@@ -280,7 +280,7 @@
           <fieldset class="form-group">                                                   
             <input type="checkbox" name="settings[]" value="hide_tasks_on_main_tasks_table" id="hide_tasks_on_main_tasks_table" />
             <label for="basicInput">Hide project tasks on main tasks table (admin area)</label>
-          </fieldset>
+          </fieldset> -->
 
         </div>
       </div>

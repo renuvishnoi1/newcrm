@@ -36,7 +36,7 @@
                 </li>
                  <li class="nav-item"><a href="#"><i class="" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">Sales</span></a>
                     <ul class="menu-content">
-                        <li><a href="<?php echo base_url('admin/proposals'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Quote Management</span></a>
+                        <li><a href="<?php echo base_url('admin/quote'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Quote Management</span></a>
                         </li>
                         <li><a href="<?php echo base_url('admin/estimates'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Estimates</span></a>
                         </li>
