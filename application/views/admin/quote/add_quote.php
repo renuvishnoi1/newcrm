@@ -33,7 +33,7 @@
                                </div>
                                <div class="card-content">
                                 <div class="card-body">
-                                    <form action="<?php echo base_url('admin/save_proposal'); ?>" method="POST">
+                                    <form action="<?php echo base_url('admin/save_quote'); ?>" method="POST">
                                         <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
                                         <div class="row">                                            
                                             <div class="col-md-6 border-right" >
@@ -55,10 +55,10 @@
                                                 </fieldset>
                                                 <fieldset class="form-group" id="lead">
                                                     <label for="basicInput" >Lead</label>
-                                                    <select name="rel_id" id="lead" class="form-control" onchange="leadget(this)">
+                                                    <select name="rel_id"  class="form-control" onchange="leadget(this)">
                                                       <option value="0"></option>
                                                       <?php foreach ($leads as $key => $value) {
-                                                       ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?>></option><?php 
+                                                       ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
                                                    } ?>
 
                                                </select>
@@ -67,10 +67,10 @@
                                            </fieldset>
                                            <fieldset class="form-group" id="customer">
                                             <label for="basicInput" >Customer</label>
-                                            <select name="rel_id" id="customer" class="form-control" onchange="customerget(this)">
+                                            <select name="customer"  class="form-control" onchange="customerget(this)">
                                                 <option value="0"></option>
                                                 <?php foreach ($clients as $key => $value) {
-                                                   ?><option value="<?php  echo $value['userid']; ?>"><?php echo $value['company']; ?>></option><?php 
+                                                   ?><option value="<?php  echo $value['userid']; ?>"><?php echo $value['company']; ?></option><?php 
                                                } ?>
                                            </select>
                                            <span class="text-danger"><?php echo form_error('description'); ?></span>
@@ -80,7 +80,7 @@
                                            <div class="col-md-6">
                                             <div class="form-group" ><label for="date" > <small class="req text-danger">* </small>Date</label><div class="input-group date"><input type="date"  name="date" class="form-control datepicker"  autocomplete="off"><div >
 
-                                            </div></div></div>                          </div>
+                                            </div></div></div></div>
                                             <div class="col-md-6">
                                                 <div class="form-group" ><label for="open_till" >Open Till</label><div class="input-group date"><input type="date"  name="open_till" class="form-control datepicker" autocomplete="off"><div class="input-group-addon">
                                                     <i class="fa fa-calendar calendar-icon"></i>
@@ -108,10 +108,10 @@
                                                 </div>
                                                 <fieldset class="form-group">
                                                     <label for="helpInputTop"> Tags</label>
-                                                    <select class="form-control">
+                                                    <select class="form-control" name="tag[]" multiple>
                                                         <option value=""></option>
                                                         <?php foreach ($tags as $key => $value) {
-                                                           ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?>></option><?php 
+                                                           ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
                                                        } ?>
                                                    </select>
                                                </fieldset>
@@ -136,18 +136,20 @@
                                                         <option value="2">Declined</option>
                                                         <option value="3">Accepted</option>
                                                     </select>
-                                                </div> </div>
-
+                                                </div> 
+                                            </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group" >
                                                         <label for="open_till" >Assignee</label>
                                                         <select class="form-control" name="assigned">
                                                             <option value=""></option>
                                                             <?php foreach ($assignee as $key => $value) {
-                                                               ?><option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." " .$value['firstname']; ?>></option><?php 
+                                                               ?><option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." " .$value['firstname']; ?></option><?php 
                                                            } ?>
                                                        </select>
-                                                   </div> </div></div>
+                                                   </div> 
+                                               </div>
+                                               </div>
                                                    <fieldset class="form-group">
                                                     <label for="disabledInput">To</label>
                                                     <input type="text" name="proposal_to" id="to" class="form-control">
@@ -174,11 +176,11 @@
                                                         <div class="form-group" >
                                                             <label for="open_till" >Country</label>
                                                             <select class="form-control" id="country" name="country">
-                                                                <option value=""></option>
+                                                                <option value="0"></option>
                                                                 <?php foreach ($country as $key => $value) {
-                                                                   ?><option value="<?php  echo $value['country_id']; ?>"><?php echo $value['short_name']; ?>>
-
-                                                                       </option><?php 
+                                                                   ?>
+                                                                   <option value="<?php  echo $value['country_id']; ?>"><?php echo $value['short_name']; ?></option>
+                                                                   <?php 
                                                                    } ?>
 
                                                                </select>
@@ -234,7 +236,7 @@
 
                                             <div class="form-group" >
                                                 <label for="open_till" >Items</label>
-                                                <select class="form-control" onchange="yesnoCheck(this);">
+                                                <select class="form-control" onchange="yesnoCheck(this);" name="itemid">
 
                                                     <option ></option>
                                                     <?php foreach ($items as $key => $value) {
@@ -276,7 +278,7 @@
                                             </div>
                                             <!-- table head dark -->
                                             <div class="table-responsive">
-                                                <table class="table mb-0">
+                                                <table class=" table form-table mb-0" id="customFields">
                                                     <thead class="thead-dark">
                                                         <tr>
                                                             <th>Item</th>
@@ -305,7 +307,7 @@
                                                             </fieldset></td>
                                                             <td><fieldset class="form-group">
                                                                 <select name="tax_rate" class="form-control" id="tax">
-                                                                    <option>No Tax</option>
+                                                                    <option value="0">No Tax</option>
                                                                     <?php foreach ($tax as $key => $value) {
                                                                        ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['taxrate']; ?><small><?php echo $value['name']; ?></small></option><?php 
                                                                    } ?>
@@ -313,7 +315,7 @@
                                                            </fieldset>
                                                        </td>
 
-                                                       <td><button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button></td>
+                                                       <td><a href="javascript:void(0);" class="addCF">Add</a></td>
                                                    </tr>
 
                                                </tbody>
@@ -323,33 +325,7 @@
                                </div>
                            </div>
                        </div>
-                       <div class="dt">
-                        <div class="copy hide" style="display: none;">
-                            <tr class="after-add-more">
-                                <td> <fieldset class="form-group">
-                                    <textarea class="form-control" id="item_description" rows="3" placeholder="Description"></textarea>
-                                </fieldset></td>
-                                <td><fieldset class="form-group">
-                                    <textarea class="form-control" id="item_long_description" rows="3" placeholder="Long Description"></textarea>
-                                </fieldset></td>
-                                <td><fieldset class="form-group">
-                                    <input type="number" name="unit" id="item_unit" class="form-control">
-                                </fieldset></td>
-                                <td><fieldset class="form-group">
-                                    <input type="number" name="rate" id="item_rate" class="form-control">
-                                </fieldset></td>
-                                <td><fieldset class="form-group">
-                                    <select name="tax_rate" class="form-control" id="tax">
-                                        <option> </option>
-                                        <?php foreach ($tax as $key => $value) {
-                                           ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?>> </option><?php 
-                                       } ?>
-                                   </select>
-                               </fieldset></td>
-                               <td><button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button></td>
-                           </tr>
-                       </div>
-                   </div>
+                    
                    <!-- Table head options end -->
                    <!-- Table head options start -->
                    <div class="row" >
@@ -359,7 +335,7 @@
                         <thead >
                             <tr>
                                 <th>Sub Total :</th>
-                                <th>$0.00</th>
+                                <th>$0.00 <input type="hidden" name="sub_total" value=""></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -380,7 +356,7 @@
                                     <span class="bold">Adjustment</span>
                                 </div>
                                 <div class="col-md-5">
-                                    <input type="text" name="" class="form-control">
+                                    <input type="text" name="adjustment" class="form-control">
                                 </div>
                             </div>
                         </td>
@@ -388,12 +364,21 @@
                     </tr>
                     <tr>
                         <td >Total :</td>
-                        <td>$0.00</td>
+                        <td class="total">$0.00 <input type="hidden" name="Total"></td>
                     </tr>
 
                 </tbody>
             </table>
-
+<!-- <table class="form-table" id="customFields">
+    <tr valign="top">
+        <th scope="row"><label for="customFieldName">Custom Field</label></th>
+        <td>
+            <input type="text" class="code" id="customFieldName" name="customFieldName[]" value="" placeholder="Input Name" /> &nbsp;
+            <input type="text" class="code" id="customFieldValue" name="customFieldValue[]" value="" placeholder="Input Value" /></td><td> &nbsp;
+            <a href="javascript:void(0);" class="addCF">Add</a>
+        </td>
+    </tr>
+</table> -->
         </div>
         <!-- Table head options end -->
 
@@ -413,26 +398,6 @@
 <script  src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 
-
-    $(document).ready(function() {
-
-      $(".add-more").click(function(){ 
-          var html = $(".dt").html();
-
-
-          alert(html);
-        //  $(".tbody").append(html);
-    });
-
-
-      $("body").on("click",".remove",function(){ 
-          $(this).parents(".control-group").remove();
-      });
-
-
-
-
-  });
 
 //     function discountFunction(){
 //        var discount =  $('#discount_type').val()
@@ -463,7 +428,7 @@ $("#disc").focusout(function(){
    csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
    var dataJson = { [csrfName]: csrfHash, id:id};
    $.ajax({
-    url:"<?php echo base_url('admin/ProposalController/getItemDataById'); ?>",
+    url:"<?php echo base_url('admin/QuoteController/getItemDataById'); ?>",
     type:"POST",
     data:dataJson,
     success:function(data)
@@ -474,7 +439,7 @@ $("#disc").focusout(function(){
         $('#unit').val(data.unit);
         $('#rate').val(data.rate);
         $('#tax').val(data.taxid);
-        console.log(data);
+        //console.log(data);
     }
 });
 
@@ -507,6 +472,7 @@ $("#disc").focusout(function(){
 </script>
 
 <script type="text/javascript">
+    
     //$("[name='my-checkbox']").bootstrapSwitch();
     // on select customer show other field data
     function customerget(that) {
@@ -517,7 +483,7 @@ $("#disc").focusout(function(){
    csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
    var dataJson = { [csrfName]: csrfHash, id:id};
    $.ajax({
-    url:"<?php echo base_url('admin/ProposalController/getCustomerDataById'); ?>",
+    url:"<?php echo base_url('admin/QuoteController/getCustomerDataById'); ?>",
     type:"POST",
     data:dataJson,
     success:function(data)
@@ -548,7 +514,7 @@ function leadget(that) {
    csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
    var dataJson = { [csrfName]: csrfHash, id:id};
    $.ajax({
-    url:"<?php echo base_url('admin/ProposalController/getLeadDataById'); ?>",
+    url:"<?php echo base_url('admin/QuoteController/getLeadDataById'); ?>",
     type:"POST",
     data:dataJson,
     success:function(data)
@@ -570,4 +536,20 @@ function leadget(that) {
 
 } 
 }
+</script>
+<script type="text/javascript">
+// add and remove table row input fields
+    $(document).ready(function(){
+    $(".addCF").click(function(){
+        $("#customFields").append('<tr class="after-add-more item"><td> <fieldset class="form-group"><textarea class="form-control" id="description" rows="3" placeholder="Description"></textarea></fieldset></td><td><fieldset class="form-group"><textarea class="form-control" id="long_description" rows="3" placeholder="Long Description"></textarea></fieldset></td><td><fieldset class="form-group"><input type="number" name="unit" id="unit" class="form-control"></fieldset></td><td><fieldset class="form-group"><input type="number" name="rate" id="rate" class="form-control"></fieldset></td><td><fieldset class="form-group"><select name="tax_rate" class="form-control" id="tax"><option>No Tax</option><?php foreach ($tax as $key => $value) { ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['taxrate']; ?><small><?php echo $value['name']; ?></small></option><?php } ?></select></fieldset></td><td><a href="javascript:void(0);" class="remCF">Remove</a></td></tr>');
+    });
+    $("#customFields").on('click','.remCF',function(){
+        $(this).parent().parent().remove();
+    });
+});
+   
+
+
+    ///
+// 55
 </script>

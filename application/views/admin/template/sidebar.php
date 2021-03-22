@@ -68,16 +68,16 @@
                     </ul>
                 </li>
                    <li class=" nav-item"><a href="<?php echo base_url('admin/calender'); ?>"><i class="" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Calender</span></a></li>
-                   <li class="nav-item"><a href="#"><i class="" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">CONTRACTS</span></a>
+                  <!--  <li class="nav-item"><a href="#"><i class="" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">CONTRACTS</span></a>
                     <ul class="menu-content">
                         <li><a href="<?php echo base_url('admin/contracts/types'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Contract Types</span></a>
                         </li>
                         <li><a href="<?php echo base_url('admin/contracts'); ?>"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Contract</span></a>
                         </li>
                     </ul>
-                </li>
-                   <li class=" nav-item "><a href="<?php echo base_url('admin/projects'); ?>"><i class="" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Project</span></a></li>
-                   <li class=" nav-item "><a href="<?php echo base_url('admin/tasks'); ?>"><i class="" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Tasks</span></a></li>
+                </li> -->
+                  <!--  <li class=" nav-item "><a href="<?php echo base_url('admin/projects'); ?>"><i class="" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Project</span></a></li>
+                   <li class=" nav-item "><a href="<?php echo base_url('admin/tasks'); ?>"><i class="" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Tasks</span></a></li> -->
               
           
             </ul>

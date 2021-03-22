@@ -31,7 +31,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title"></h4>
-                                     <a href="<?php echo base_url('admin/add_proposals'); ?>" type="button" class="btn btn-info mr-1 mb-1">New Proposal</a>
+                                     <a href="<?php echo base_url('admin/add_quote'); ?>" type="button" class="btn btn-info mr-1 mb-1">New Quote</a>
                                       
                                 </div>
                                  <hr>
@@ -43,7 +43,7 @@
                                             <table class="table zero-configuration">
                                                 <thead>
                                                     <tr>
-                                                        <th>Proposal</th>
+                                                        <th>Quote</th>
                                                         <th>Subject</th>
                                                         <th>Rate</th>
                                                         <th>to</th>

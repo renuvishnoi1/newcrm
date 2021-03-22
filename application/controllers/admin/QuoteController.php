@@ -56,9 +56,9 @@ public function getLeadDataById(){
 }
 /* function insert quote  */
 public function insertQuote(){
-// echo "<pre>";
-// print_r($_POST);
-// die;
+echo "<pre>";
+print_r($_POST);
+die;
  
   $allow_comments=$this->input->post('allow_comments');
   if (!isset($allow_comments)) $allow_comments = 0;
