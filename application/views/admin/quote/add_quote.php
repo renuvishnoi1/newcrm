@@ -33,7 +33,7 @@
                                </div>
                                <div class="card-content">
                                 <div class="card-body">
-                                    <form action="<?php echo base_url('admin/save_quote'); ?>" method="POST">
+                                    <form  id="quote_form" method="POST">
                                         <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
                                         <div class="row">                                            
                                             <div class="col-md-6 border-right" >
@@ -277,7 +277,7 @@
 
                                             </div>
                                             <!-- table head dark -->
-                                            <div class="table-responsive">
+                                            <div class="table-responsive" >
                                                 <table class=" table form-table mb-0" id="customFields">
                                                     <thead class="thead-dark">
                                                         <tr>
@@ -287,12 +287,12 @@
                                                             <th align="center">Rate</th>
                                                             <th>Tax</th>
                                                             <th>Amount</th>
-                                                            <th></th>
+                                                            <th><i class="bx bxs-cog"></i></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="tbody">
 
-                                                        <tr class="after-add-more">
+                                                        <!-- <tr class="after-add-more">
                                                             <td> <fieldset class="form-group">
                                                                 <textarea class="form-control" id="description" rows="3" placeholder="Description"></textarea>
                                                             </fieldset></td>
@@ -315,8 +315,8 @@
                                                            </fieldset>
                                                        </td>
 
-                                                       <td><a href="javascript:void(0);" class="addCF">Add</a></td>
-                                                   </tr>
+                                                       <td><a href="javascript:void(0);" class="addCF " onClick="ShowModal(this)" id="add_more">Add</a></td>
+                                                   </tr> -->
 
                                                </tbody>
                                            </table>
@@ -335,7 +335,7 @@
                         <thead >
                             <tr>
                                 <th>Sub Total :</th>
-                                <th>$0.00 <input type="hidden" name="sub_total" value=""></th>
+                                <th><span class="totalam">0.00</span><input type="hidden" name="sub_total" value=""></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -344,11 +344,11 @@
                                     <div class="col-md-7">
                                         <span class="bold">Discount</span>
                                     </div> 
-                                    <div class="col-md-5"><input type="text" name="" id="disc" class="form-control">
+                                    <div class="col-md-5"><input type="number" value="0" name="discount" id="disc" class="form-control discount">
                                     </div>
                                 </div>
                             </td>
-                            <td>-$0.00</td>
+                            <td> <span class="discount_amount">-$0.00</span></td>
                         </tr>
                         <tr>
                             <td ><div class="row">
@@ -356,15 +356,15 @@
                                     <span class="bold">Adjustment</span>
                                 </div>
                                 <div class="col-md-5">
-                                    <input type="text" name="adjustment" class="form-control">
+                                    <input type="number" value="0" name="adjustment" class="form-control adjustment">
                                 </div>
                             </div>
                         </td>
-                        <td>$0.00</td>
+                        <td> <span class="adjustment_amount">$0.00</span></td>
                     </tr>
                     <tr>
                         <td >Total :</td>
-                        <td class="total">$0.00 <input type="hidden" name="Total"></td>
+                        <td class="total"><span class="totalamount">0.00</span><input type="hidden" name="Total" class="discount_total"></td>
                     </tr>
 
                 </tbody>
@@ -383,7 +383,7 @@
         <!-- Table head options end -->
 
 
-    </div><button class="btn btn-info" type="">Save</button> </form>
+    </div><button class="btn btn-info" type="" id="save">Save</button> </form>
 </div>
 </div>
 </div>
@@ -434,16 +434,98 @@ $("#disc").focusout(function(){
     success:function(data)
     {
         data = jQuery.parseJSON(data);
-        $('#description').val(data.description);
-        $('#description').val(data.long_description);
-        $('#unit').val(data.unit);
-        $('#rate').val(data.rate);
-        $('#tax').val(data.taxid);
+      if ($('#unit'+data.itemid).length>0)
+      {
+       var qty=$('#unit'+data.itemid).val();
+       $('#unit'+data.itemid).val(Number(qty)+1);
+         var rate=$('.rate'+data.itemid).val();
+    $('.sb'+data.itemid).text(Number(rate)*Number(Number(qty)+1));
+    update_amounts();
+      }
+      else
+      {
+       addmore_row(data.description,data.long_description,data.unit,data.rate,data.taxid,data.itemid);
+      }
+       
         //console.log(data);
     }
 });
 
 }
+}
+// 
+function addmore_row(description,long_description,unit,rate,taxid,itemid){
+        $("#customFields").append('<tr class="after-add-more item"><td> <fieldset class="form-group"><textarea class="form-control" id="description" rows="3" placeholder="Description">'+description+'</textarea></fieldset></td><td><fieldset class="form-group"><textarea class="form-control" id="long_description" rows="3" placeholder="Long Description">'+long_description+'</textarea></fieldset></td><td><fieldset class="form-group"><input type="number" name="unit" onchange="update_amounts();" data-id='+itemid+' id="unit'+itemid+'" value="1" class="form-control unit"></fieldset></td><td><fieldset class="form-group"><input type="number" value='+rate+'  name="rate" id="rate" onchange="update_amounts();" class="form-control rate rate'+itemid+'" data-id='+itemid+'></fieldset></td><td><fieldset class="form-group"><select name="tax_rate" class="form-control" id="tax"><option>No Tax</option><?php foreach ($tax as $key => $value) { ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['taxrate']; ?><small><?php echo $value['name']; ?></small></option><?php } ?></select></fieldset></td><td ><span class="sub_total sb'+itemid+'" id="total">0.00<span></td><td><a href="javascript:void(0);" class="remCF">Remove</a></td></tr>');
+    }
+ $(document).ready(function(){
+    
+    $("#customFields").on('click','.remCF',function(){
+        $(this).parent().parent().remove();
+         update_amounts();
+    });
+});
+
+ $('#unit').change(function() {
+    update_amounts();
+}); 
+ $('body').on('change','.rate',function() {
+    var id=$(this).data('id');
+    var rate=$(this).val();
+    var unitval=$('#unit'+id).val();
+    $('.sb'+id).text(Number(rate)*Number(unitval));
+    update_amounts();
+}); $('body').on('change','.unit',function() {
+    var id=$(this).data('id');
+    var unit=$(this).val();
+    var rate=$('.rate'+id).val();
+    $('.sb'+id).text(Number(rate)*Number(unit));
+     update_amounts();
+});
+// var $tblrows = $("#customFields tbody tr");
+// $tblrows.each(function (index) {
+//     var $tblrow = $(this);
+//  $tblrow.find('#unit').on('change', function () {
+ 
+ 
+// var qty = $tblrow.find("[name=unit]").val(); alert(qty);
+// var price = $tblrow.find("[name=price]").val();
+// var subTotal = parseInt(qty,10) * parseFloat(price);
+// if (!isNaN(subTotal)) {
+ 
+//     $tblrow.find('.subtot').val(subTotal.toFixed(2));
+//     var grandTotal = 0;
+ 
+//     $(".subtot").each(function () {
+//         var stval = parseFloat($(this).val());
+//         grandTotal += isNaN(stval) ? 0 : stval;
+//     });
+ 
+//     $('.grdtot').val(grandTotal.toFixed(2));
+// }
+// });
+// });
+function update_amounts()
+{
+    var sum = 0;
+    $('.sub_total').each(function() {
+          sum += parseFloat($(this).text());
+    });
+    //just update the total to sum  
+    //console.log(sum);
+    $('.totalam').text(sum);
+    var discount_val=$('.discount').val();
+    var discount_am=Number(sum)*discount_val/100;
+    $('.discount_amount').text(discount_am);
+    $('.totalamount').html(Number(sum)-Number(discount_am));
+//
+    var adjustment_val = $('.adjustment').val();
+   $('.adjustment_amount').text(adjustment_val);
+   $('.totalamount').html(Number(sum)+Number(adjustment_val));
+} 
+
+function ShowModal(elem){
+    var dataId = $("#add_more").data("id");
+    alert(dataId);
 }
 </script>
 <script type="text/javascript">
@@ -536,20 +618,17 @@ function leadget(that) {
 
 } 
 }
-</script>
-<script type="text/javascript">
-// add and remove table row input fields
-    $(document).ready(function(){
-    $(".addCF").click(function(){
-        $("#customFields").append('<tr class="after-add-more item"><td> <fieldset class="form-group"><textarea class="form-control" id="description" rows="3" placeholder="Description"></textarea></fieldset></td><td><fieldset class="form-group"><textarea class="form-control" id="long_description" rows="3" placeholder="Long Description"></textarea></fieldset></td><td><fieldset class="form-group"><input type="number" name="unit" id="unit" class="form-control"></fieldset></td><td><fieldset class="form-group"><input type="number" name="rate" id="rate" class="form-control"></fieldset></td><td><fieldset class="form-group"><select name="tax_rate" class="form-control" id="tax"><option>No Tax</option><?php foreach ($tax as $key => $value) { ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['taxrate']; ?><small><?php echo $value['name']; ?></small></option><?php } ?></select></fieldset></td><td><a href="javascript:void(0);" class="remCF">Remove</a></td></tr>');
-    });
-    $("#customFields").on('click','.remCF',function(){
-        $(this).parent().parent().remove();
-    });
+// save data into database
+$(document).on('click','#save',function(e) {
+  alert('jhsgdh');
+    var data = $("#quote_form").serialize();
+    $.ajax({
+         data: data,
+         type: "post",
+         url: "<?php echo base_url().'admin/add_quote'; ?>",
+         success: function(data){
+              alert(data);
+         }
+  });
 });
-   
-
-
-    ///
-// 55
 </script>
