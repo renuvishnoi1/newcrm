@@ -98,16 +98,7 @@ $config = [
         ['field' => 'proposal_to', 'label' => 'To', 'rules' => 'required'],
         ['field' => 'email', 'label' => 'Email Address', 'rules' => 'trim|required|valid_email'],
     ],
-    'add_project'=>[
-        ['field' => 'name', 'label' => 'Name', 'rules' => 'trim|required'],
-        ['field' => 'customer', 'label' => 'Customer', 'rules' => 'required']
-       
-    ],
-    'edit_project'=>[
-        ['field' => 'name', 'label' => 'Name', 'rules' => 'trim|required'],
-        ['field' => 'customer', 'label' => 'Customer', 'rules' => 'required']
-       
-    ],
+    
     'login'=>[
         ['field' => 'email', 'label' => 'Email Address', 'rules' => 'trim|required|valid_email'],
         ['field' => 'password', 'label' => 'Password', 'rules' => 'trim|required'],

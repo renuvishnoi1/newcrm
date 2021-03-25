@@ -33,13 +33,13 @@
                                </div>
                                <div class="card-content">
                                 <div class="card-body">
-                                    <form  id="quote_form" method="POST">
-                                        <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                                    <form  id="quote_form" >
+                                    
                                         <div class="row">                                            
                                             <div class="col-md-6 border-right" >
                                                 <fieldset class="form-group">
                                                     <label for="basicInput">Subject</label>
-                                                    <input type="text" class="form-control" id="basicInput" name="subject">
+                                                    <input type="text" class="form-control"  name="subject" id="subject">
                                                     <span class="text-danger"><?php echo form_error('subject'); ?></span>
                                                     
                                                 </fieldset>
@@ -55,7 +55,7 @@
                                                 </fieldset>
                                                 <fieldset class="form-group" id="lead">
                                                     <label for="basicInput" >Lead</label>
-                                                    <select name="rel_id"  class="form-control" onchange="leadget(this)">
+                                                    <select name="rel_id"  class="form-control rel_id" onchange="leadget(this)">
                                                       <option value="0"></option>
                                                       <?php foreach ($leads as $key => $value) {
                                                        ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
@@ -67,7 +67,7 @@
                                            </fieldset>
                                            <fieldset class="form-group" id="customer">
                                             <label for="basicInput" >Customer</label>
-                                            <select name="customer"  class="form-control" onchange="customerget(this)">
+                                            <select name="customer"  class="form-control rel_id" onchange="customerget(this)">
                                                 <option value="0"></option>
                                                 <?php foreach ($clients as $key => $value) {
                                                    ?><option value="<?php  echo $value['userid']; ?>"><?php echo $value['company']; ?></option><?php 
@@ -78,11 +78,11 @@
                                        </fieldset>
                                        <div class="row">
                                            <div class="col-md-6">
-                                            <div class="form-group" ><label for="date" > <small class="req text-danger">* </small>Date</label><div class="input-group date"><input type="date"  name="date" class="form-control datepicker"  autocomplete="off"><div >
+                                            <div class="form-group" ><label for="date" > <small class="req text-danger">* </small>Date</label><div class="input-group date"><input type="date" id="date"  name="date" class="form-control datepicker"  autocomplete="off"><div >
 
                                             </div></div></div></div>
                                             <div class="col-md-6">
-                                                <div class="form-group" ><label for="open_till" >Open Till</label><div class="input-group date"><input type="date"  name="open_till" class="form-control datepicker" autocomplete="off"><div class="input-group-addon">
+                                                <div class="form-group" ><label for="open_till" >Open Till</label><div class="input-group date"><input type="date"  name="open_till" id="open_till" class="form-control datepicker" autocomplete="off"><div class="input-group-addon">
                                                     <i class="fa fa-calendar calendar-icon"></i>
                                                 </div></div></div>                          
                                             </div>
@@ -90,7 +90,7 @@
                                             <div class="row">
                                                <div class="col-md-6">
                                                 <div class="form-group" ><label for="currency" > <small class="req text-danger">* </small> Currency</label>
-                                                    <select class="form-control" name="currency">
+                                                    <select class="form-control" name="currency" id="currency">
                                                         <option value=""></option>
                                                         <option value="1">USD</option>
                                                         <option value="2">EUR</option>
@@ -108,7 +108,7 @@
                                                 </div>
                                                 <fieldset class="form-group">
                                                     <label for="helpInputTop"> Tags</label>
-                                                    <select class="form-control" name="tag[]" multiple>
+                                                    <select class="form-control select2" name="tag[]" id="tag" multiple>
                                                         <option value=""></option>
                                                         <?php foreach ($tags as $key => $value) {
                                                            ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
@@ -141,7 +141,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group" >
                                                         <label for="open_till" >Assignee</label>
-                                                        <select class="form-control" name="assigned">
+                                                        <select class="form-control" name="assigned" id="assigned">
                                                             <option value=""></option>
                                                             <?php foreach ($assignee as $key => $value) {
                                                                ?><option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." " .$value['firstname']; ?></option><?php 
@@ -251,15 +251,15 @@
                                    </div>
                                    <div class="col-md-6 ">
                                        <div class="mtop10">
-                                        <span>Show quantity as:</span> <input type="radio" value="1" id="1" name="show_quantity_as" data-text="Qty" checked>
+                                        <span>Show quantity as:</span> <input type="radio" value="1" id="1" class="show_quantity_as" name="show_quantity_as"  checked>
                                         <label for="1">Qty</label>
 
 
-                                        <input type="radio" value="2" id="2" name="show_quantity_as" data-text="Hours" >
+                                        <input type="radio" value="2" id="2" name="show_quantity_as"  >
                                         <label for="2">Hours</label>
 
 
-                                        <input type="radio" id="3" value="3" name="show_quantity_as" data-text="Qty/Hours" >
+                                        <input type="radio" id="3" value="3" name="show_quantity_as"  >
                                         <label for="3">Qty/Hours</label>
 
                                     </div>
@@ -292,31 +292,7 @@
                                                     </thead>
                                                     <tbody class="tbody">
 
-                                                        <!-- <tr class="after-add-more">
-                                                            <td> <fieldset class="form-group">
-                                                                <textarea class="form-control" id="description" rows="3" placeholder="Description"></textarea>
-                                                            </fieldset></td>
-                                                            <td><fieldset class="form-group">
-                                                                <textarea class="form-control" id="long_description" rows="3" placeholder="Long Description"></textarea>
-                                                            </fieldset></td>
-                                                            <td><fieldset class="form-group">
-                                                                <input type="number" name="unit" id="unit" class="form-control">
-                                                            </fieldset></td>
-                                                            <td><fieldset class="form-group">
-                                                                <input type="number" name="rate" id="rate" class="form-control">
-                                                            </fieldset></td>
-                                                            <td><fieldset class="form-group">
-                                                                <select name="tax_rate" class="form-control" id="tax">
-                                                                    <option value="0">No Tax</option>
-                                                                    <?php foreach ($tax as $key => $value) {
-                                                                       ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['taxrate']; ?><small><?php echo $value['name']; ?></small></option><?php 
-                                                                   } ?>
-                                                               </select>
-                                                           </fieldset>
-                                                       </td>
-
-                                                       <td><a href="javascript:void(0);" class="addCF " onClick="ShowModal(this)" id="add_more">Add</a></td>
-                                                   </tr> -->
+                                                      
 
                                                </tbody>
                                            </table>
@@ -455,7 +431,7 @@ $("#disc").focusout(function(){
 }
 // 
 function addmore_row(description,long_description,unit,rate,taxid,itemid){
-        $("#customFields").append('<tr class="after-add-more item"><td> <fieldset class="form-group"><textarea class="form-control" id="description" rows="3" placeholder="Description">'+description+'</textarea></fieldset></td><td><fieldset class="form-group"><textarea class="form-control" id="long_description" rows="3" placeholder="Long Description">'+long_description+'</textarea></fieldset></td><td><fieldset class="form-group"><input type="number" name="unit" onchange="update_amounts();" data-id='+itemid+' id="unit'+itemid+'" value="1" class="form-control unit"></fieldset></td><td><fieldset class="form-group"><input type="number" value='+rate+'  name="rate" id="rate" onchange="update_amounts();" class="form-control rate rate'+itemid+'" data-id='+itemid+'></fieldset></td><td><fieldset class="form-group"><select name="tax_rate" class="form-control" id="tax"><option>No Tax</option><?php foreach ($tax as $key => $value) { ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['taxrate']; ?><small><?php echo $value['name']; ?></small></option><?php } ?></select></fieldset></td><td ><span class="sub_total sb'+itemid+'" id="total">0.00<span></td><td><a href="javascript:void(0);" class="remCF">Remove</a></td></tr>');
+        $("#customFields").append('<tr class="after-add-more item"><td > <fieldset class="form-group"><textarea class="form-control " id="description" rows="3" placeholder="Description">'+description+'</textarea><input type="hidden" id="item_id" value="'+itemid+'"/></fieldset></td><td><fieldset class="form-group"><textarea class="form-control" id="long_description" rows="3" placeholder="Long Description">'+long_description+'</textarea></fieldset></td><td><fieldset class="form-group"><input type="number" name="unit" onchange="update_amounts();" data-id='+itemid+' id="unit'+itemid+'" value="1" class="form-control unit"></fieldset></td><td><fieldset class="form-group"><input type="number" value='+rate+'  name="rate" id="rate" onchange="update_amounts();" class="form-control rate rate'+itemid+'" data-id='+itemid+'></fieldset></td><td><fieldset class="form-group"><select name="tax_rate " class="form-control tax" id="tax"><option>No Tax</option><?php foreach ($tax as $key => $value) { ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['taxrate']; ?><span ><?php echo $value['name']; ?></span><input type="hidden"class="tax_name" value="<?php echo $value['name']; ?>"/></option><?php } ?></select></fieldset></td><td ><span class="sub_total sb'+itemid+'" id="total">0.00<span></td><td><a href="javascript:void(0);" class="remCF">Remove</a></td></tr>');
     }
  $(document).ready(function(){
     
@@ -620,15 +596,71 @@ function leadget(that) {
 }
 // save data into database
 $(document).on('click','#save',function(e) {
-  alert('jhsgdh');
-    var data = $("#quote_form").serialize();
+
+e.preventDefault();
+var rate = $(".rate");
+rateArr= [];
+for(var i = 0; i < rate.length; i++){
+    rate1 = $(rate[i]).val();
+    rateArr.push(rate1);
+  
+}
+var tax = $(".tax");
+var myarray=[];
+for(var i = 0; i < tax.length; i++){
+    
+     tax1 = $(tax[i]).val();
+     myarray.push(tax1);
+}
+
+
+tagArr = $('select#tag').val()
+
+//alert(tagArr);
+var subject= $('#subject').val();
+var rel_id = $('.rel_id').val();
+var rel_type = $('#rel_type').val();
+var assigned = $('#assigned').val();
+var date = $('#date').val();
+var open_till = $('#open_till').val();
+var currency = $('#currency').val();
+var discount_type = $('#discount_type').val();
+var comments = $('#customSwitch1').val();
+var proposal_to = $('#to').val();
+var address = $('#address').val();
+var city = $('#city').val();
+var state = $('#state').val();
+var country = $('#country').val();
+var zip = $('#zip').val();
+var email = $('#email').val();
+var phonenumber = $('#phonenumber').val();
+var subtotal = $('.totalam').text();
+var adjustment = $('.adjustment_amount').text();
+var total = $('.totalamount').text();
+var itemid = $('#item_id').val();
+var taxname = $('.tax_name').val();
+//alert(taxname);
+var description = $('#description').val();
+// alert(description);
+var long_description = $('#long_description').val();
+var unit = $('.unit').val();
+
+
+
+var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+    csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+
+    var dataJson = { [csrfName]: csrfHash,subject:subject,rate1: rateArr,tax1:myarray,rel_id:rel_id,rel_type:rel_type,assigned:assigned,date:date,open_till:open_till,currency:currency,discount_type:discount_type,allow_comments:comments,proposal_to:proposal_to,address:address,city:city,state:state,country:country,zip:zip,email:email,phonenumber:phonenumber,subtotal:subtotal,adjustment:adjustment,total:total,itemid:itemid,taxname:taxname, tag :tagArr,description:description,long_description:long_description,unit:unit};
     $.ajax({
-         data: data,
-         type: "post",
-         url: "<?php echo base_url().'admin/add_quote'; ?>",
-         success: function(data){
-              alert(data);
+         
+         type:'POST',
+         url: "<?php echo base_url('admin/QuoteController/insertQuote'); ?>",
+         data:dataJson,
+         success: function(res){
+              alert(res);
+               //window.location.href= "<?php echo base_url('admin/quote'); ?>";
          }
   });
 });
+
 </script>

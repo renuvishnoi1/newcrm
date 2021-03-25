@@ -116,6 +116,7 @@ $route['admin/invoice_items/add_item_group'] = 'admin/InvoiceItemsController/add
 $route['admin/quote'] = 'admin/QuoteController/index';
 $route['admin/add_quote'] = 'admin/QuoteController/addQuote';
 $route['admin/save_quote'] = 'admin/QuoteController/insertQuote';
+$route['admin/edit_quote/(:any)'] = 'admin/QuoteController/editQuote/$1';
 //proposals route end 
 
 //estimates routing start 
@@ -128,20 +129,20 @@ $route['admin/invoices'] = 'admin/InvoiceController/index';
 $route['admin/add_invoices'] = 'admin/InvoiceController/addInvoice';
 // invoice route end
  
- //project route start 
-$route['admin/projects'] = 'admin/ProjectController/index'; 
-$route['admin/add_projects'] = 'admin/ProjectController/addProject';
-$route['admin/save_project'] = 'admin/ProjectController/saveProject';
-$route['admin/edit_project/(:any)'] = 'admin/ProjectController/editProject/$1';
-$route['admin/update_project'] = 'admin/ProjectController/updateProject';
-$route['admin/view_project/(:any)'] = 'admin/ProjectController/viewProject/$1';
-$route['admin/delete_project/(:any)'] = 'admin/ProjectController/delete/$1';
-// project route end
+//  //project route start 
+// $route['admin/projects'] = 'admin/ProjectController/index'; 
+// $route['admin/add_projects'] = 'admin/ProjectController/addProject';
+// $route['admin/save_project'] = 'admin/ProjectController/saveProject';
+// $route['admin/edit_project/(:any)'] = 'admin/ProjectController/editProject/$1';
+// $route['admin/update_project'] = 'admin/ProjectController/updateProject';
+// $route['admin/view_project/(:any)'] = 'admin/ProjectController/viewProject/$1';
+// $route['admin/delete_project/(:any)'] = 'admin/ProjectController/delete/$1';
+// // project route end
 
 //Task route start
-$route['admin/tasks'] = 'admin/TaskController/index';
-$route['admin/add_task'] = 'admin/TaskController/addTask';
-$route['admin/fetch_related_data'] = 'admin/TaskController/fetchRelatedData';
+// $route['admin/tasks'] = 'admin/TaskController/index';
+// $route['admin/add_task'] = 'admin/TaskController/addTask';
+// $route['admin/fetch_related_data'] = 'admin/TaskController/fetchRelatedData';
 
 
 
@@ -205,23 +206,23 @@ $route['admin/calender'] = 'admin/Calendar/index';
 
 
 // Contracts type route start 
-$route['admin/contracts/types'] = 'admin/ContractTypeController/index';
-$route['admin/contracts/add_type'] = 'admin/ContractTypeController/addType';
-$route['admin/contracts/save_type'] = 'admin/ContractTypeController/insertType';
-$route['admin/contracts/edit_type/(:any)'] = 'admin/ContractTypeController/editType/$1';
-$route['admin/contracts/update_type'] = 'admin/ContractTypeController/updateType';
-$route['admin/contracts/delete/(:any)'] = 'admin/ContractTypeController/delete/$1';
+// $route['admin/contracts/types'] = 'admin/ContractTypeController/index';
+// $route['admin/contracts/add_type'] = 'admin/ContractTypeController/addType';
+// $route['admin/contracts/save_type'] = 'admin/ContractTypeController/insertType';
+// $route['admin/contracts/edit_type/(:any)'] = 'admin/ContractTypeController/editType/$1';
+// $route['admin/contracts/update_type'] = 'admin/ContractTypeController/updateType';
+// $route['admin/contracts/delete/(:any)'] = 'admin/ContractTypeController/delete/$1';
 // contract type route end 
 
 // contract route start
-$route['admin/contracts'] = 'admin/ContractController/index';
-$route['admin/add_contract'] = 'admin/ContractController/addContract';
-$route['admin/save_contract'] = 'admin/ContractController/saveContract';
-$route['admin/edit_contract/(:any)'] = 'admin/ContractController/editContract/$1';
-$route['admin/update_contract'] = 'admin/ContractController/updateContract';
-$route['admin/delete_contract/(:any)'] = 'admin/ContractController/delete/$1';
-$route['admin/store_template_data']= 'admin/ContractController/store_template_data';
-$route['admin/store_contarct_comment_data']= 'admin/ContractController/store_contarct_comment_data';
+// $route['admin/contracts'] = 'admin/ContractController/index';
+// $route['admin/add_contract'] = 'admin/ContractController/addContract';
+// $route['admin/save_contract'] = 'admin/ContractController/saveContract';
+// $route['admin/edit_contract/(:any)'] = 'admin/ContractController/editContract/$1';
+// $route['admin/update_contract'] = 'admin/ContractController/updateContract';
+// $route['admin/delete_contract/(:any)'] = 'admin/ContractController/delete/$1';
+// $route['admin/store_template_data']= 'admin/ContractController/store_template_data';
+// $route['admin/store_contarct_comment_data']= 'admin/ContractController/store_contarct_comment_data';
 // contract route end
 
 

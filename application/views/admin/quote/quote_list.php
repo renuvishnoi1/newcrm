@@ -53,10 +53,48 @@
                                                         <th>Tags</th>
                                                         <th>Date Created</th>
                                                         <th>Status</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="proposalTable">
+                                                  <?php foreach ($quote as $key => $value) {
                                                    
+                                                    ?>
+                                                   <tr>
+                                                    <td></td>
+                                                     <td><?php echo $value['subject']; ?></td>
+                                                   <td><?php echo $value['proposal_to']; ?></td>
+                                                   <td></td>
+                                                   <td><?php echo $value['total']; ?></td>
+                                                   <td><?php echo $value['date']; ?></td>
+                                                   <td><?php echo $value['open_till']; ?></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <?php if($value['status'] == 1){
+                                                    $status = "Open";
+                                                   }else if($value['status'] == 2){
+                                                    $status = "Declined";
+                                                   } else if($value['status'] == 3){
+                                                    $status = "Accepted";
+                                                   }else if($value['status'] == 4){
+                                                    $status = "Sent";
+                                                   }else if($value['status'] == 5){
+                                                    $status = "Revised";
+                                                   }
+                                                   else if($value['status'] == 6){
+                                                    $status = "Draft";
+                                                   }else{
+                                                    $status = '';
+                                                   }
+                                                    ?>
+                                                   <td> <?php echo $status; ?></td>
+                                                    <td> <a href="<?php echo base_url() ?><?php echo $value["id"]; ?>" class="btn btn-icon btn-light glow mr-1 mb-1" title="Show"><i class="bx bxs-show"></i></a>
+          <a href="<?php echo base_url('admin/edit_quote/') ?><?php echo $value["id"]; ?>" class="btn btn-icon btn-primary mr-1 mb-1" title="Edit Contact"><i class="bx bxs-pencil"></i></a>
+          </td>
+                                                   </tr>
+                                                   <?php
+                                                 }
+                                                   ?>
                                                 </tbody>
                                                
                                             </table>
@@ -72,32 +110,4 @@
             </div>
         </div>
     </div>
-    <script>
-$(document).ready(function(){
  
- $('#add_details').on('submit', function(event){
-  event.preventDefault();
-  $.ajax({
-   url:"insert.php",
-   method:"POST",
-   data:$(this).serialize(),
-   dataType:"json",
-   beforeSend:function(){
-    $('#add').attr('disabled', 'disabled');
-   },
-   success:function(data){
-    $('#add').attr('disabled', false);
-    if(data.first_name)
-    {
-     var html = '<tr>';
-     html += '<td>'+data.first_name+'</td>';
-     html += '<td>'+data.last_name+'</td></tr>';
-     $('#table_data').prepend(html);
-     $('#add_details')[0].reset();
-    }
-   }
-  })
- });
- 
-});
-</script>

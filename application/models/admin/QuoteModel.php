@@ -79,5 +79,21 @@ class QuoteModel extends CI_Model
          $this->db->where('id', $id);
         return $this->db->get('tblleads')->row();
     }
+    public function get_quote($id = ''){
+       //     $this->db->select(db_prefix() . 'proposals.*,' . db_prefix() . 'proposals.subject,');
+       //     $this->db->from(db_prefix() . 'proposals');
+        
+       //  $this->db->join(db_prefix() . 'taggables', '' . db_prefix() . 'proposals.id = ' . db_prefix() . 'taggables.rel_id', 'left');
+       // $this->db->where(db_prefix() . 'taggables.rel_type','proposal');
+          if (is_numeric($id)) {
+            $this->db->where(db_prefix() . 'proposals.id', $id);
+            $proposals = $this->db->get(db_prefix() . 'proposals')->row();
+
+            return $proposals;
+        }
+       $proposals = $this->db->get(db_prefix() . 'proposals')->result_array();
+        return $proposals;
+    }
+
    
 }

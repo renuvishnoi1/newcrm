@@ -147,7 +147,7 @@ $(".crud-submit").click(function(e){
 
 </script>
 <!-- contract comment save -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $(".comment-submit").click(function(e){
 
 
@@ -174,7 +174,7 @@ $(".crud-submit").click(function(e){
 
 
 });
-</script>
+</script> -->
 
 </body>
 <!-- END: Body-->

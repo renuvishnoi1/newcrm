@@ -12,16 +12,18 @@ class QuoteController extends MY_Controller
     $this->load->model('admin/QuoteModel');
   }
 
-  /* List all available items */
+  /* List all available Quote */
   public function index(){
     $data['title'] = "Quote";
 
-    $data['proposal']= $this->QuoteModel->get();
-  
+    $data['quote']= $this->QuoteModel->get_quote();
+  // echo "<pre>";
+  // print_r($data);
+  // die;
    
     $this->admin_load('quote/quote_list',$data); 
   }
-  /* function to load add items view */
+  /* function to load add Quote view */
   public function addQuote(){
    $data['title'] = "Quote";
     $data['clients']= $this->QuoteModel->get_list('tblclients');
@@ -56,224 +58,95 @@ public function getLeadDataById(){
 }
 /* function insert quote  */
 public function insertQuote(){
-echo "<pre>";
-print_r($_POST);
-die;
- 
-  $allow_comments=$this->input->post('allow_comments');
-  if (!isset($allow_comments)) $allow_comments = 0;
-    
-  $tag = $this->input->post('tag');
-  if($this->form_validation->run('add_quote') == FALSE){
-    $data['title'] = "Quote";
-    $data['clients'] = $this->QuoteModel->get_list('tblclients');
-    $data['leads'] = $this->QuoteModel->get_list('tblleads');
-    $data['tags'] = $this->QuoteModel->get_list('tbltags');
-    $data['assignee'] = $this->QuoteModel->get_list('tblstaff');
-    $data['country'] = $this->QuoteModel->get_list('tblcountries');
-    $data['items'] = $this->QuoteModel->get_list('tblitems');
-    $data['tax'] = $this->QuoteModel->get_list('tbltaxes');
-    $this->admin_load('quote/add_quote',$data); 
-  }else{
-  
-    $data = array(
-      'subject' => $this->input->post('subject'),
-      'rel_type' => $this->input->post('rel_type'),
-      'rel_id' => $this->input->post('rel_id'),
-      'date' => $this->input->post('date'),
-      'open_till' => $this->input->post('open_till'),
-      'currency' => $this->input->post('currency'),
-      'discount_type' => $this->input->post('discount_type'),
-      'status' => $this->input->post('status'),
-      'assigned' => $this->input->post('assigned'),
-      'proposal_to' => $this->input->post('proposal_to'),
-      'address' => $this->input->post('address'),
-      'city' => $this->input->post('city'),
-      'country' => $this->input->post('country'),
-      'zip' => $this->input->post('zip'),
-      'state' => $this->input->post('state'),
-      'email' => $this->input->post('email'),
-      'phone' => $this->input->post('phone'),
-      'allow_comments' =>$allow_comments
-    ) ;
+// echo "<pre>";
+// print_r($_POST['long_description']);die;
+$data['subject'] = isset($_POST['subject']) ? $_POST['subject'] : '';
+$data['rel_id'] = isset($_POST['rel_id']) ? $_POST['rel_id'] : '';
+$data['rel_type'] = isset($_POST['rel_type']) ? $_POST['rel_type'] : '';
+$data['assigned'] = isset($_POST['assigned']) ? $_POST['assigned'] : '';
+$data['date'] = isset($_POST['date']) ? $_POST['date'] : '';
+$data['open_till'] = isset($_POST['open_till']) ? $_POST['open_till'] : '';
+$data['currency'] = isset($_POST['currency']) ? $_POST['currency'] : '';
+$data['discount_type'] = isset($_POST['discount_type']) ? $_POST['discount_type'] : '';
+$data['allow_comments'] = isset($_POST['allow_comments']) ? $_POST['allow_comments'] : '';
+$data['proposal_to'] = isset($_POST['proposal_to']) ? $_POST['proposal_to'] : '';
+$data['address'] = isset($_POST['address']) ? $_POST['address'] : '';
+$data['city'] = isset($_POST['city']) ? $_POST['city'] : '';
+$data['state'] = isset($_POST['state']) ? $_POST['state'] : '';
+$data['country'] = isset($_POST['country']) ? $_POST['country'] : '';
+$data['zip'] = isset($_POST['zip']) ? $_POST['zip'] : '';
+$data['email'] = isset($_POST['email']) ? $_POST['email'] : '';
+$data['phone'] = isset($_POST['phonenumber']) ? $_POST['phonenumber'] : '';
+$data['subtotal'] = isset($_POST['subtotal']) ? $_POST['subtotal'] : '';
+$data['adjustment'] = isset($_POST['adjustment']) ? $_POST['adjustment'] : '';
+$data['total'] = isset($_POST['total']) ? $_POST['total'] : '';
+
     $table = 'tblproposals';
     $insertData = $this->QuoteModel->insert($table, $data);
-    if($insertData){
-           if(is_array($group)){
-        foreach ($tag as $key => $value) {
-          $tagdata=array();
-          $tagdata['rel_id']=$insertData;
-          $tagdata['tag_id']=$value;
-          $tagdata['rel_type']=$this->input->post('rel_type');
+    $itemTable='tblitem_tax';
+  //echo $insertData;die;
+    if( $insertData){
+      $rateArray = isset($_POST['rate1']) ? $_POST['rate1'] : '';
+$taxArray = isset($_POST['tax1']) ? $_POST['tax1'] : '';
+if (is_array($rateArray) || is_object($rateArray))
+{
+foreach($rateArray as $index => $value) {
+   $itemData['taxrate']= $rateArray[$index];
+   $itemData['rel_id']= $insertData;
+   $itemData['rel_type']= 'proposal';
+   $itemData['itemid']= isset($_POST['itemid']) ? $_POST['itemid'] : '';
+   $itemData['taxname']= isset($_POST['taxname']) ? $_POST['taxname'] : '';
+$item = $this->QuoteModel->insert($itemTable, $itemData);   
+}
+}
+if (is_array($rateArray) || is_object($rateArray))
+{
+foreach($rateArray as $index => $value) {
+   $itemArrData['rate']= $rateArray[$index];
+   $itemArrData['rel_id']= $insertData;
+   $itemArrData['rel_type']= 'proposal';
+   $itemArrData['description']= isset($_POST['description']) ? $_POST['description'] : '';
+   $itemArrData['long_description']= isset($_POST['long_description']) ? $_POST['long_description'] : '';
+   $itemArrData['unit'] = isset($_POST['unit']) ? $_POST['unit'] : '';
+$itemD = $this->QuoteModel->insert('tblitemable', $itemArrData);   
+}
+}
+$tagTable = 'tbltaggables';
+$tagArray = isset($_POST['tag']) ? $_POST['tag'] : '';
+if (is_array($tagArray) || is_object($tagArray))
+{
+foreach($tagArray as $index => $value) {
+   $tagData['tag_id']= $tagArray[$index];
+   $tagData['rel_id']= $insertData;
+   $tagData['rel_type']= 'proposal';
+  
+  // echo "<pre>";
+  // print_r($tagData);die;
+$tags = $this->QuoteModel->insert($tagTable, $tagData);
+}
+}
+    }
 
-          $table = 'tbltaggables';   
-          $tag= $this->QuoteModel->insert($tagdata);
-                 
-          if($tag){
-             redirect('admin/quote');
-          }
-        }
-      }
-     
-        
-        redirect('admin/quote');
-      }
-  }
+ 
+  
+  
 }
 
 // /* function to load edit items view */
-// public function editItem($id){
-//  $data['title'] = "Edit Item";
-//  $data['items']= $this->invoiceItemsModel->get($id);
-//  $data['tax']= $this->invoiceItemsModel->get_list('tbltaxes');
-//  $data['group']= $this->invoiceItemsModel->get_list('tblitems_groups');
+public function editQuote($id){
+  $data['title'] = "Edit Quote";
+    $data['clients']= $this->QuoteModel->get_list('tblclients');
+    $data['leads']= $this->QuoteModel->get_list('tblleads');
+    $data['tags']= $this->QuoteModel->get_list('tbltags');
+    $data['assignee']= $this->QuoteModel->get_list('tblstaff');
+    $data['country']= $this->QuoteModel->get_list('tblcountries');
+    $data['items']= $this->QuoteModel->get_list('tblitems');
+    $data['tax']= $this->QuoteModel->get_list('tbltaxes');
+   $data['quote']= $this->QuoteModel->get_quote($id);
+   // echo "<pre>";
+   // print_r($data);die;
+   $this->admin_load('quote/edit_quote',$data);  
+}
 
-//  $this->admin_load('invoice_items/edit_item',$data); 
-// }
-// /* function to load update items */
-// public function updateItem(){
-
-//   $id = $this->input->post('id');
-//   if($this->form_validation->run('edit_item') == FALSE){
-
-//     $data['title'] = "Edit Item";
-//     $data['items']= $this->invoiceItemsModel->get($id); 
-//     $data['tax']= $this->invoiceItemsModel->get_list('tbltaxes');
-//     $data['group']= $this->invoiceItemsModel->get_list('tblitems_groups');     
-//     $this->admin_load('invoice_items/edit_item',$data); 
-
-//   }else{
-//     $data= array(
-//       'description'=>$this->input->post('description'),
-//       'long_description'=>$this->input->post('long_description'),
-//       'rate' => $this->input->post('rate'),
-//       'tax' => $this->input->post('tax1'),
-//       'tax2' => $this->input->post('tax2'),
-//       'unit' => $this->input->post('unit'),
-//       'group_id' => $this->input->post('group_id')
-//     );
-
-//     $updateData= $this->invoiceItemsModel->updateItem($id, $data);
-//     if($updateData){
-
-//       redirect('admin/invoice_items');
-//     }
-//   }
-// }
-// /* function to export sample item csv   */
-// public function export_csv() {
-//     $this->load->helper('csv');
-//     $export_arr = array();
-//         //$employee_details = $this->employees_model->get();
-//     $title = array( "Description", "Long description", "Rate - USD", "Tax", "Tax2", "Unit", "Group");
-//     array_push($export_arr, $title);
-//         // if (!empty($employee_details)) {
-//         //     foreach ($employee_details as $employee) {
-//         //         array_push($export_arr, array($employee->id, $employee->name, $employee->email, $employee->mobile, $employee->created_at));
-//         //     }
-//         // }
-//     convert_to_csv($export_arr, 'items-' . date('Y-m-d') . '.csv', ',');
-//   }
-// /* function to load import  items view */
-// public function importItems(){
-//    $data['title'] = "Import";
-//     $this->admin_load('invoice_items/import_item',$data);
-// }
-// /* function to save import  items  */
-//  public function import_csv() {
-
-//     $this->load->library('Csvimport');
-//         //Check file is uploaded in tmp folder
-//      if (is_uploaded_file($_FILES['file']['tmp_name'])) {
-//             //validate whether uploaded file is a csv file
-//         $csvMimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
-//         $mime = get_mime_by_extension($_FILES['file']['name']);
-//         $fileArr = explode('.', $_FILES['file']['name']);
-//         $ext = end($fileArr);
-//         if (($ext == 'csv') && in_array($mime, $csvMimes)) {
-//           $file = $_FILES['file']['tmp_name'];
-
-//           $csvData = $this->csvimport->get_array($file);
-         
-//           $headerArr = array( "Description", "Long description", "Rate - USD", "Tax", "Tax2", "Unit", "Group");
-//           if (!empty($csvData)) {
-//                     //Validate CSV headers
-//             $csvHeaders = array_keys($csvData[0]);
-//             $headerMatched = 1;
-//             foreach ($headerArr as $header) {
-//               if (!in_array(trim($header), $csvHeaders)) {
-//                 $headerMatched = 0;
-//               }
-//             }
-//             if ($headerMatched == 0) {
-//               $this->session->set_flashdata("error_msg", "CSV headers are not matched.");
-//               redirect('admin/invoice_items/import_item');
-//             } else {
-//               foreach ($csvData as $row) {
-//                 $employee_data = array(
-//                   "description" => $row['Description'],
-//                   "long_description" => $row['Long description'],
-//                   "rate" => $row['Rate - USD'],
-//                   "tax" => $row['Tax'],
-//                   "tax2" => $row['Tax2'],
-//                   "unit" => $row['Unit'],
-//                   "group_id" => $row['Group']                 
-//                 );
-//                 $table_name = "tblitems";
-//                 $this->invoiceItemsModel->insert($table_name, $employee_data);
-
-//               }
-//               $this->session->set_flashdata("success_msg", "CSV File imported successfully.");
-//               redirect('admin/invoice_items');
-//             }
-//           }
-//         } else {
-//           $this->session->set_flashdata("error_msg", "Please select CSV file only.");
-//           redirect('admin/invoice_items/import_item');
-//         }
-//       }
-//       else {
-//         $this->session->set_flashdata("error_msg", "Please select a CSV file to upload.");
-//         redirect('admin/invoice_items/import_item');
-//       }
-    
-    
-//   }
-// /* function to load add item group view */
-// public function group(){
-
-//   $data['title'] = "Groups";
-//   $data['records']= $this->invoiceItemsModel->get_list('tblitems_groups');
-
-//   $this->admin_load('invoice_items/item_group/item_group_list',$data); 
-// }
-// /* function insert item group */
-// public function addGroup(){
-//   if($this->form_validation->run('add_item_group') == FALSE){
-//    $data['title'] = "Add Group";
-//    $data['records']= $this->invoiceItemsModel->get_list('tblitems_groups');
-//    $this->admin_load('invoice_items/item_group/item_group_list',$data);
-//  }else{
-
-//   $data= array(
-//     'name'=>$this->input->post('name')
-//   );
-//   $table = 'tblitems_groups';
-//   $insertData= $this->invoiceItemsModel->insert($table, $data);
-//   if($insertData){
-
-//     redirect('admin/invoice_items/item_group');
-//   }
-// }
-
-// }
-// public function delete($id){
-//   $table_name = "tblitems";
-//   $delete = $this->invoiceItemsModel->delete($table_name,$id);
-//   if($delete){
-//     redirect('admin/invoice_items');
-//   }
-
-// }
 
 }
