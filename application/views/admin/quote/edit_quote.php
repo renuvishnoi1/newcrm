@@ -29,26 +29,26 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                 <!--  <h4 class="card-title">Add New Item</h4> -->
-                             </div>
-                             <div class="card-content">
+                                   <!--  <h4 class="card-title">Add New Item</h4> -->
+                               </div>
+                               <div class="card-content">
                                 <div class="card-body">
                                     <form  id="quote_form" >
-                                    
+
                                       <div class="row">                                            
                                         <div class="col-md-6 border-right" >
                                             <fieldset class="form-group">
                                                 <label for="basicInput">Subject</label>
                                                 <input type="text" class="form-control"  name="subject" id="subject" value="<?php echo $quote->subject; ?>">
+                                                 <input type="hidden" name="id" value="<?php echo $quote->id; ?>">
                                                 <span class="text-danger"><?php echo form_error('subject'); ?></span>
-
                                             </fieldset>
                                             <fieldset class="form-group">
                                                 <label for="basicInput">Related To</label>
                                                 <select name="rel_type" id="rel_type" class="form-control">
                                                     <option value=""></option>
-                                                    <option value="lead" <?php if( $quote->subject == 'lead'){ echo 'selected';} ?>>Lead</option>
-                                                    <option value="customer" <?php if( $quote->subject == 'lead'){ echo 'selected';} ?>>Customer</option>
+                                                    <option value="lead" <?php if($quote->rel_type == 'lead'): ?> selected="selected"<?php endif; ?>>Lead</option>
+                                                    <option value="customer" <?php if($quote->rel_type == 'customer'): ?> selected="selected"<?php endif; ?>>Customer</option>
                                                 </select>
                                                 <span class="text-danger"><?php echo form_error('rel_type'); ?></span>
 
@@ -58,166 +58,168 @@
                                                 <select name="rel_id"  class="form-control rel_id" onchange="leadget(this)">
                                                   <option value="0"></option>
                                                   <?php foreach ($leads as $key => $value) {
-                                                     ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
-                                                 } ?>
+                                                   ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
+                                               } ?>
 
-                                             </select>
-                                             <span class="text-danger"><?php echo form_error('description'); ?></span>
+                                           </select>
+                                           <span class="text-danger"><?php echo form_error('description'); ?></span>
 
-                                         </fieldset>
-                                         <fieldset class="form-group" id="customer">
-                                            <label for="basicInput" >Customer</label>
-                                            <select name="customer"  class="form-control rel_id" onchange="customerget(this)">
-                                                <option value="0"></option>
-                                                <?php foreach ($clients as $key => $value) {
-                                                 ?><option value="<?php  echo $value['userid']; ?>"><?php echo $value['company']; ?></option><?php 
-                                             } ?>
-                                         </select>
-                                         <span class="text-danger"><?php echo form_error('description'); ?></span>
+                                       </fieldset>
+                                       <fieldset class="form-group" id="customer">
+                                        <label for="basicInput" >Customer</label>
+                                        <select name="customer"  class="form-control rel_id" onchange="customerget(this)">
+                                            <option value="0"></option>
+                                            <?php foreach ($clients as $key => $value) {
+                                                ?><option value="<?php  echo $value['userid']; ?>" <?php if($value['userid'] == $quote->rel_id): ?> selected="selected"<?php endif; ?>><?php echo $value['company']; ?></option><?php 
+                                           } ?>
+                                       </select>
+                                       <span class="text-danger"><?php echo form_error('description'); ?></span>
 
-                                     </fieldset>
-                                     <div class="row">
-                                         <div class="col-md-6">
-                                            <div class="form-group" ><label for="date" > <small class="req text-danger">* </small>Date</label><div class="input-group date"><input type="date" id="date" value="<?php echo $quote->date ?>"  name="date" class="form-control datepicker"  autocomplete="off"><div >
+                                   </fieldset>
+                                   <div class="row">
+                                       <div class="col-md-6">
+                                        <div class="form-group" ><label for="date" > <small class="req text-danger">* </small>Date</label><div class="input-group date"><input type="date" id="date" value="<?php echo $quote->date ?>"  name="date" class="form-control datepicker"  autocomplete="off"><div >
 
-                                            </div></div></div></div>
-                                            <div class="col-md-6">
-                                                <div class="form-group" ><label for="open_till" >Open Till</label><div class="input-group date"><input type="date"  name="open_till" id="open_till" class="form-control datepicker" autocomplete="off" value="<?php echo $quote->open_till ?>"><div class="input-group-addon">
-                                                    <i class="fa fa-calendar calendar-icon"></i>
-                                                </div></div></div>                          
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                         <div class="col-md-6">
-                                            <div class="form-group" ><label for="currency" > <small class="req text-danger">* </small> Currency</label>
-                                                <select class="form-control" name="currency" id="currency">
-                                                    <option value=""></option>
-                                                    <option value="1">USD</option>
-                                                    <option value="2">EUR</option>
-                                                </select>
-                                            </div></div>
-                                            <div class="col-md-6">
-                                                <div class="form-group" >
-                                                    <label for="open_till" >Discount Type</label>
-                                                    <select class="form-control" id="discount_type" name="discount_type">
-                                                        <option value=""></option>
-                                                        <option value="1" <?php if($quote->discount_type ==1){ echo 'selected = "selected"';} ?>>Before Tax</option>
-                                                        <option value="2">After Tax</option>
-                                                    </select>
-                                                </div> </div>
-                                            </div>
-                                            <fieldset class="form-group">
-                                                <label for="helpInputTop"> Tags</label>
-                                                <select class="form-control select2" name="tag[]" id="tag" multiple>
-                                                    <option value=""></option>
-                                                    <?php foreach ($tags as $key => $value) {
-                                                     ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
-                                                 } ?>
-                                             </select>
-                                         </fieldset>
-                                         <div class="custom-control custom-switch custom-control-inline mb-1">
-                                            <input type="checkbox" class="custom-control-input" name="allow_comments" id="customSwitch1" value="1">
-
-                                            <label class="custom-control-label mr-1" for="customSwitch1">
-                                            </label>
-                                            <span>Allow Comments</span>
-                                        </div>
-                                    </div> 
-                                    <div class="col-md-6 " >
-                                        <div class="row">
-                                           <div class="col-md-6">
-                                            <div class="form-group" >
-                                                <label for="status" >Status</label>
-                                                <select class="form-control" name="status">
-                                                    <option value="6">Draft</option>
-                                                    <option value="4">Sent</option>
-                                                    <option value="1">Open</option>
-                                                    <option value="5">Revised</option>
-                                                    <option value="2">Declined</option>
-                                                    <option value="3">Accepted</option>
-                                                </select>
-                                            </div> 
-                                        </div>
+                                        </div></div></div></div>
                                         <div class="col-md-6">
-                                            <div class="form-group" >
-                                                <label for="open_till" >Assignee</label>
-                                                <select class="form-control" name="assigned" id="assigned">
-                                                    <option value=""></option>
-                                                    <?php foreach ($assignee as $key => $value) {
-                                                     ?><option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." " .$value['firstname']; ?></option><?php 
-                                                 } ?>
-                                             </select>
-                                         </div> 
-                                     </div>
-                                 </div>
-                                 <fieldset class="form-group">
-                                    <label for="disabledInput">To</label>
-                                    <input type="text" name="proposal_to" id="to" class="form-control">
-                                </fieldset>
-                                <fieldset class="form-group">
-                                    <label for="disabledInput">Address</label>
-                                    <textarea class="form-control" id="address" rows="5" name="address"></textarea> 
-                                </fieldset>
-                                <div class="row">
-                                   <div class="col-md-6">
-                                    <div class="form-group" >
-                                        <label for="open_till" >City</label>
-                                        <input type="text" name="city" id="city" class="form-control">
-                                    </div> </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group" >
-                                            <label for="open_till" >State</label>
-                                            <input type="text" name="state" id="state" class="form-control">
-                                        </div> </div>
+                                            <div class="form-group" ><label for="open_till" >Open Till</label><div class="input-group date"><input type="date"  name="open_till" id="open_till" class="form-control datepicker" autocomplete="off" value="<?php echo $quote->open_till ?>"><div class="input-group-addon">
+                                                <i class="fa fa-calendar calendar-icon"></i>
+                                            </div></div></div>                          
+                                        </div>
                                     </div>
                                     <div class="row">
                                        <div class="col-md-6">
-                                        <div class="form-group" >
-                                            <label for="open_till" >Country</label>
-                                            <select class="form-control" id="country" name="country">
-                                                <option value="0"></option>
-                                                <?php foreach ($country as $key => $value) {
-                                                 ?>
-                                                 <option value="<?php  echo $value['country_id']; ?>"><?php echo $value['short_name']; ?></option>
+                                        <div class="form-group" ><label for="currency" > <small class="req text-danger">* </small> Currency</label>
+                                            <select class="form-control" name="currency" id="currency">
+                                                <option value=""></option>
+                                                <?php foreach ($currencies as $key => $value) {
+                                                 ?><option value="<?php  echo $value['id']; ?>" <?php if($value['id'] == $quote->currency): ?> selected="selected"<?php endif; ?>><?php echo $value['name']; ?></option>
                                                  <?php 
                                              } ?>
-
                                          </select>
-                                     </div> 
-                                 </div>
+                                     </div></div>
+                                     <div class="col-md-6">
+                                        <div class="form-group" >
+                                            <label for="open_till" >Discount Type</label>
+                                            <select class="form-control" id="discount_type" name="discount_type">
+                                                <option value=""></option>
+                                                <option value="1"  <?php if($quote->discount_type == 1): ?> selected="selected"<?php endif; ?>>Before Tax</option>
+                                                <option value="2" <?php if($quote->discount_type == 2): ?> selected="selected"<?php endif; ?>>After Tax</option>
+                                            </select>
+                                        </div> </div>
+                                    </div>
+                                    <fieldset class="form-group">
+                                        <label for="helpInputTop"> Tags</label>
+                                        <select class="form-control select2" name="tag[]" id="tag" multiple>
+                                            <option value=""></option>
+                                            <?php foreach ($tags as $key => $value) {
+                                               ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
+                                           } ?>
+                                       </select>
+                                   </fieldset>
+                                   <div class="custom-control custom-switch custom-control-inline mb-1">
+                                    <input type="checkbox" class="custom-control-input" name="allow_comments" id="customSwitch1" value="1">
 
+                                    <label class="custom-control-label mr-1" for="customSwitch1">
+                                    </label>
+                                    <span>Allow Comments</span>
+                                </div>
+                            </div> 
+                            <div class="col-md-6 " >
+                                <div class="row">
                                  <div class="col-md-6">
                                     <div class="form-group" >
-                                        <label for="open_till" >Zip Code</label>
-                                        <input type="text" name="zip" id="zip"  class="form-control">
-                                    </div> </div>
-                                </div>
-                                <div class="row">
-                                   <div class="col-md-6">
-                                    <div class="form-group" >
-                                        <label for="open_till" >Email</label>
-                                        <input type="email" name="email" id="email" class="form-control">
-                                        <span class="text-danger"><?php echo form_error('email'); ?></span>
+                                        <label for="status" >Status</label>
+                                        <select class="form-control" name="status">
+                                            <option value="6" <?php if($quote->status == 6): ?> selected="selected"<?php endif; ?>> Draft</option>
+                                            <option value="4" <?php if($quote->status == 4): ?> selected="selected"<?php endif; ?>>Sent</option>
+                                            <option value="1" <?php if($quote->status == 1): ?> selected="selected"<?php endif; ?>>Open</option>
+                                            <option value="5" <?php if($quote->status == 5): ?> selected="selected"<?php endif; ?>>Revised</option>
+                                            <option value="2" <?php if($quote->status == 2): ?> selected="selected"<?php endif; ?>>Declined</option>
+                                            <option value="3" <?php if($quote->status == 3): ?> selected="selected"<?php endif; ?>>Accepted</option>
+                                        </select>
                                     </div> 
                                 </div>
-
                                 <div class="col-md-6">
                                     <div class="form-group" >
-                                        <label for="open_till" >Phone</label>
-                                        <input type="text" name="phone" id="phonenumber" class="form-control">
-                                    </div> </div>
-                                </div>
+                                        <label for="open_till" >Assignee</label>
+                                        <select class="form-control" name="assigned" id="assigned">
+                                            <option value=""></option>
+                                            <?php foreach ($assignee as $key => $value) {
+                                               ?><option value="<?php  echo $value['staffid']; ?>" <?php if($value['staffid'] == $quote->assigned): ?> selected="selected"<?php endif; ?>><?php echo $value['firstname']." " .$value['firstname']; ?></option><?php 
+                                           } ?>
+                                       </select>
+                                   </div> 
+                               </div>
+                           </div>
+                           <fieldset class="form-group">
+                            <label for="disabledInput">To</label>
+                            <input type="text" name="proposal_to" id="to" class="form-control" value="<?php echo $quote->proposal_to; ?>">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label for="disabledInput">Address</label>
+                            <textarea class="form-control" id="address" rows="5" name="address" value="<?php echo $quote->address; ?>"></textarea> 
+                        </fieldset>
+                        <div class="row">
+                         <div class="col-md-6">
+                            <div class="form-group" >
+                                <label for="open_till" >City</label>
+                                <input type="text" name="city" id="city" class="form-control" value="<?php echo $quote->city; ?>">
+                            </div> </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group" >
+                                    <label for="open_till" >State</label>
+                                    <input type="text" name="state" id="state" class="form-control" value="<?php echo $quote->state; ?>">
+                                </div> </div>
                             </div>
+                            <div class="row">
+                             <div class="col-md-6">
+                                <div class="form-group" >
+                                    <label for="open_till" >Country</label>
+                                    <select class="form-control" id="country" name="country">
+                                        <option value="0"></option>
+                                        <?php foreach ($country as $key => $value) {
+                                           ?>
+                                           <option value="<?php  echo $value['country_id']; ?>" <?php if($quote->country ==  $value['country_id']): ?> selected="selected"<?php endif; ?>><?php echo $value['short_name']; ?></option>
+                                           <?php 
+                                       } ?>
 
+                                   </select>
+                               </div> 
+                           </div>
 
+                           <div class="col-md-6">
+                            <div class="form-group" >
+                                <label for="open_till" >Zip Code</label>
+                                <input type="text" name="zip" id="zip"  class="form-control" value="<?php echo $quote->zip; ?>">
+                            </div> </div>
+                        </div>
+                        <div class="row">
+                         <div class="col-md-6">
+                            <div class="form-group" >
+                                <label for="open_till" >Email</label>
+                                <input type="email" name="email" id="email" class="form-control" value="<?php echo $quote->email; ?>">
+                                <span class="text-danger"></span>
+                            </div> 
                         </div>
 
+                        <div class="col-md-6">
+                            <div class="form-group" >
+                                <label for="open_till" >Phone</label>
+                                <input type="text" name="phone" id="phonenumber" class="form-control" value="<?php echo $quote->phone; ?>">
+                            </div> </div>
+                        </div>
                     </div>
+
+
                 </div>
+
             </div>
         </div>
     </div>
+</div>
+</div>
 </section>
 <!-- Basic Inputs end -->
 
@@ -226,13 +228,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                 <!--  <h4 class="card-title">Add New Item</h4> -->
-             </div>
-             <div class="card-content">
+                   <!--  <h4 class="card-title">Add New Item</h4> -->
+               </div>
+               <div class="card-content">
                 <div class="card-body">
                     <div class="row">
 
-                       <div class="col-md-6">
+                     <div class="col-md-6">
 
                         <div class="form-group" >
                             <label for="open_till" >Items</label>
@@ -240,26 +242,27 @@
 
                                 <option ></option>
                                 <?php foreach ($items as $key => $value) {
-                                 ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['description']; ?> 
-                                 <small ><?php echo $value['long_description']; ?></small>
-                             </option>
-                             <?php 
-                         } ?>
-                     </select>
-                 </div> 
+                                
+                                   ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['description']; ?> 
+                                   <small ><?php echo $value['long_description']; ?></small>
+                               </option>
+                               <?php 
+                           } ?>
+                       </select>
+                   </div> 
 
-             </div>
-             <div class="col-md-6 ">
-                 <div class="mtop10">
+               </div>
+               <div class="col-md-6 ">
+                   <div class="mtop10">
                     <span>Show quantity as:</span> <input type="radio" value="1" id="1" class="show_quantity_as" name="show_quantity_as"  checked>
                     <label for="1">Qty</label>
 
 
-                    <input type="radio" value="2" id="2" name="show_quantity_as"  >
+                    <input type="radio" value="2" id="2" name="show_quantity_as" class="show_quantity_as" >
                     <label for="2">Hours</label>
 
 
-                    <input type="radio" id="3" value="3" name="show_quantity_as"  >
+                    <input type="radio" id="3" value="3" name="show_quantity_as"  class="show_quantity_as">
                     <label for="3">Qty/Hours</label>
 
                 </div>
@@ -412,16 +415,16 @@ $("#disc").focusout(function(){
         data = jQuery.parseJSON(data);
         if ($('#unit'+data.itemid).length>0)
         {
-         var qty=$('#unit'+data.itemid).val();
-         $('#unit'+data.itemid).val(Number(qty)+1);
-         var rate=$('.rate'+data.itemid).val();
-         $('.sb'+data.itemid).text(Number(rate)*Number(Number(qty)+1));
-         update_amounts();
-     }
-     else
-     {
-         addmore_row(data.description,data.long_description,data.unit,data.rate,data.taxid,data.itemid);
-     }
+           var qty=$('#unit'+data.itemid).val();
+           $('#unit'+data.itemid).val(Number(qty)+1);
+           var rate=$('.rate'+data.itemid).val();
+           $('.sb'+data.itemid).text(Number(rate)*Number(Number(qty)+1));
+           update_amounts();
+       }
+       else
+       {
+           addmore_row(data.description,data.long_description,data.unit,data.rate,data.taxid,data.itemid);
+       }
 
         //console.log(data);
     }
@@ -506,9 +509,9 @@ function ShowModal(elem){
 </script>
 <script type="text/javascript">
     $(document).ready(function(){
-     $("#customer").hide();
-     $("#lead").hide();
-     $("#rel_type").on("change",function(){
+       $("#customer").hide();
+       $("#lead").hide();
+       $("#rel_type").on("change",function(){
 
         var selected_option = $(this).val();
         if(selected_option == '0'){
@@ -520,12 +523,12 @@ function ShowModal(elem){
             $("#customer").hide();
         }
         else if (selected_option == 'customer') {
-         $('#customer').show();
-         $("#lead").hide();
-     }else{}
- });
+           $('#customer').show();
+           $("#lead").hide();
+       }else{}
+   });
 
- });
+   });
 
 </script>
 
@@ -609,12 +612,12 @@ $(document).on('click','#save',function(e) {
     var myarray=[];
     for(var i = 0; i < tax.length; i++){
 
-       tax1 = $(tax[i]).val();
-       myarray.push(tax1);
-   }
+     tax1 = $(tax[i]).val();
+     myarray.push(tax1);
+ }
 
 
-   tagArr = $('select#tag').val()
+ tagArr = $('select#tag').val()
 
 //alert(tagArr);
 var subject= $('#subject').val();
@@ -653,11 +656,11 @@ csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
 var dataJson = { [csrfName]: csrfHash,subject:subject,rate1: rateArr,tax1:myarray,rel_id:rel_id,rel_type:rel_type,assigned:assigned,date:date,open_till:open_till,currency:currency,discount_type:discount_type,allow_comments:comments,proposal_to:proposal_to,address:address,city:city,state:state,country:country,zip:zip,email:email,phonenumber:phonenumber,subtotal:subtotal,adjustment:adjustment,total:total,itemid:itemid,taxname:taxname, tag :tagArr,description:description,long_description:long_description,unit:unit};
 $.ajax({
 
-   type:'POST',
-   url: "<?php echo base_url('admin/QuoteController/insertQuote'); ?>",
-   data:dataJson,
-   success: function(res){
-      alert(res);
+ type:'POST',
+ url: "<?php echo base_url('admin/QuoteController/insertQuote'); ?>",
+ data:dataJson,
+ success: function(res){
+  alert(res);
                //window.location.href= "<?php echo base_url('admin/quote'); ?>";
            }
        });

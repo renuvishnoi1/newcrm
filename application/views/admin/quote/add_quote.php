@@ -39,8 +39,8 @@
                                             <div class="col-md-6 border-right" >
                                                 <fieldset class="form-group">
                                                     <label for="basicInput">Subject</label>
-                                                    <input type="text" class="form-control"  name="subject" id="subject">
-                                                    <span class="text-danger"><?php echo form_error('subject'); ?></span>
+                                                    <input type="text" class="form-control"  name="subject" id="subject">                                                   
+                                                    <span class="text-danger sub_error" ><?php echo form_error('subject'); ?></span>
                                                     
                                                 </fieldset>
                                                 <fieldset class="form-group">
@@ -60,7 +60,6 @@
                                                       <?php foreach ($leads as $key => $value) {
                                                        ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
                                                    } ?>
-
                                                </select>
                                                <span class="text-danger"><?php echo form_error('description'); ?></span>
 
@@ -91,9 +90,11 @@
                                                <div class="col-md-6">
                                                 <div class="form-group" ><label for="currency" > <small class="req text-danger">* </small> Currency</label>
                                                     <select class="form-control" name="currency" id="currency">
-                                                        <option value=""></option>
-                                                        <option value="1">USD</option>
-                                                        <option value="2">EUR</option>
+                                                        <option value="0"></option>
+                                                      <?php foreach ($currencies as $key => $value) {
+                                                       ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option>
+                                                       <?php 
+                                                      } ?>
                                                     </select>
                                                 </div></div>
                                                 <div class="col-md-6">
@@ -439,6 +440,15 @@ function addmore_row(description,long_description,unit,rate,taxid,itemid){
         $(this).parent().parent().remove();
          update_amounts();
     });
+    
+        // $('input#subject').on('blur', function() {
+        //     if( $(this).val() == ''  || $(this).val() == "null") {
+        //         alert('hi');
+        //     } else {
+        //                     return true;
+        //             }
+        // })
+   
 });
 
  $('#unit').change(function() {
@@ -501,7 +511,7 @@ function update_amounts()
 
 function ShowModal(elem){
     var dataId = $("#add_more").data("id");
-    alert(dataId);
+    //alert(dataId);
 }
 </script>
 <script type="text/javascript">
@@ -618,6 +628,10 @@ tagArr = $('select#tag').val()
 
 //alert(tagArr);
 var subject= $('#subject').val();
+ //var len = $('#username').val().length;
+        // if (subject <  1) {
+        //   $(".sub_error").html("This field is required")
+        // }
 var rel_id = $('.rel_id').val();
 var rel_type = $('#rel_type').val();
 var assigned = $('#assigned').val();
@@ -657,8 +671,8 @@ var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
          url: "<?php echo base_url('admin/QuoteController/insertQuote'); ?>",
          data:dataJson,
          success: function(res){
-              alert(res);
-               //window.location.href= "<?php echo base_url('admin/quote'); ?>";
+              //alert(res);
+               window.location.href= "<?php echo base_url('admin/quote'); ?>";
          }
   });
 });

@@ -94,6 +94,16 @@ class QuoteModel extends CI_Model
        $proposals = $this->db->get(db_prefix() . 'proposals')->result_array();
         return $proposals;
     }
+    public function getItemTax($id){
+        $this->db->where(array('rel_id' => $id, 'rel_type' => 'proposal'));
+        $query= $this->db->get(db_prefix() . 'item_tax')->result_array();
+        return $query;
+    }
+    public function getItem($id){
+        $this->db->where(array('rel_id' => $id, 'rel_type' => 'proposal'));
+        $query= $this->db->get(db_prefix() . 'itemable')->result_array();
+        return $query;
+    }
 
    
 }

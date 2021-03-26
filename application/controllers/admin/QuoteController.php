@@ -33,6 +33,8 @@ class QuoteController extends MY_Controller
     $data['country']= $this->QuoteModel->get_list('tblcountries');
     $data['items']= $this->QuoteModel->get_list('tblitems');
     $data['tax']= $this->QuoteModel->get_list('tbltaxes');
+    $data['currencies']= $this->QuoteModel->get_list('tblcurrencies');
+    
   
    $this->admin_load('quote/add_quote',$data); 
  }
@@ -125,16 +127,12 @@ foreach($tagArray as $index => $value) {
 $tags = $this->QuoteModel->insert($tagTable, $tagData);
 }
 }
-    }
-
- 
-  
-  
+ }
 }
 
 // /* function to load edit items view */
 public function editQuote($id){
-  $data['title'] = "Edit Quote";
+    $data['title'] = "Edit Quote";
     $data['clients']= $this->QuoteModel->get_list('tblclients');
     $data['leads']= $this->QuoteModel->get_list('tblleads');
     $data['tags']= $this->QuoteModel->get_list('tbltags');
@@ -142,7 +140,10 @@ public function editQuote($id){
     $data['country']= $this->QuoteModel->get_list('tblcountries');
     $data['items']= $this->QuoteModel->get_list('tblitems');
     $data['tax']= $this->QuoteModel->get_list('tbltaxes');
-   $data['quote']= $this->QuoteModel->get_quote($id);
+    $data['currencies']= $this->QuoteModel->get_list('tblcurrencies');
+    $data['quote']= $this->QuoteModel->get_quote($id);
+    $data['quote_item'] = $this->QuoteModel->getItem($id);
+    $data['item_tax'] = $this->QuoteModel->getItemTax($id);
    // echo "<pre>";
    // print_r($data);die;
    $this->admin_load('quote/edit_quote',$data);  
