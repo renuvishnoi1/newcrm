@@ -34,7 +34,8 @@
                                <div class="card-content">
                                 <div class="card-body">
                                     <form  id="quote_form" >
-
+ <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+ <input type="hidden" name="id" value="<?php echo $quote->id; ?>">
                                       <div class="row">                                            
                                         <div class="col-md-6 border-right" >
                                             <fieldset class="form-group">
@@ -113,7 +114,8 @@
                                         <select class="form-control select2" name="tag[]" id="tag" multiple>
                                             <option value=""></option>
                                             <?php foreach ($tags as $key => $value) {
-                                               ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
+                                                if(in_array($value['id'],$item_tag)){  $tagselect='selected="selected"'; }else{ $tagselect='';}
+                                               ?><option value="<?php  echo $value['id']; ?>" <?=$tagselect;?>><?php echo $value['name']; ?></option><?php 
                                            } ?>
                                        </select>
                                    </fieldset>
@@ -239,7 +241,6 @@
                         <div class="form-group" >
                             <label for="open_till" >Items</label>
                             <select class="form-control" onchange="yesnoCheck(this);" name="itemid">
-
                                 <option ></option>
                                 <?php foreach ($items as $key => $value) {
                                 
@@ -295,7 +296,43 @@
                                 </thead>
                                 <tbody class="tbody">
 
+                                    <?php if(count(array_filter($quote_item)) >0){ foreach ($quote_item as $key => $values) { ?>
+ <tr class="after-add-more item">
+   <td >
+      <fieldset class="form-group"><textarea class="form-control " id="description_<?= $values['id']; ?>" rows="3" name="quote_item[description][]" placeholder="Description"><?php echo $values['description'] ; ?></textarea><input type="hidden" id="item_id" value="'+itemid+'"/></fieldset>
+   </td>
+   <td>
+      <fieldset class="form-group"><textarea class="form-control" id="long_description_<?= $values['id']; ?>" name="quote_item[long_description][]" rows="3" placeholder="Long Description"><?php echo $values['long_description'] ; ?></textarea></fieldset>
+   </td>
+   <td>
+      <fieldset class="form-group"><input type="number" name="quote_item[unit][]" onchange="update_amounts();" data-id="<?= $values['id']; ?>" id="unit<?= $values['id']; ?>" value="<?php echo $values['qty'] ; ?>" class="form-control unit"></fieldset>
+   </td>
+   <td>
+      <fieldset class="form-group"><input type="number" value="<?php echo $values['rate'] ; ?>" name="quote_item[rate][]" id="rate" onchange="update_amounts();" class="form-control rate rate_<?= $values['id']; ?>" data-id="<?= $values['id']; ?>"></fieldset>
+   </td>
 
+   <td>
+    <input type="hidden" name="quote_item[item_id][]" value="<?= $values['id']; ?>">
+      <fieldset class="form-group">
+         <select name="quote_item[tax_rate][]" class="form-control tax" id="tax">
+            <option value="0">No Tax</option>
+            <?php foreach ($tax as $key => $value) { 
+                if (in_array($value['id'],$item_tax)) {
+                    $vselected='selected="selected"';
+                }else{
+                    $vselected='';
+                }
+                ?>
+            <option value="<?php  echo $value['id']; ?>" <?=$vselected?>><?php echo $value['taxrate']; ?><span ><?php echo $value['name']; ?></span><input type="hidden"class="tax_name" value="<?php echo $value['name']; ?>"/></option>
+            <?php } ?>
+         </select>
+      </fieldset>
+   </td>
+   <td ><span class="sub_total sb<?= $values['id']; ?>" id="total">0.00<span></td>
+   <td><a href="javascript:void(0);" class="remCF">Remove</a></td>
+</tr>
+                                   <?php }
+                                   } ?>
 
                                 </tbody>
                             </table>
@@ -657,8 +694,8 @@ var dataJson = { [csrfName]: csrfHash,subject:subject,rate1: rateArr,tax1:myarra
 $.ajax({
 
  type:'POST',
- url: "<?php echo base_url('admin/QuoteController/insertQuote'); ?>",
- data:dataJson,
+ url: "<?php echo base_url('admin/QuoteController/updateQuote'); ?>",
+ data:$('#quote_form').serialize(),
  success: function(res){
   alert(res);
                //window.location.href= "<?php echo base_url('admin/quote'); ?>";

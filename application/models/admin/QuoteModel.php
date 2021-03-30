@@ -104,6 +104,18 @@ class QuoteModel extends CI_Model
         $query= $this->db->get(db_prefix() . 'itemable')->result_array();
         return $query;
     }
+    public function getArrayData($con,$table){
+         $this->db->where($con);
+        $query= $this->db->get($table)->result_array();
+        return $query;
+    }
+    public function upddata($table,$condi,$dataupdate) {
+    //extract($data);
+    $this->db->where($condi);
+    $this->db->update($table, $dataupdate);
+    return true;
+}
+
 
    
 }

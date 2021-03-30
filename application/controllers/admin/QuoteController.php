@@ -61,7 +61,7 @@ public function getLeadDataById(){
 /* function insert quote  */
 public function insertQuote(){
 // echo "<pre>";
-// print_r($_POST['long_description']);die;
+// print_r($_POST['tax1']);die;
 $data['subject'] = isset($_POST['subject']) ? $_POST['subject'] : '';
 $data['rel_id'] = isset($_POST['rel_id']) ? $_POST['rel_id'] : '';
 $data['rel_type'] = isset($_POST['rel_type']) ? $_POST['rel_type'] : '';
@@ -92,13 +92,19 @@ $data['total'] = isset($_POST['total']) ? $_POST['total'] : '';
 $taxArray = isset($_POST['tax1']) ? $_POST['tax1'] : '';
 if (is_array($rateArray) || is_object($rateArray))
 {
-foreach($rateArray as $index => $value) {
-   $itemData['taxrate']= $rateArray[$index];
+foreach($taxArray as $index => $value) {
+  if($taxArray[$index] == 0 ||  $taxArray[$index] == ""){
+  $taxvalue= '';
+  }else{
+    $taxvalue= $taxArray[$index];
+       $itemData['taxrate']= $taxvalue;
    $itemData['rel_id']= $insertData;
    $itemData['rel_type']= 'proposal';
    $itemData['itemid']= isset($_POST['itemid']) ? $_POST['itemid'] : '';
    $itemData['taxname']= isset($_POST['taxname']) ? $_POST['taxname'] : '';
-$item = $this->QuoteModel->insert($itemTable, $itemData);   
+$item = $this->QuoteModel->insert($itemTable, $itemData);
+  }
+   
 }
 }
 if (is_array($rateArray) || is_object($rateArray))
@@ -144,10 +150,114 @@ public function editQuote($id){
     $data['quote']= $this->QuoteModel->get_quote($id);
     $data['quote_item'] = $this->QuoteModel->getItem($id);
     $data['item_tax'] = $this->QuoteModel->getItemTax($id);
+    $con= array('rel_id'=>$id);
+    $data['item_tag'] = $this->QuoteModel->getArrayData($con,'tbltaggables');
    // echo "<pre>";
-   // print_r($data);die;
+   // print_r($data['item_tag']);die;
    $this->admin_load('quote/edit_quote',$data);  
 }
 
+public function updateQuote(){
+  echo "<pre>";
+  print_r($_POST);
+  die;
+  $data['subject'] = isset($_POST['subject']) ? $_POST['subject'] : '';
+$data['rel_id'] = isset($_POST['rel_id']) ? $_POST['rel_id'] : '';
+$data['rel_type'] = isset($_POST['rel_type']) ? $_POST['rel_type'] : '';
+$data['assigned'] = isset($_POST['assigned']) ? $_POST['assigned'] : '';
+$data['date'] = isset($_POST['date']) ? $_POST['date'] : '';
+$data['open_till'] = isset($_POST['open_till']) ? $_POST['open_till'] : '';
+$data['currency'] = isset($_POST['currency']) ? $_POST['currency'] : '';
+$data['discount_type'] = isset($_POST['discount_type']) ? $_POST['discount_type'] : '';
+$data['allow_comments'] = isset($_POST['allow_comments']) ? $_POST['allow_comments'] : '';
+$data['proposal_to'] = isset($_POST['proposal_to']) ? $_POST['proposal_to'] : '';
+$data['address'] = isset($_POST['address']) ? $_POST['address'] : '';
+$data['city'] = isset($_POST['city']) ? $_POST['city'] : '';
+$data['state'] = isset($_POST['state']) ? $_POST['state'] : '';
+$data['country'] = isset($_POST['country']) ? $_POST['country'] : '';
+$data['zip'] = isset($_POST['zip']) ? $_POST['zip'] : '';
+$data['email'] = isset($_POST['email']) ? $_POST['email'] : '';
+$data['phone'] = isset($_POST['phonenumber']) ? $_POST['phonenumber'] : '';
+$data['subtotal'] = isset($_POST['subtotal']) ? $_POST['subtotal'] : '';
+$data['adjustment'] = isset($_POST['adjustment']) ? $_POST['adjustment'] : '';
+$data['total'] = isset($_POST['total']) ? $_POST['total'] : '';
 
+    $table = 'tblproposals';
+    $condi=array();
+    $condi['id']=$_POST['id'];
+    $insertData = $this->QuoteModel->upddata('tblproposals',$condi,$data);
+    $itemTable='tblitem_tax';
+  //echo $insertData;die;
+    // if( $insertData){
+      // $rateArray = isset($_POST['rate1']) ? $_POST['rate1'] : '';
+$taxArray = isset($_POST['tax1']) ? $_POST['tax1'] : '';
+$description = isset($_POST['quote_item']['description']) ? $_POST['description'] : '';
+// if (is_array($taxArray) || is_object($taxArray))
+// {
+// foreach($taxArray as $index => $value) {
+//   if($taxArray[$index] == 0 ||  $taxArray[$index] == ""){
+//   $taxvalue= '';
+//   }else{
+//     $taxvalue= $taxArray[$index];
+//        $itemData['taxrate']= $taxvalue;
+//   $itemData['rel_id']= $insertData;
+//   $itemData['rel_type']= 'proposal';
+//   $itemData['itemid']= isset($_POST['itemid']) ? $_POST['itemid'] : '';
+//   $itemData['taxname']= isset($_POST['taxname']) ? $_POST['taxname'] : '';
+//   $this->QuoteModel->insert($itemTable, $itemData);
+//   }
+   
+// }
+// }
+// if (is_array($$description) || is_object($rateArray))
+// {
+foreach($rateArray as $index => $value) {
+  if ($_POST['quote_item']['item_id'][$index]) {
+      $itemArrData['rate']=$_POST['quote_item']['rate'][$index];
+   // $itemArrData['rel_id']= $insertData;
+      $itemArrData['rel_type']= 'proposal';
+      $itemArrData['description']= $_POST['quote_item']['description'][$index];
+      $itemArrData['long_description']=$_POST['quote_item']['long_description'][$index];
+      $itemArrData['unit'] =$_POST['quote_item']['unit'][$index];
+      $condiitem['id']=$_POST['quote_item']['item_id'][$index];
+      $this->QuoteModel->upddata('tblitemable',$condiitem,$itemArrData);
+  }else{
+      $itemArrData['rate']=$_POST['quote_item']['rate'][$index];
+      $itemArrData['rel_id']= $_POST['id'];
+      $itemArrData['rel_type']= 'proposal';
+      $itemArrData['description']= $_POST['quote_item']['description'][$index];
+      $itemArrData['long_description']=$_POST['quote_item']['long_description'][$index];
+      $itemArrData['unit'] =$_POST['quote_item']['unit'][$index];
+      $itemD = $this->QuoteModel->insert('tblitemable', $itemArrData); 
+      if($_POST['quote_item']['tax_rate'][$index] == 0 ||  $_POST['quote_item']['tax_rate'][$index] == ""){
+          $taxvalue= '';
+      }else{
+        $taxvalue= $_POST['quote_item']['tax_rate'][$index];
+        $itemData['taxrate']= $taxvalue;
+        $itemData['rel_id']= $_POST['id'];
+        $itemData['rel_type']= 'proposal';
+        $itemData['itemid']= isset($_POST['itemid']) ? $_POST['itemid'] : '';
+        $itemData['taxname']= isset($_POST['taxname']) ? $_POST['taxname'] : '';
+        $this->QuoteModel->insert('tblitem_tax', $itemData);
+      }
+}
+  
+}
+// }
+$con= array('rel_id'=>$_POST['id']);
+$item_tag= $this->QuoteModel->getArrayData($con,'tbltaggables');
+$tagTable = 'tbltaggables';
+$tagArray = isset($_POST['tag']) ? $_POST['tag'] : '';
+if (is_array($tagArray) || is_object($tagArray))
+{
+foreach($tagArray as $index => $value) {
+   $tagData['tag_id']= $tagArray[$index];
+   $tagData['rel_id']= $insertData;
+   $tagData['rel_type']= 'proposal';
+
+$tags = $this->QuoteModel->insert($tagTable, $tagData);
+}
+}
+ // }
+}
 }

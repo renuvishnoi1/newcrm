@@ -432,7 +432,7 @@ $("#disc").focusout(function(){
 }
 // 
 function addmore_row(description,long_description,unit,rate,taxid,itemid){
-        $("#customFields").append('<tr class="after-add-more item"><td > <fieldset class="form-group"><textarea class="form-control " id="description" rows="3" placeholder="Description">'+description+'</textarea><input type="hidden" id="item_id" value="'+itemid+'"/></fieldset></td><td><fieldset class="form-group"><textarea class="form-control" id="long_description" rows="3" placeholder="Long Description">'+long_description+'</textarea></fieldset></td><td><fieldset class="form-group"><input type="number" name="unit" onchange="update_amounts();" data-id='+itemid+' id="unit'+itemid+'" value="1" class="form-control unit"></fieldset></td><td><fieldset class="form-group"><input type="number" value='+rate+'  name="rate" id="rate" onchange="update_amounts();" class="form-control rate rate'+itemid+'" data-id='+itemid+'></fieldset></td><td><fieldset class="form-group"><select name="tax_rate " class="form-control tax" id="tax"><option>No Tax</option><?php foreach ($tax as $key => $value) { ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['taxrate']; ?><span ><?php echo $value['name']; ?></span><input type="hidden"class="tax_name" value="<?php echo $value['name']; ?>"/></option><?php } ?></select></fieldset></td><td ><span class="sub_total sb'+itemid+'" id="total">0.00<span></td><td><a href="javascript:void(0);" class="remCF">Remove</a></td></tr>');
+        $("#customFields").append('<tr class="after-add-more item"><td > <fieldset class="form-group"><textarea class="form-control " id="description" rows="3" placeholder="Description">'+description+'</textarea><input type="hidden" id="item_id" value="'+itemid+'"/></fieldset></td><td><fieldset class="form-group"><textarea class="form-control" id="long_description" rows="3" placeholder="Long Description">'+long_description+'</textarea></fieldset></td><td><fieldset class="form-group"><input type="number" name="unit" onchange="update_amounts();" data-id='+itemid+' id="unit'+itemid+'" value="1" class="form-control unit"></fieldset></td><td><fieldset class="form-group"><input type="number" value='+rate+'  name="rate" id="rate" onchange="update_amounts();" class="form-control rate rate'+itemid+'" data-id='+itemid+'></fieldset></td><td><fieldset class="form-group"><select name="tax_rate " class="form-control tax" id="tax"><option value="0">No Tax</option><?php foreach ($tax as $key => $value) { ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['taxrate']; ?><span ><?php echo $value['name']; ?></span><input type="hidden"class="tax_name" value="<?php echo $value['name']; ?>"/></option><?php } ?></select></fieldset></td><td ><span class="sub_total sb'+itemid+'" id="total">0.00<span></td><td><a href="javascript:void(0);" class="remCF">Remove</a></td></tr>');
     }
  $(document).ready(function(){
     
@@ -671,7 +671,7 @@ var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
          url: "<?php echo base_url('admin/QuoteController/insertQuote'); ?>",
          data:dataJson,
          success: function(res){
-              //alert(res);
+              console.log(res);
                window.location.href= "<?php echo base_url('admin/quote'); ?>";
          }
   });
