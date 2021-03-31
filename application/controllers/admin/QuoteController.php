@@ -158,9 +158,7 @@ public function editQuote($id){
 }
 
 public function updateQuote(){
-  echo "<pre>";
-  print_r($_POST);
-  die;
+
   $data['subject'] = isset($_POST['subject']) ? $_POST['subject'] : '';
 $data['rel_id'] = isset($_POST['rel_id']) ? $_POST['rel_id'] : '';
 $data['rel_type'] = isset($_POST['rel_type']) ? $_POST['rel_type'] : '';
@@ -189,9 +187,12 @@ $data['total'] = isset($_POST['total']) ? $_POST['total'] : '';
     $itemTable='tblitem_tax';
   //echo $insertData;die;
     // if( $insertData){
-      // $rateArray = isset($_POST['rate1']) ? $_POST['rate1'] : '';
+       $rateArray = isset($_POST['quote_item']) ? $_POST['quote_item'] : '';
+  //        echo "<pre>";
+  // print_r($rateArray);
+  // die;
 $taxArray = isset($_POST['tax1']) ? $_POST['tax1'] : '';
-$description = isset($_POST['quote_item']['description']) ? $_POST['description'] : '';
+$description = isset($_POST['quote_item']['description']) ? $_POST['quote_item']['description'] : '';
 // if (is_array($taxArray) || is_object($taxArray))
 // {
 // foreach($taxArray as $index => $value) {
@@ -212,7 +213,7 @@ $description = isset($_POST['quote_item']['description']) ? $_POST['description'
 // if (is_array($$description) || is_object($rateArray))
 // {
 foreach($rateArray as $index => $value) {
-  if ($_POST['quote_item']['item_id'][$index]) {
+  if (!empty($_POST['quote_item']['item_id'][$index])) {
       $itemArrData['rate']=$_POST['quote_item']['rate'][$index];
    // $itemArrData['rel_id']= $insertData;
       $itemArrData['rel_type']= 'proposal';
@@ -230,10 +231,11 @@ foreach($rateArray as $index => $value) {
       $itemArrData['unit'] =$_POST['quote_item']['unit'][$index];
       $itemD = $this->QuoteModel->insert('tblitemable', $itemArrData); 
       if($_POST['quote_item']['tax_rate'][$index] == 0 ||  $_POST['quote_item']['tax_rate'][$index] == ""){
-          $taxvalue= '';
+          $taxvalue = '';
       }else{
         $taxvalue= $_POST['quote_item']['tax_rate'][$index];
         $itemData['taxrate']= $taxvalue;
+        
         $itemData['rel_id']= $_POST['id'];
         $itemData['rel_type']= 'proposal';
         $itemData['itemid']= isset($_POST['itemid']) ? $_POST['itemid'] : '';
@@ -259,5 +261,12 @@ $tags = $this->QuoteModel->insert($tagTable, $tagData);
 }
 }
  // }
+}
+public function remove_item(){
+  $id = $_POST['id'];
+  $this->QuoteModel->delete('tblitemable', $id);
+// echo "<pre>";
+// print_r($_POST);
+//   die('jh');
 }
 }

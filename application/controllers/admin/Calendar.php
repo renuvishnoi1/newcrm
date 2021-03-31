@@ -28,11 +28,13 @@ class Calendar extends MY_Controller {
 		$data = array();
 		$data['get_data']			= json_encode($calendar);
 		$data['title'] = "Calender";
-		$this->admin_load('events/calender_e', $data);
+		$this->admin_load('calendar/calendar', $data);
 	}
 
 	public function save()
 	{
+		// echo"<pre>";
+		// print_r($_POST);die;
 		$response = array();
 		$this->form_validation->set_rules('title', 'Title cant be empty ', 'required');
 		$this->form_validation->set_rules('start', 'Start Date cant be empty ', 'required');
@@ -40,9 +42,7 @@ class Calendar extends MY_Controller {
 	    if ($this->form_validation->run() == TRUE)
       	{
 			$param = $this->input->post();
-			// echo "<pre>";
-			// print_r($param);
-			// die;
+			
 			$calendar_id = $param['eventid'];
 			unset($param['eventid']);
 
@@ -79,6 +79,7 @@ class Calendar extends MY_Controller {
 	            }
 	            else
 		        {
+		 //        
 		        	$response['status'] = FALSE;
 		    		$response['notif']	= 'Server wrong, please save again';
 		    		//
@@ -88,6 +89,9 @@ class Calendar extends MY_Controller {
 	    }
 	    else
 	    {
+	    		echo "<pre>";
+			print_r($_POST);
+			die;
 	    	$response['status'] = FALSE;
 	    	$response['notif']	= validation_errors();
 	    }
@@ -123,5 +127,6 @@ class Calendar extends MY_Controller {
 
 		echo json_encode($response);
 	}
+	
 
 }
