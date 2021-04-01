@@ -129,6 +129,25 @@ class LeadsModel extends CI_Model
 
 		return $this->db->get()->result_array();
 	}
+
+	public function get_lead_by_status($status_id)
+    {
+        $where = array(
+            'status' => $status_id,
+        );
+        $this->db->select()
+                 ->from('tblleads')
+                 ->where($where);
+        $data = $this->db->get();
+        if($data->num_rows() > 0)
+        {
+            return $data->result_array();
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
 	
 }
 

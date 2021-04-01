@@ -6,17 +6,17 @@ class Calendar extends MY_Controller {
 	{
 		parent::__construct();
 		$this->table 		= 'tblevents';
-		 $this->load->model('admin/Globalmodel', 'modeldb'); 
+		$this->load->model('admin/Globalmodel', 'modeldb'); 
 	}
 
 	public function index() 
-	{  
+	{
 		$data_calendar = $this->modeldb->get_list($this->table);
 		$calendar = array();
 		foreach ($data_calendar as $key => $val) 
 		{
 			$calendar[] = array(
-							'eventid' 	=> intval($val->eventid), 
+							'id' 	=> intval($val->eventid), 
 							'title' => $val->title, 
 							'description' => trim($val->description), 
 							'start' => date_format( date_create($val->start) ,"Y-m-d H:i:s"),
@@ -27,28 +27,23 @@ class Calendar extends MY_Controller {
 
 		$data = array();
 		$data['get_data']			= json_encode($calendar);
-		$data['title'] = "Calender";
+		$data['title'] = 'Calendar';
 		$this->admin_load('calendar/calendar', $data);
 	}
 
 	public function save()
 	{
-		// echo"<pre>";
-		// print_r($_POST);die;
 		$response = array();
 		$this->form_validation->set_rules('title', 'Title cant be empty ', 'required');
-		$this->form_validation->set_rules('start', 'Start Date cant be empty ', 'required');
-		$this->form_validation->set_rules('end', 'Start Date cant be empty ', 'required');
 	    if ($this->form_validation->run() == TRUE)
       	{
 			$param = $this->input->post();
-			
-			$calendar_id = $param['eventid'];
-			unset($param['eventid']);
+			$calendar_id = $param['calendar_id'];
+			unset($param['calendar_id']);
 
 			if($calendar_id == 0)
 			{
-		        //$param['create_at']   	= date('Y-m-d H:i:s');
+		       	        
 		        $insert = $this->modeldb->insert($this->table, $param);
 
 		        if ($insert > 0) 
@@ -65,33 +60,25 @@ class Calendar extends MY_Controller {
 			}
 			else
 			{	
-				$where 		= [ 'eventid'  => $calendar_id];
-	            //$param['modified_at']   	= date('Y-m-d H:i:s');
-	          // echo "<pre>";
-	          // print_r($param);die;
+				$where 		= [ 'eventid'  => $calendar_id];	            
 	            $update = $this->modeldb->update($this->table, $param, $where);
 
 	            if ($update > 0) 
 	            {
 	            	$response['status'] = TRUE;
 		    		$response['notif']	= 'Success add calendar';
-		    		$response['eventid']		= $calendar_id;
+		    		$response['id']		= $calendar_id;
 	            }
 	            else
 		        {
-		 //        
 		        	$response['status'] = FALSE;
 		    		$response['notif']	= 'Server wrong, please save again';
-		    		//
 		        }
 
 			}
 	    }
 	    else
 	    {
-	    		echo "<pre>";
-			print_r($_POST);
-			die;
 	    	$response['status'] = FALSE;
 	    	$response['notif']	= validation_errors();
 	    }
@@ -127,6 +114,5 @@ class Calendar extends MY_Controller {
 
 		echo json_encode($response);
 	}
-	
 
 }

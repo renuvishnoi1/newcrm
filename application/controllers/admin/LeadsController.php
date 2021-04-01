@@ -272,9 +272,17 @@ class LeadsController extends MY_Controller
   }
   public function kanban(){
     $data['title'] = "Kanban"; 
-    $data['records'] = $this->LeadsModel->get();
+    $data['status'] = $this->LeadsModel->get_list('tblleads_status');
+    $data['lead'] = $this->LeadsModel->get_lead_by_status(1);
+
+    echo "<pre>"; 
+    print_r($data);die;
+    
+    //get_lead_by_status($status_id)
     $this->admin_load( 'leads/kanban',$data);
   }
+
+  
   public function fetchLead(){
     //die('here');
     //$this->load->view();

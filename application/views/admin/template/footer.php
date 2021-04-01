@@ -184,6 +184,7 @@ $(".crud-submit").click(function(e){
 </script> -->
 <script type="text/javascript">
         var get_data        = '<?php echo $get_data; ?>';
+        //console.log(get_data)
         var backend_url     = '<?php echo base_url(); ?>';
 
         $(document).ready(function() {
@@ -289,7 +290,7 @@ $(".crud-submit").click(function(e){
             $.ajax({
                 url     : backend_url+'admin/calendar/save',
                 type    : 'POST',
-                data    : 'calendar_id='+event.id+'&title='+event.title+'&start_date='+start+'&end_date='+end,
+                data    : 'calendar_id='+event.eventid+'&title='+event.title+'&start_date='+start+'&end_date='+end,
                 dataType: 'JSON',
                 beforeSend: function()
                 {
@@ -317,6 +318,7 @@ $(".crud-submit").click(function(e){
         {
             $('#form_create').submit(function(){
                 var element = $(this);
+                //alert(element.serialize());
                 var eventData;
                 $.ajax({
                     url     : backend_url+'admin/calendar/save',
@@ -329,8 +331,10 @@ $(".crud-submit").click(function(e){
                     },
                     success: function(data)
                     {
+                        //alert(data);
                         if(data.status)
-                        {   
+                        {  
+                        location.reload(); 
                             eventData = {
                                 id          : data.id,
                                 title       : $('#create_modal input[name=title]').val(),
@@ -378,6 +382,7 @@ $(".crud-submit").click(function(e){
         {
             $('#form_create').submit(function(){
                 var element = $(this);
+                //alert(element.serialize());
                 var eventData;
                 $.ajax({
                     url     : backend_url+'admin/calendar/save',
@@ -389,9 +394,11 @@ $(".crud-submit").click(function(e){
                         element.find('button[type=submit]').html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>');
                     },
                     success: function(data)
-                    {
+                    { //alert(data);
+
                         if(data.status)
-                        {   
+                        {  
+                             location.reload();
                             event.title         = $('#create_modal input[name=title]').val();
                             event.description   = $('#create_modal textarea[name=description]').val();
                             event.start         = moment($('#create_modal input[name=start]').val()).format('dd-mm-yyyy HH:mm:ss');
@@ -400,9 +407,12 @@ $(".crud-submit").click(function(e){
                             $('#calendarIO').fullCalendar('updateEvent', event);
 
                             $('#create_modal').modal('hide');
+
                             element[0].reset();
+
                             $('#create_modal input[name=calendar_id]').val(0)
                             $('.notification').removeClass('alert-danger').addClass('alert-primary').find('p').html(data.notif);
+
                         }
                         else
                         {
@@ -424,11 +434,19 @@ $(".crud-submit").click(function(e){
 
         function deleteData(event)
         {
+            //alert(event.id);
             $('#create_modal .delete_calendar').click(function(){
+                 var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+                csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+               
+                 var id = event.id;
+              
+                //alert(id);
+                 var dataJson = { [csrfName]: csrfHash, id:id};
                 $.ajax({
-                    url     : backend_url+'calendar/delete',
+                    url     : backend_url+'admin/calendar/delete',
                     type    : 'POST',
-                    data    : 'id='+event.id,
+                    data    : dataJson,
                     dataType: 'JSON',
                     beforeSend: function()
                     {

@@ -97,9 +97,11 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-sm-2">Start Date</label>
                                                         <div class="col-sm-10">
-                                                            <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
+                                                            <div class="input-group input-medium ">
                                                                 <input type="date" name="start" class="form-control" >
-                                                                <span class="input-group-addon"><i class="fa fa-calendar font-dark"></i></span>
+                                                                <span class="input-group-addon">
+                                                                    <!-- <i class="fa fa-calendar font-dark"></i> -->
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -107,9 +109,11 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-sm-2">End Date</label>
                                                         <div class="col-sm-10">
-                                                            <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
+                                                            <div class="input-group input-medium ">
                                                                 <input type="date" name="end" class="form-control" >
-                                                                <span class="input-group-addon"><i class="fa fa-calendar font-dark"></i></span>
+                                                                <span class="input-group-addon">
+                                                                    <!-- <i class="fa fa-calendar font-dark"></i> -->
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>

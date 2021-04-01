@@ -201,7 +201,7 @@ $route['admin/import_leads_csv']= 'admin/LeadsController/import_csv';
 $route['admin/export_leads_csv']= 'admin/LeadsController/export_csv';
 
 //calender routing 
-$route['admin/calender'] = 'admin/Calendar/index';
+$route['admin/calendar'] = 'admin/Calendar/index';
 //
 
 

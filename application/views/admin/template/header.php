@@ -47,8 +47,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/vendors/css/forms/select/select2.min.css">
 
  <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets1/font-awesome/css/font-awesome.min.css'; ?>">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets1/plugins/fullcalendar/fullcalendar.css'; ?>">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets1/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css'; ?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets1/plugins/fullcalendar/fullcalendar.css'; ?>">
+ <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets1/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css'; ?>">
         
 <!-- select 2 cdn -->
 <!--  -->
