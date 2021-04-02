@@ -90,14 +90,9 @@ class LeadsModel extends CI_Model
 		$query = $this->db->like($field, $search)->orderBy('id')->get('tblleads');
 		return $query->result();
 	}
-	// public function delete($id){
-	// 	$this->db->where('id',$id);
-	//  $q = $this->db->delete('tblleads_sources');
-	//  return $q;
-	// }
 
 
-//csv impot
+//csv import
 	public function save($table_name, $data = array()) {
 		$insert = $this->db->insert($table_name, $data);
 		return $insert;
@@ -130,25 +125,18 @@ class LeadsModel extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
-	public function get_lead_by_status($status_id)
-    {
-        $where = array(
-            'status' => $status_id,
-        );
-        $this->db->select()
-                 ->from('tblleads')
-                 ->where($where);
-        $data = $this->db->get();
-        if($data->num_rows() > 0)
-        {
-            return $data->result_array();
-        }
-        else
-        {
-            return FALSE;
-        }
-    }
-	
+
+	public function updateorder($data,$id){
+		$this->db->where('id',$id);
+		$q = $this->db->update('tblleads_status',$data);
+		return $q;
+	}
+	public function get_status_data(){
+			
+		$this->db->order_by('statusorder',"ASC");
+		$query=$this->db->get('tblleads_status');
+		return  $query->result();
+	}
 }
 
 ?>

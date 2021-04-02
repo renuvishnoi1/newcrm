@@ -64,12 +64,9 @@
 <!-- <script type="text/javascript" src="<?php echo base_url().'assets1/js/bootstrap.min.js'; ?>"></script>   -->    
     <script type="text/javascript" src="<?php echo base_url().'assets1/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js'; ?>"></script>      
     <script type="text/javascript" src="<?php echo base_url().'assets1/plugins/fullcalendar/fullcalendar.js'; ?>"></script> 
-     <!--  multiselect-->
-     <!-- <script type="text/javascript">
-         $(document).ready(function() {
-    $('.select2').select2();
-});
-     </script> -->
+ <!--kanban link  -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <!--kanban link  -->
      
      <!-- add lead -->
      <script type="text/javascript">
