@@ -69,13 +69,7 @@
                   <td><?php echo $value['source_name']; ?></td>
                   <td></td>
                   <td></td>
-                  <!--<td>
-                    <?php if($value->status=='1'){ ?>
-                      <a href="<?php echo base_url();?>admin/user/user_deactive/<?=$value->id?>" class="btn-success btn btn-sm">Active</a>
-                    <?php }else{ ?>
-                       <a href="<?php echo base_url();?>admin/user/user_active/<?=$value->id?>" class="btn-danger btn btn-sm">Deactive</a>
-                    <?php } ?>
-                  </td>-->
+                 
                   <td>
                      <a href="<?php echo base_url();?>admin/show_lead/<?php echo $value['lead_id']; ?>" class="btn btn-icon btn-light glow mr-1 mb-1"><i class="bx bxs-show"></i></a> 
                    <a href="<?php echo base_url();?>admin/edit_lead/<?php echo $value['lead_id']; ?>" class="btn btn-icon btn-primary mr-1 mb-1"><i class="bx bxs-pencil"></i></a> 

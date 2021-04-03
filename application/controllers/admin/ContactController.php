@@ -370,6 +370,7 @@ public function import_csv() {
  
         //Check file is uploaded in tmp folder
   if (is_uploaded_file($_FILES['file']['tmp_name'])) {
+
             //validate whether uploaded file is a csv file
     $csvMimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
     $mime = get_mime_by_extension($_FILES['file']['name']);
@@ -377,6 +378,7 @@ public function import_csv() {
     $ext = end($fileArr);
     if (($ext == 'csv') && in_array($mime, $csvMimes)) {
       $file = $_FILES['file']['tmp_name'];
+
       $csvData = $this->csvimport->get_array($file);
       $headerArr = array("User Id","Firstname", "Lastname", "Email", "Contact phonenumber", "Position", "Company", "Vat", "Phonenumber", "Country", "City", "Zip", "State", "Address", "Website","Billing street","Billing city","Billing state","Billing zip","Billing country","Shipping street","Shipping city","Shipping state","Shipping zip","Shipping country","Longitude","Latitude","Stripe id");
       if (!empty($csvData)) {
@@ -404,7 +406,7 @@ public function import_csv() {
             );
             $contact_tbl = "tblcontacts";
             $contactData= $this->ContactsModel->insert($contact_tbl, $contact_data);
-             $client_data= array(
+            $client_data= array(
               'company' => $row['Company'],
               'vat' => $row['Vat'],
               'phonenumber' => $row['Phonenumber'],
@@ -460,6 +462,15 @@ public function import_csv() {
     $this->session->set_flashdata("error_msg", "Please select a CSV file to upload.");
     redirect('admin/clients');
   }
+}
+public function addGroup(){
+  $data= array('name'=>$this->input->post('name'));
+  $group_tbl='tblcustomers_groups';
+  $q= $this->ContactsModel->insert($group_tbl, $data);
+   echo json_encode($q);
+  // echo "<pre>";
+  // print_r($_POST);
+  // die;
 }
 
 }

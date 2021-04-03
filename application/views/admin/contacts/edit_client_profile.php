@@ -71,7 +71,7 @@
                 </div>
                   <div class="form-group">
                   <label>Groups</label>
-                  <select class="form-control group" name="groups[]" style="width: 100%;" multiple>
+                  <select class="form-control select2" name="groups[]" style="width: 100%;" multiple>
                     <?php foreach($groups as $group) {
 
                       ?>
@@ -79,7 +79,10 @@
                     <?php 
                     }?>
                     
-                  </select>            
+                  </select>  
+                   <button type="button" class="btn btn-info" data-toggle="modal" data-target="#create-group">
+                    <i class="bx bxs-plus-square"></i>
+                   </button>          
                 </div>
                   <div class="form-group">
                   <label>Currency</label>
@@ -246,12 +249,46 @@
     </section>
     <!-- /.content -->
   </div>
+ <!-- Create Item Modal -->
+<div class="modal fade" id="create-group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">Create Group</h4>
+      </div>
+
+
+      <div class="modal-body">
+
+
+            <form data-toggle="validator" action="<?php echo base_url('admin/ContactController/addGroup'); ?>" method="POST">
+
+
+                <div class="form-group">
+                    <label class="control-label" for="title">Name:</label>
+                    <input type="text" name="name" class="form-control" data-error="Please enter group name." required />
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" data-dismiss="modal" class="btn group-submit btn-success ">Submit</button>
+                </div>
+
+
+            </form>
+
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
  
-
-
- <script type="text/javascript">
-        $(document).ready(function() {
-            $('.group').select2();
-        });
-
-    </script>

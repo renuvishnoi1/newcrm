@@ -148,7 +148,11 @@
                                                                                     <p>State</p>
                                                                                     <p><?php echo $leadRow->state; ?></p>
                                                                                     <p>Country</p>
-                                                                                    <p><?php echo $leadRow->country; ?></p>
+                                                                                     <?php foreach ($country as $key => $value) {
+                                                                                       if($leadRow->country == $value['country_id']){
+                                                                                       ?><p><?php echo $value['short_name']; ?></p>
+                                                                                     <?php   }
+                                                                                    } ?>
                                                                                     <p>Zip Code</p>
                                                                                     <p><?php echo $leadRow->zip; ?></p>
                                                                                 </div>

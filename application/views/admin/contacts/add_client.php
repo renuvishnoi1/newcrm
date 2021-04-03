@@ -29,6 +29,7 @@
        <div class="card">
         <div class="card-header">
            <h4>Profile</h4>
+           
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -70,14 +71,18 @@
                 </div>
                   <div class="form-group">
                   <label>Groups</label>
-                  <select class="form-control js-example-basic-multiple" name="groups[]" style="width: 100%;" multiple="multiple">
+                   <div class="input-group my-group" >
+                  <select class="form-control select2" name="groups[]" style="width: 100%;" multiple="multiple">
                     <?php foreach($groups as $group) {
                       ?>
                     <option value="<?php echo $group['id']; ?>"><?php echo $group['name']; ?></option>
                     <?php 
                     }?>
-                    
-                  </select>            
+                  </select> 
+                  <button type="button" class="btn btn-info my-group-button" data-toggle="modal" data-target="#create-group">
+                    <i class="bx bxs-plus-square"></i>
+                   </button>
+                     </div>                              
                 </div>
                   <div class="form-group">
                   <label>Currency</label>
@@ -92,11 +97,7 @@
                 </div>
                 <div class="form-group">
                   <label>Default Language</label>
-                 <!--  <select class="form-control select2bs4" name="default_language" style="width: 100%;">
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    
-                  </select>  -->  
+                 
                   <select name="default_language" id="default_language" class="form-control selectpicker" >
                       
                         <?php foreach($this->app->get_available_languages() as $availableLanguage){
@@ -239,9 +240,45 @@
                 </section>
                 <!-- Basic Inputs end -->
 
-              
-
             </div>
         </div>
     </div>
+<!-- Create Item Modal -->
+<div class="modal fade" id="create-group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">Create Group</h4>
+      </div>
+
+
+      <div class="modal-body">
+
+
+            <form data-toggle="validator" action="<?php echo base_url('admin/ContactController/addGroup'); ?>" method="POST">
+
+
+                <div class="form-group">
+                    <label class="control-label" for="title">Name:</label>
+                    <input type="text" name="name" class="form-control" data-error="Please enter group name." required />
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" data-dismiss="modal" class="btn group-submit btn-success ">Submit</button>
+                </div>
+
+
+            </form>
+
+
+      </div>
+
+
+    </div>
+  </div>
+</div>

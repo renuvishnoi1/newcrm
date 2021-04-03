@@ -63,6 +63,7 @@ class LeadsModel extends CI_Model
 		$insert_id = $this->db->insert_id();
 		return  $insert_id;
 	}
+	
 	public function getLeads(){
 
 		$this->db->select('tblleads.*,tbltags.name as tag_name');

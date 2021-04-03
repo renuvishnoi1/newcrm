@@ -175,9 +175,7 @@ public function importLeads(){
   $data['status'] = $this->LeadsModel->get_list('tblleads_status');
   $data['assign'] = $this->LeadsModel->get_assign_list('tblstaff');
   $data['country'] = $this->ContactsModel->get_countries();
-     // echo "<pre>";
-     //  print_r($data);
-     //  die;
+    
   $this->admin_load('leads/import_leads',$data);
 }
 public function export_csv() {
@@ -206,10 +204,12 @@ public function import_csv() {
     $this->admin_load('leads/import_leads',$data);
   } else {
     if (is_uploaded_file($_FILES['file']['tmp_name'])) {
+
             //validate whether uploaded file is a csv file
       $csvMimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
       $mime = get_mime_by_extension($_FILES['file']['name']);
       $fileArr = explode('.', $_FILES['file']['name']);
+ 
       $ext = end($fileArr);
       if (($ext == 'csv') && in_array($mime, $csvMimes)) {
         $file = $_FILES['file']['tmp_name'];
@@ -217,6 +217,7 @@ public function import_csv() {
         $csvData = $this->csvimport->get_array($file);
 
         $headerArr = array( "Name", "Position", "Company", "Description", "Country", "Zip", "City", "State", "Address", "Email", "Website", "Phonenumber", "Lead value", "Tags");
+ 
         if (!empty($csvData)) {
                     //Validate CSV headers
           $csvHeaders = array_keys($csvData[0]);
@@ -230,9 +231,11 @@ public function import_csv() {
             $this->session->set_flashdata("error_msg", "CSV headers are not matched.");
             redirect('admin/leads');
           } else {
-            foreach ($csvData as $row) {
-              $employee_data = array(
-                "name" => $row['Name'],
+            $insertIds  = array();
+      for ($x = 0; $x < sizeof($csvData); $x++) {
+        foreach ($csvData as $row) {
+     $employee_data = array(
+               "name" => $row['Name'],
                 "title" => $row['Position'],
                 "company" => $row['Company'],
                 "description" => $row['Description'],
@@ -250,10 +253,47 @@ public function import_csv() {
                 "assigned" => $this->input->post('assigned'),
                 "dateadded" => date('Y-m-d H:i:s'),
               );
-              $table_name = "tblleads";
-              $this->LeadsModel->insert($table_name, $employee_data);
+    $this->db->insert('tblleads', $employee_data);
+    $insertIds[$x]  = $this->db->insert_id(); //will return the first insert array
+  }
+}
+print_r($insertIds); 
+die;
+//print all insert ids
+            // foreach ($csvData as $row) {
+            //   $employee_data = array(
+            //     "name" => $row['Name'],
+            //     "title" => $row['Position'],
+            //     "company" => $row['Company'],
+            //     "description" => $row['Description'],
+            //     "country" => $row['Country'],
+            //     "zip" => $row['Zip'],
+            //     "city" => $row['City'],
+            //     "state" => $row['State'],
+            //     "address" => $row['Address'],
+            //     "email" => $row['Email'],
+            //     "website" => $row['Website'],
+            //     "phonenumber" => $row['Phonenumber'],
+            //     "lead_value" => $row['Lead value'],
+            //     "status" => $this->input->post('status'),
+            //     "source" => $this->input->post('source'),
+            //     "assigned" => $this->input->post('assigned'),
+            //     "dateadded" => date('Y-m-d H:i:s'),
+            //   );
+             
+            //   $table_name = "tblleads";
+            //   $leadData = $this->LeadsModel->insert($table_name, $employee_data);
+            //   // if($leadData){
+            //   //   $tag = $row['tag'];
+            //   //   $myArray = explode(',', $tag);
+            //   //   foreach($myArray as $tags){
+            //   //      $tagData['tag_id']= $tag;
+            //   //      $tagData['rel_type'] = 'lead';
 
-            }
+            //   //   }
+            //   // }
+
+            // }
             $this->session->set_flashdata("success_msg", "CSV File imported successfully.");
             redirect('admin/leads');
           }
@@ -273,10 +313,8 @@ public function kanban(){
   $data['title'] = "Kanban"; 
   $data['status'] = $this->LeadsModel->get_status_data();
   $data['leads'] = $this->LeadsModel->get_list('tblleads');
+  $data['country'] = $this->ContactsModel->get_countries();
 
-// echo "<pre>";
-// print_r($data);
-// die;
   $this->admin_load( 'leads/kanban',$data);
 }
 
@@ -326,6 +364,32 @@ public function updateOrder(){
     $this->LeadsModel->updateorder($data,$id);
 
     $i++;
+  }
+}
+public function insert_lead_status(){
+  $this->load->model('admin/LeadsStatusModel');
+ 
+  $data= array('name'=>$this->input->post('name'));
+  $status_tbl='tblleads_status';
+  $q = $this->LeadsModel->insert($status_tbl, $data);
+  if($q){
+
+    $data = $this->LeadsStatusModel->get_status_row($q);
+    echo json_encode($data);
+  }
+  
+   
+}
+public function insert_lead_source(){
+
+  $this->load->model('admin/LeadsSourceModel');
+  $data= array('name'=>$this->input->post('name'));
+  $source_tbl='tblleads_sources';
+  $q = $this->LeadsModel->insert($source_tbl, $data);
+  if($q){
+
+    $data = $this->LeadsSourceModel->get_source_row($q);
+    echo json_encode($data);
   }
 }
 }

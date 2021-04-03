@@ -24,7 +24,7 @@
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-      
+
         <div class="col-md-12">
           <div class="card">
            <div class="card-header">
@@ -81,63 +81,94 @@
                 <fieldset class="form-group">
                   <label for="basicInput">Choose CSV File</label>
                   <input type="file" name="file" style="display:inline-block;" />
-                 
                 </fieldset>
                 <fieldset class="form-group">
                   <label for="country">Status</label>
-                  <select name="status" class="form-control">
-                    <option value="">Select status</option>
-                    <?php foreach ($status as $value) {
-                      ?>
-                      <option value="<?php echo $value->id;  ?>"> <?php echo $value->name; ?></option>
-                      <?php 
-                    } ?>
-                  </select>
-                  <span class="text-danger"><?php echo form_error('status'); ?></span>
-                </fieldset>
-                <fieldset class="form-group">
-                  <label for="country">Source</label>                  
-                  <select name="source" class="form-control">
-                    <option value="">select Source</option>
-                    <?php foreach ($source as $value) {
-                      ?>
-                      <option value="<?php echo $value->id;  ?>"> <?php echo $value->name; ?></option>
-                      <?php 
-                      
-                    } ?>
-                  </select>
-                  <span class="text-danger"><?php echo form_error('source'); ?></span>
-                </fieldset>
-                <fieldset class="form-group">
-                  <label for="country">Responsible (Assignee)</label>
-                  <select name="assigned" class="form-control">
-                    <option value="">select Assigned</option>
-                    <?php foreach ($assign as $value) {
-                      ?>
+                  <div class="input-group my-group" id="hide">
+                    <select name="status" class="selectpicker form-control" id="statusSelect">
 
-                      <option value="<?php echo $value->staffid;  ?>"> <?php echo $value->firstname." ".$value->lastname; ?></option>
-                      <?php 
+                      <option value="">Select status</option>
+                      <?php foreach ($status as $value) {
+                        ?>
+                        <option value="<?php echo $value->id;  ?>"> <?php echo $value->name; ?></option>
+                        <?php 
+                      } ?>
+                    </select>
+                    <span class="input-group-btn">
+                      <button class="btn btn-info my-group-button" type="button"  id="hideshow"> <i class="bx bxs-plus-square"></i></button>
+                    </span>
+                  </div>
+                  <div class="input-group my-group" id="show">
+                    <form id="lead_status">
+                     <input type="text" name="name" id="status_name" class="form-control">
+                     <span class="input-group-btn">
+                      <button class="btn btn-info my-group-button" type="button"  id="showhide"> <i class="bx bx-check"></i></button>
+                    </span>
+                    </form>
 
-                    } ?>
-                  </select>
+                </div>
+                <span class="text-danger"><?php echo form_error('status'); ?></span>
+              </fieldset>
+              <fieldset class="form-group">
+               <label for="country">Source</label> 
+               <form>
+               <div class="input-group my-group" id="hide1">
 
-                </fieldset>
+                <select name="source" class="form-control" id="sourceSelect">
+                  <option value="">select Source</option>
+                  <?php foreach ($source as $value) {
+                    ?>
+                    <option value="<?php echo $value->id;  ?>"> <?php echo $value->name; ?></option>
+                    <?php 
 
-                <fieldset class="form-group">
-                 <input type="submit" class="btn btn-primary" name="importBtn" value="IMPORT">
-               </fieldset>
+                  } ?>
+                </select>
+                <span class="input-group-btn">
+                  <button class="btn btn-info my-group-button" type="button" id="hideshow1"> <i class="bx bxs-plus-square"></i></button>
+                </span>
+                
+              </div>
+               <div class="input-group my-group" id="show1">
+                    <form id="lead_source">
+                     <input type="text" name="name" id="source_name" class="form-control">
+                     <span class="input-group-btn">
+                      <button class="btn btn-info my-group-button" type="button"  id="showhide1"> <i class="bx bx-check"></i></button>
+                    </span>
+                    </form>
 
-             </div>
-           </form>
+                </div>
+                <span class="text-danger"><?php echo form_error('source'); ?></span>
+            </fieldset>
+            <fieldset class="form-group">
+              <label for="country">Responsible (Assignee)</label>
+              <select name="assigned" class="form-control">
+                <option value="">select Assigned</option>
+                <?php foreach ($assign as $value) {
+                  ?>
+                  <option value="<?php echo $value->staffid;  ?>"> <?php echo $value->firstname." ".$value->lastname; ?></option>
+                  <?php 
+
+                } ?>
+              </select>
+
+            </fieldset>
+
+            <fieldset class="form-group">
+             <input type="submit" class="btn btn-primary" name="importBtn" value="IMPORT">
+           </fieldset>
 
          </div>
-       </div>
+       </form>
+
      </div>
    </div>
  </div>
+</div>
+</div>
 </div>
 <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+

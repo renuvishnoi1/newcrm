@@ -120,65 +120,40 @@
     document.getElementById('yourText').disabled = !this.checked;
 };
    </script>  -->    
-  
-
-<script type="text/javascript">
+  <script type="text/javascript">
     /* Create new template in contract module */
-$(".crud-submit").click(function(e){
-
+/* Create new Item */
+$(".group-submit").click(function(e){
+//alert('hdh');
 
     e.preventDefault();
-    var form_action = $("#create-item").find("form").attr("action");
-    var name = $("#name").val();
 
-    var content = $("#content").val();
+
+    var form_action = $("#create-group").find("form").attr("action");
+    
+    //alert(form_action);
  var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
     csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+    var name = $("#create-group").find("input[name='name']").val();
 
-    var dataJson = { [csrfName]: csrfHash, name:name,content:content,"type":"contract"};
-    $.ajax({
+    var dataJson = { [csrfName]: csrfHash, name:name};
+
+       $.ajax({
         type:'POST',
         url: form_action,
         data:dataJson,
         success:function(data){
-            $('#alert-msg').html('<div class="alert alert-success text-center">Data saved successfully!</div>');
+            //alert(data);
+            alert('Data saved successfully');
             //$("#create-item").modal('hide');
         }
     });
 
 
 });
-
 </script>
-<!-- contract comment save -->
-<!-- <script type="text/javascript">
-    $(".comment-submit").click(function(e){
 
 
-    e.preventDefault();
-    var form_action = "<?php echo base_url().'admin/store_contarct_comment_data'; ?>";
-
-    var content = $("#content").val();
-    //alert(content);
-    var contract_id= $('#contract_id').val();
-    var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
-    csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
-
-    var dataJson = { [csrfName]: csrfHash,content:content,contract_id:contract_id};
-    $.ajax({
-        type:'POST',
-        url: form_action,
-        data:dataJson,
-        success:function(data){
-             //$('#div_id').html(response);
-           location.reload();
-           
-        }
-    });
-
-
-});
-</script> -->
 <script type="text/javascript">
         var get_data        = '<?php echo $get_data; ?>';
         //console.log(get_data)
@@ -474,6 +449,71 @@ $(".crud-submit").click(function(e){
         }
 
     </script>
+    <script type="text/javascript">
+            $("#show").hide();
+     $("#hideshow").click(function() {
+      $("#hide").hide();
+      $("#show").show();
+      
+    });
+      $("#showhide").click(function() {
+      $("#hide").show();
+      $("#show").hide();
+     var status_show = $('#status_name').val();
+     if(status_show !=''){
+        
+          var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+    csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+    var dataJson = { [csrfName]: csrfHash,name:status_show };
+ 
+        $.ajax({
+        type:'POST',
+        url: "<?php echo base_url('admin/LeadsController/insert_lead_status'); ?>",
+        data:dataJson,
+        success:function(resp){
+           
+            var obj = JSON.parse(resp);
+          
+           $('#statusSelect').append('<option value="'+obj.id+'" selected="selected">'+obj.name+'</option>');
+        }
+    });
+     }
+
+  
+});
+      // source 
+     $("#show1").hide();
+     $("#hideshow1").click(function() {
+      $("#hide1").hide();
+      $("#show1").show();
+      
+    });
+      $("#showhide1").click(function() {
+      $("#hide1").show();
+      $("#show1").hide();
+     var source_show = $('#source_name').val();
+     if(source_show !=''){
+        //alert(source_show);
+          var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>',
+    csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+    var dataJson = { [csrfName]: csrfHash,name:source_show };
+ 
+        $.ajax({
+        type:'POST',
+        url: "<?php echo base_url('admin/LeadsController/insert_lead_source'); ?>",
+        data:dataJson,
+        success:function(resp){
+           //alert(resp);
+            var obj = JSON.parse(resp);
+          
+           $('#sourceSelect').append('<option value="'+obj.id+'" selected="selected">'+obj.name+'</option>');
+        }
+    });
+     }
+
+  
+});
+</script>
 </body>
 <!-- END: Body-->
 
