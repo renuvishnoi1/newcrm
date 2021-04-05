@@ -19,9 +19,9 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                             <!--  <h4 class="card-title">Add New Item</h4> -->
-                         </div>
-                         <div class="card-content">
+                               <!--  <h4 class="card-title">Add New Item</h4> -->
+                           </div>
+                           <div class="card-content">
                             <div class="card-body">
                                 <form  id="invoice_form" >
                                   <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
@@ -30,43 +30,43 @@
                                         <fieldset class="form-group">
                                             <label for="basicInput">Customer</label>
                                             <select name="clientid" class="form-control ">
-                                             <option value="0"></option>
-                                             <?php foreach ($clients as $key => $value) {
-                                                 ?><option value="<?php  echo $value['userid']; ?>"><?php echo $value['company']; ?></option><?php 
-                                             } ?>
-                                         </select>
-                                     </fieldset>
-                                     <hr>
-                                     <div class="col-md-12">
+                                               <option value="0"></option>
+                                               <?php foreach ($clients as $key => $value) {
+                                                   ?><option value="<?php  echo $value['userid']; ?>"><?php echo $value['company']; ?></option><?php 
+                                               } ?>
+                                           </select>
+                                       </fieldset>
+                                       <hr>
+                                       <div class="col-md-12">
                                         <a href="#"  data-toggle="modal" data-target="#billing_and_shipping_details"><i class="bx bxs-edit"></i></a>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <p class="bold">Bill To</p>
                                             <address>
-                                               <span class="billing_street">--</span><input type="hidden" name="billing_street"><br>
-                                               <span class="billing_city">--</span><input type="hidden" name="billing_city">,
-                                               <span class="billing_state">--</span><input type="hidden" name="billing_state">
-                                               <br>
-                                               <span class="billing_country">--</span><input type="hidden" name="billing_country">,
-                                               <span class="billing_zip">--</span><input type="hidden" name="billing_zip">
-                                           </address>
-                                       </div>
-                                       <div class="col-md-6">
-                                           <p class="bold">Ship to</p>
-                                           <address>
-                                               <span class="shipping_street"> --</span><input type="hidden" name="shipping_street"><br>
-                                               <span class="shipping_city">--</span><input type="hidden" name="shipping_city">,
-                                               <span class="shipping_state"> --</span><input type="hidden" name="shipping_state">
-                                               <br>
-                                               <span class="shipping_country"> --</span><input type="hidden" name="shipping_country">,
-                                               <span class="shipping_zip"> --</span><input type="hidden" name="shipping_zip">
-                                           </address>
-                                       </div>
-                                   </div>
-                                   <div class="row">
-                                       <div class="col-md-12">
-                                           <div class="form-group" >
+                                             <span class="billing_street">--</span><input type="hidden" name="billing_street"><br>
+                                             <span class="billing_city">--</span><input type="hidden" name="billing_city">,
+                                             <span class="billing_state">--</span><input type="hidden" name="billing_state">
+                                             <br>
+                                             <span class="billing_country">--</span><input type="hidden" name="billing_country">,
+                                             <span class="billing_zip">--</span><input type="hidden" name="billing_zip">
+                                         </address>
+                                     </div>
+                                     <div class="col-md-6">
+                                         <p class="bold">Ship to</p>
+                                         <address>
+                                             <span class="shipping_street"> --</span><input type="hidden" name="shipping_street"><br>
+                                             <span class="shipping_city">--</span><input type="hidden" name="shipping_city">,
+                                             <span class="shipping_state"> --</span><input type="hidden" name="shipping_state">
+                                             <br>
+                                             <span class="shipping_country"> --</span><input type="hidden" name="shipping_country">,
+                                             <span class="shipping_zip"> --</span><input type="hidden" name="shipping_zip">
+                                         </address>
+                                     </div>
+                                 </div>
+                                 <div class="row">
+                                     <div class="col-md-12">
+                                         <div class="form-group" >
                                             <label for="invoice" > <small class="req text-danger">* </small> Invoice Number</label>
                                             <div class="input-group date">
                                                 <input type="text" name="invoice_number" class="form-control datepicker"  autocomplete="off">
@@ -77,7 +77,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                 <div class="col-md-6">
+                                   <div class="col-md-6">
                                     <div class="form-group" >
                                         <label for="date" > <small class="req text-danger">* </small> Invoice Date</label>
                                         <div class="input-group date"><input type="date" id="date"  name="invoice_date" class="form-control datepicker"  autocomplete="off"><div >
@@ -100,51 +100,51 @@
                                     <select class="form-control select2" name="tag[]" id="tag" multiple>
                                         <option value=""></option>
                                         <?php foreach ($tags as $key => $value) {
-                                         ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
-                                     } ?>
-                                 </select>
-                             </fieldset>
-                         </div>
-                     </div>
-                     <div class="row">
+                                           ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
+                                       } ?>
+                                   </select>
+                               </fieldset>
+                           </div>
+                       </div>
+                       <div class="row">
                         <div class="col-md-12">
                             <fieldset class="form-group">
                                 <label for="helpInputTop"> Allowed payment modes for this invoice</label>
                                 <select class="form-control select2" name="payment_modes[]"  multiple>
                                     <option value=""></option>
                                     <?php foreach ($payment_modes as $key => $value) {
-                                     ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
-                                 } ?>
-                             </select>
-                         </fieldset>
-                     </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-md-6">
+                                       ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
+                                   } ?>
+                               </select>
+                           </fieldset>
+                       </div>
+                   </div>
+                   <div class="row">
+                       <div class="col-md-6">
                         <div class="form-group" ><label for="currency" > <small class="req text-danger">* </small> Currency</label>
                             <select class="form-control" name="currency" >
                                 <option value="0"></option>
                                 <?php foreach ($currencies as $key => $value) {
-                                 ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option>
-                                 <?php 
-                             } ?>
-                         </select>
-                     </div></div>
-                     <div class="col-md-6">
+                                   ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option>
+                                   <?php 
+                               } ?>
+                           </select>
+                       </div></div>
+                       <div class="col-md-6">
                         <div class="form-group" >
                             <label for="open_till" >Sale Agent</label>
                             <select class="form-control" id="sale_agent" name="sale_agent">
                                 <option value=""></option>
                                 <?php foreach ($sale_agent as $key => $value) {
-                                 ?><option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." ".$value['lastname']; ?></option>
-                                 <?php 
-                             } ?>
+                                   ?><option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." ".$value['lastname']; ?></option>
+                                   <?php 
+                               } ?>
 
-                         </select>
-                     </div> </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-md-6">
+                           </select>
+                       </div> </div>
+                   </div>
+                   <div class="row">
+                       <div class="col-md-6">
                         <div class="form-group" ><label for="currency" ><small class="req text-danger">* </small> Recurring Invoice?</label>
                             <select class="form-control" name="recurring_invoice" id="recurring_invoice">
                                 <option value="0"></option>
@@ -184,13 +184,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                 <!--  <h4 class="card-title">Add New Item</h4> -->
-             </div>
-             <div class="card-content">
+                   <!--  <h4 class="card-title">Add New Item</h4> -->
+               </div>
+               <div class="card-content">
                 <div class="card-body">
                     <div class="row">
 
-                       <div class="col-md-6">
+                     <div class="col-md-6">
 
                         <div class="form-group" >
                             <label for="open_till" >Items</label>
@@ -198,17 +198,17 @@
 
                                 <option ></option>
                                 <?php foreach ($items as $key => $value) {
-                                 ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['description']; ?> 
-                                 <small ><?php echo $value['long_description']; ?></small>
-                             </option>
-                             <?php 
-                         } ?>
-                     </select>
-                 </div> 
+                                   ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['description']; ?> 
+                                   <small ><?php echo $value['long_description']; ?></small>
+                               </option>
+                               <?php 
+                           } ?>
+                       </select>
+                   </div> 
 
-             </div>
-             <div class="col-md-6 ">
-                 <div class="mtop10">
+               </div>
+               <div class="col-md-6 ">
+                   <div class="mtop10">
                     <span>Show quantity as:</span> <input type="radio" value="1" id="1" class="show_quantity_as" name="show_quantity_as"  checked>
                     <label for="1">Qty</label>
                     <input type="radio" value="2" id="2" name="show_quantity_as"  >
@@ -313,9 +313,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                 <!--  <h4 class="card-title">Add New Item</h4> -->
-             </div>
-             <div class="card-content">
+                   <!--  <h4 class="card-title">Add New Item</h4> -->
+               </div>
+               <div class="card-content">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -384,50 +384,66 @@
           </div>
           <div class="form-group">
               <label class="control-label" for="title">Country:</label>
-              <input type="text" name="city" class="form-control" id="billing_country_add"  required />
-              <div class="help-block with-errors"></div>
-          </div>
-          <hr>
-          <div class="col-md-12">
-            <input type="checkbox" name="" class="shipping_address" id="shipping_address">
-            <label>Shipping Address</label>
-        </div>
-        <div id="show_shiiping">
-           <div class="col-md-12">
-            <input type="checkbox" name="" class="show_shipping_on_invoice" id="show_shipping_on_invoice">
-            <label>Show shipping details in invoice</label>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="title">Street:</label>
-          <input type="text" name="street" class="form-control" id="shipping_street_add"  required />
-          <div class="help-block with-errors"></div>
-      </div>
-      <div class="form-group">
-          <label class="control-label" for="title">City:</label>
-          <input type="text" name="city" class="form-control" id="shipping_city_add"  required />
-          <div class="help-block with-errors"></div>
-      </div>
-      <div class="form-group">
-          <label class="control-label" for="title">State:</label>
-          <input type="text" name="city" class="form-control" id="shipping_state_add"  required />
-          <div class="help-block with-errors"></div>
-      </div>
-      <div class="form-group">
-          <label class="control-label" for="title">Zip Code:</label>
-          <input type="text" name="city" class="form-control" id="shipping_zip_add"  required />
-          <div class="help-block with-errors"></div>
-      </div>
-      <div class="form-group">
-          <label class="control-label" for="title">Country:</label>
-          <input type="text" name="city" class="form-control" id="shipping_country_add"  required />
-          <div class="help-block with-errors"></div>
-      </div>
-
-      <hr>
+              
+              <select id="billing_country_add">
+                <option value="0"></option>
+                <?php foreach ($country as $key => $value) {
+                 ?>
+                 <option value="<?php  echo $value['country_id']; ?>"><?php echo $value['short_name']; ?></option>
+                 <?php 
+             } ?>
+         </select>
+         <div class="help-block with-errors"></div>
+     </div>
+     <hr>
+     <div class="col-md-12">
+        <input type="checkbox" name="" class="shipping_address" id="shipping_address">
+        <label>Shipping Address</label>
+    </div>
+    <div id="show_shiiping">
+     <div class="col-md-12">
+        <input type="checkbox" name="" class="show_shipping_on_invoice" id="show_shipping_on_invoice">
+        <label>Show shipping details in invoice</label>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="title">Street:</label>
+      <input type="text" name="street" class="form-control" id="shipping_street_add"  required />
+      <div class="help-block with-errors"></div>
   </div>
   <div class="form-group">
-      <button type="submit" data-dismiss="modal" class="btn shipping-billing-submit btn-success " id="apply">Apply</button>
+      <label class="control-label" for="title">City:</label>
+      <input type="text" name="city" class="form-control" id="shipping_city_add"  required />
+      <div class="help-block with-errors"></div>
   </div>
+  <div class="form-group">
+      <label class="control-label" for="title">State:</label>
+      <input type="text" name="city" class="form-control" id="shipping_state_add"  required />
+      <div class="help-block with-errors"></div>
+  </div>
+  <div class="form-group">
+      <label class="control-label" for="title">Zip Code:</label>
+      <input type="text" name="city" class="form-control" id="shipping_zip_add"  required />
+      <div class="help-block with-errors"></div>
+  </div>
+  <div class="form-group">
+      <label class="control-label" for="title">Country:</label>
+      <select id="shipping_country_add" >
+          <option value="0"></option>
+          <?php foreach ($country as $key => $value) {
+             ?>
+             <option value="<?php  echo $value['country_id']; ?>"><?php echo $value['short_name']; ?></option>
+             <?php 
+         } ?>
+     </select>
+     <input type="text" name="city" class="form-control" id="shipping_country_add"  required />
+     <div class="help-block with-errors"></div>
+ </div>
+
+ <hr>
+</div>
+<div class="form-group">
+  <button type="submit" data-dismiss="modal" class="btn shipping-billing-submit btn-success " id="apply">Apply</button>
+</div>
 </form>
 </div>
 
@@ -442,8 +458,8 @@
 $('#show_shiiping').hide();
 $('#shipping_address').on('change', function() {    
     if ($(this).is(":checked")) {
-     $('#show_shiiping').show();
- } else {
+       $('#show_shiiping').show();
+   } else {
     $("#show_shiiping").hide();
 }
 
@@ -507,16 +523,16 @@ $("#disc").focusout(function(){
         data = jQuery.parseJSON(data);
         if ($('#unit'+data.itemid).length>0)
         {
-         var qty=$('#unit'+data.itemid).val();
-         $('#unit'+data.itemid).val(Number(qty)+1);
-         var rate=$('.rate'+data.itemid).val();
-         $('.sb'+data.itemid).text(Number(rate)*Number(Number(qty)+1));
-         update_amounts();
-     }
-     else
-     {
-         addmore_row(data.description,data.long_description,data.unit,data.rate,data.taxid,data.itemid);
-     }
+           var qty=$('#unit'+data.itemid).val();
+           $('#unit'+data.itemid).val(Number(qty)+1);
+           var rate=$('.rate'+data.itemid).val();
+           $('.sb'+data.itemid).text(Number(rate)*Number(Number(qty)+1));
+           update_amounts();
+       }
+       else
+       {
+           addmore_row(data.description,data.long_description,data.unit,data.rate,data.taxid,data.itemid);
+       }
 
         //console.log(data);
     }
@@ -651,16 +667,16 @@ $(document).on('click','#save',function(e) {
 //alert($('#invoice_form').serialize());
 var shipping_zip= $('.shipping_zip').text();
 alert($('#invoice_form').serialize());
-    e.preventDefault();
+e.preventDefault();
 
-    $.ajax({
+$.ajax({
 
-       type:'POST',
-       url: "<?php echo base_url('admin/InvoiceController/insertInvoice'); ?>",
-       data:$('#invoice_form').serialize(),
-       success: function(res){
-         
-          alert(res);
+ type:'POST',
+ url: "<?php echo base_url('admin/InvoiceController/insertInvoice'); ?>",
+ data:$('#invoice_form').serialize(),
+ success: function(res){
+   
+  alert(res);
 
           //window.location.href= "<?php echo base_url('admin/invoices'); ?>";
       }

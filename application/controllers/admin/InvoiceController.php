@@ -19,6 +19,10 @@ class InvoiceController extends MY_Controller
       $data['payment_modes'] = $this->invoiceModel->get_list('tblpayment_modes');
      $data['sale_agent'] = $this->invoiceModel->get_list('tblstaff');
       $data['clients'] = $this->invoiceModel->get_list('tblclients');
+       $data['country']= $this->invoiceModel->get_list('tblcountries');
+    $data['items']= $this->invoiceModel->get_list('tblitems');
+    $data['tax']= $this->invoiceModel->get_list('tbltaxes');
+    $data['currencies']= $this->invoiceModel->get_list('tblcurrencies');
    $this->admin_load('invoices/add_invoice',$data);  
   }
   public function insertInvoice(){
