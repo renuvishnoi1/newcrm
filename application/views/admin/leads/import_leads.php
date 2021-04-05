@@ -105,7 +105,6 @@
                       <button class="btn btn-info my-group-button" type="button"  id="showhide"> <i class="bx bx-check"></i></button>
                     </span>
                     </form>
-
                 </div>
                 <span class="text-danger"><?php echo form_error('status'); ?></span>
               </fieldset>
@@ -135,7 +134,6 @@
                       <button class="btn btn-info my-group-button" type="button"  id="showhide1"> <i class="bx bx-check"></i></button>
                     </span>
                     </form>
-
                 </div>
                 <span class="text-danger"><?php echo form_error('source'); ?></span>
             </fieldset>

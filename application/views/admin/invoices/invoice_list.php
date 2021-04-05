@@ -1,28 +1,49 @@
-
-    <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/css/core/menu/menu-types/vertical-menu.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/backend/app-assets/css/pages/app-invoice.css">
-    <!-- END: Page CSS-->
-
-    <!-- BEGIN: Content-->
-    <div class="app-content content">
+<div class="app-content content">
         <div class="content-overlay"></div>
         <div class="content-wrapper">
             <div class="content-header row">
+                <div class="content-header-left col-12 mb-2 mt-1">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <!-- <h5 class="content-header-title float-left pr-1 mb-0">DataTables</h5>
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb p-0 mb-0">
+                                    <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Datatable
+                                    </li>
+                                </ol>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="content-body">
-                <!-- invoice list -->
-                <section class="invoice-list-wrapper">
-                    <!-- create invoice button-->
-                    <div class="invoice-create-btn mb-1">
-                        <a href="<?php echo base_url('admin/add_invoices'); ?>" class="btn btn-primary glow invoice-create" role="button" aria-pressed="true">Create
+                <div class="row">
+                  <!--   <div class="col-12">
+                        <p>Read full documnetation <a href="https://datatables.net/" target="_blank">here</a></p>
+                    </div> -->
+                </div>
+                <!-- Zero configuration table -->
+                <section id="basic-datatable">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"></h4>
+                                       <a href="<?php echo base_url('admin/add_invoices'); ?>" class="btn btn-info glow invoice-create" role="button" aria-pressed="true">Create
                             Invoice</a>
-                    </div>
-               
-                    <div class="table-responsive">
-                        <table class="table invoice-data-table dt-responsive nowrap" style="width:100%">
-                            <thead>
-                                <tr>
+                                      
+                                </div>
+                                 <hr>
+                                <div class="card-content">
+                                    <div class="card-body card-dashboard">
+                                        <!-- <p class="card-text">DataTables has most features enabled by default, so all you need to do to
+                                            use it with your own tables is to call the construction function: $().DataTable();.</p> -->
+                                        <div class="table-responsive">
+                                            <table class="table zero-configuration">
+                                                <thead>
+                                                    <tr>
                                     <th>
                                         <span class="align-middle">Invoice#</span>
                                     </th>
@@ -30,58 +51,29 @@
                                     <th>Total Tax</th>
                                     <th>Date</th>
                                     <th>Customer</th>
-                                    <th> Project</th>
+                                  
                                     <th>Tag</th>
                                     <th>Due Date</th>
                                     <th>Status</th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                   
-                                    <td>
-                                        <a href="app-invoice.html">INV-00956</a>
-                                    </td>
-                                    <td><span class="invoice-amount">$459.30</span></td>
-                                    <th></th>
-                                    
-                                    <td><span class="invoice-customer">Pixinvent PVT. LTD</span></td>
-                                    <td>
-                                        <span class="bullet bullet-success bullet-sm"></span>
-                                        <small class="text-muted">Technology</small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                       <!--  <div class="invoice-action">
-                                            <a href="app-invoice.html" class="invoice-action-view mr-1">
-                                                <i class="bx bx-show-alt"></i>
-                                            </a>
-                                            <a href="app-invoice-edit.html" class="invoice-action-edit cursor-pointer">
-                                                <i class="bx bx-edit"></i>
-                                            </a>
-                                        </div> -->
-                                    </td><td><small class="text-muted">12-08-19</small></td>
-                                    <td><span class="badge badge-light-danger badge-pill">UNPAID</span></td>
-                                </tr>
-                      
-                            </tbody>
-                        </table>
+                                                </thead>
+                                                <tbody id="proposalTable">
+                                                  <tr>
+                                                      
+                                                  </tr>
+                                                </tbody>
+                                               
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
+                <!--/ Zero configuration table -->
+               
             </div>
         </div>
     </div>
-    <!-- END: Content-->
-
-
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
-    <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js"></script>
-    <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js"></script>
-    <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
-    <script src="<?php echo base_url();?>assets/backend/app-assets/vendors/js/tables/datatable/responsive.bootstrap.min.js"></script>
-    <!-- END: Page Vendor JS-->
-
-    <!-- BEGIN: Page JS-->
-    <script src="<?php echo base_url();?>assets/backend/app-assets/js/scripts/pages/app-invoice.js"></script>
-    <!-- END: Page JS-->
+ 
