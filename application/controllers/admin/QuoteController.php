@@ -100,8 +100,8 @@ foreach($taxArray as $index => $value) {
        $itemData['taxrate']= $taxvalue;
    $itemData['rel_id']= $insertData;
    $itemData['rel_type']= 'proposal';
-   $itemData['itemid']= isset($_POST['itemid']) ? $_POST['itemid'] : '';
-   $itemData['taxname']= isset($_POST['taxname']) ? $_POST['taxname'] : '';
+   $itemData['itemid'] = isset($_POST['itemid']) ? $_POST['itemid'] : '';
+   $itemData['taxname'] = isset($_POST['taxname']) ? $_POST['taxname'] : '';
 $item = $this->QuoteModel->insert($itemTable, $itemData);
   }
    

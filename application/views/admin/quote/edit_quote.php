@@ -84,7 +84,7 @@
                                       </div></div></div></div>
                                       <div class="col-md-6">
                                         <div class="form-group" ><label for="open_till" >Open Till</label><div class="input-group date"><input type="date"  name="open_till" id="open_till" class="form-control datepicker" autocomplete="off" value="<?php echo $quote->open_till ?>"><div class="input-group-addon">
-                                          <i class="fa fa-calendar calendar-icon"></i>
+                                         
                                         </div></div></div>                          
                                       </div>
                                     </div>
