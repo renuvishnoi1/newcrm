@@ -255,10 +255,8 @@
                                         <span>Show quantity as:</span> <input type="radio" value="1" id="1" class="show_quantity_as" name="show_quantity_as"  checked>
                                         <label for="1">Qty</label>
 
-
                                         <input type="radio" value="2" id="2" name="show_quantity_as"  >
                                         <label for="2">Hours</label>
-
 
                                         <input type="radio" id="3" value="3" name="show_quantity_as"  >
                                         <label for="3">Qty/Hours</label>
@@ -275,7 +273,6 @@
                                         </div>
                                         <div class="card-content">
                                             <div class="card-body">
-
                                             </div>
                                             <!-- table head dark -->
                                             <div class="table-responsive" >
@@ -500,11 +497,13 @@ function update_amounts()
     //console.log(sum);
     $('.totalam').text(sum);
     var discount_val=$('.discount').val();
+
     var discount_am=Number(sum)*discount_val/100;
     $('.discount_amount').text(discount_am);
     $('.totalamount').html(Number(sum)-Number(discount_am));
 //
     var adjustment_val = $('.adjustment').val();
+    //alert(adjustment_val);
    $('.adjustment_amount').text(adjustment_val);
    $('.totalamount').html(Number(sum)+Number(adjustment_val));
 } 

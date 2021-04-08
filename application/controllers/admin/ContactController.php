@@ -356,7 +356,7 @@ public function export_csv() {
   $this->load->helper('csv');
   $export_arr = array();
         //$employee_details = $this->employees_model->get();
-  $title = array("User Id", "Firstname", "Lastname", "Email", "Contact phonenumber", "Position", "Company", "Vat", "Phonenumber", "Country", "City", "Zip", "State", "Address", "Website","Billing street","Billing city","Billing state","Billing zip","Billing country","Shipping street","Shipping city","Shipping state","Shipping zip","Shipping country","Longitude","Latitude","Stripe id");
+  $title = array( "Firstname", "Lastname", "Email", "Contact phonenumber", "Position", "Company", "Vat", "Phonenumber", "Country", "City", "Zip", "State", "Address", "Website","Billing street","Billing city","Billing state","Billing zip","Billing country","Shipping street","Shipping city","Shipping state","Shipping zip","Shipping country","Longitude","Latitude","Stripe id");
   array_push($export_arr, $title);
         // if (!empty($employee_details)) {
         //     foreach ($employee_details as $employee) {
@@ -380,7 +380,7 @@ public function import_csv() {
       $file = $_FILES['file']['tmp_name'];
 
       $csvData = $this->csvimport->get_array($file);
-      $headerArr = array("User Id","Firstname", "Lastname", "Email", "Contact phonenumber", "Position", "Company", "Vat", "Phonenumber", "Country", "City", "Zip", "State", "Address", "Website","Billing street","Billing city","Billing state","Billing zip","Billing country","Shipping street","Shipping city","Shipping state","Shipping zip","Shipping country","Longitude","Latitude","Stripe id");
+      $headerArr = array("Firstname", "Lastname", "Email", "Contact phonenumber", "Position", "Company", "Vat", "Phonenumber", "Country", "City", "Zip", "State", "Address", "Website","Billing street","Billing city","Billing state","Billing zip","Billing country","Shipping street","Shipping city","Shipping state","Shipping zip","Shipping country","Longitude","Latitude","Stripe id");
       if (!empty($csvData)) {
                     //Validate CSV headers
         $csvHeaders = array_keys($csvData[0]);
@@ -396,7 +396,7 @@ public function import_csv() {
         } else {
           foreach ($csvData as $row) {
             $contact_data = array(
-              "userid" => $row['User Id'],
+              
               "firstname" => $row['Firstname'],
               "lastname" => $row['Lastname'],
               "email" => $row['Email'],

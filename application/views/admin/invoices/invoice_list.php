@@ -50,17 +50,31 @@
                                     <th>Amount</th>
                                     <th>Total Tax</th>
                                     <th>Date</th>
-                                    <th>Customer</th>
-                                  
+                                    <th>Customer</th>                                  
                                     <th>Tag</th>
                                     <th>Due Date</th>
                                     <th>Status</th>
-                                </tr>
+                                    <th>Action</th>
+                                    </tr>
                                                 </thead>
-                                                <tbody id="proposalTable">
+                                                <tbody id="invoiceTable">
+                                                    <?php foreach ($records as $key => $value) {
+                                                        ?>
                                                   <tr>
-                                                      
+                                                    <td></td>
+                                                      <td><?php echo $value['total']; ?></td> 
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td><?php echo $value['customer_name']; ?></td>
+                                                      <td></td>
+                                                      <td><?php echo $value['duedate']; ?></td>
+                                                      <td></td>
+                                                      <td> <a href="<?php echo base_url() ?><?php echo $value["id"]; ?>" class="btn btn-icon btn-light glow mr-1 mb-1" title="Show"><i class="bx bxs-show"></i></a>
+          <a href="<?php echo base_url('admin/edit_invoice/') ?><?php echo $value["id"]; ?>" class="btn btn-icon btn-primary mr-1 mb-1" title="Edit Contact"><i class="bx bxs-pencil"></i></a></td>
+
                                                   </tr>
+                                                  <?php                                                        
+                                                    } ?>
                                                 </tbody>
                                                
                                             </table>

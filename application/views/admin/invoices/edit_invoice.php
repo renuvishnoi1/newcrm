@@ -35,6 +35,7 @@
                            ?><option value="<?php  echo $value['userid']; ?>"><?php echo $value['company']; ?></option><?php 
                          } ?>
                        </select>
+                       <input type="hidden"  name="invoice_id" value="<?php echo $invoice->id; ?>">
                      </fieldset>
                      <hr>
                      <div class="col-md-12">
@@ -44,75 +45,79 @@
                       <div class="col-md-6">
                         <p class="bold">Bill To</p>
                         <address>
-                         <span class="billing_street">--</span><input type="hidden" name="billing_street" class="billing_street"><br>
-                         <span class="billing_city">--</span><input type="hidden" name="billing_city" class="billing_city">,
-                         <span class="billing_state">--</span><input type="hidden" name="billing_state" class="billing_state">
+                         <span class="billing_street"><?php echo $invoice->billing_street; ?></span><input type="hidden" name="billing_street" class="billing_street"><br>
+                         <span class="billing_city"><?php echo $invoice->billing_city; ?></span><input type="hidden" name="billing_city" class="billing_city">,
+                         <span class="billing_state"><?php echo $invoice->billing_state; ?></span><input type="hidden" name="billing_state" class="billing_state">
                          <br>
-                         <span class="billing_country">--</span><input type="hidden" name="billing_country" class="billing_country">,
-                         <span class="billing_zip">--</span><input type="hidden" name="billing_zip" class="billing_zip">
-                       </address>
-                     </div>
-                     <div class="col-md-6">
-                       <p class="bold">Ship to</p>
-                       <address>
-                         <span class="shipping_street"> --</span><input type="hidden" name="shipping_street"><br>
-                         <span class="shipping_city">--</span><input type="hidden" name="shipping_city">,
-                         <span class="shipping_state"> --</span><input type="hidden" name="shipping_state">
-                         <br>
-                         <span class="shipping_country"> --</span><input type="hidden" name="shipping_country">,
-                         <span class="shipping_zip"> --</span><input type="hidden" name="shipping_zip">
-                       </address>
-                     </div>
+                         <span class="billing_country">
+                          <?php foreach ($country as $key => $value) {
+                            if ( $value['country_id'] == $invoice->billing_country)
+                            {
+                             ?><?php echo $value['short_name']; ?>
+                             <input type="hidden" name="billing_country" class="billing_country" value="<?php echo $value['country_id']; ?>">
+                             <?php
+                           }
+
+                         } ?>
+                       </span>,
+                       <span class="billing_zip"><?php echo $invoice->billing_zip; ?></span><input type="hidden" name="billing_zip" class="billing_zip">
+                     </address>
                    </div>
-                   <div class="row">
-                     <div class="col-md-12">
-                       <div class="form-group" >
-                        <label for="invoice" > <small class="req text-danger">* </small> Invoice Number</label>
-                        <div class="input-group date">
-                          <input type="text" name="invoice_number" class="form-control datepicker"  autocomplete="off">
-                          <div >
-                          </div>
+                   <div class="col-md-6">
+                     <p class="bold">Ship to</p>
+                     <address>
+                       <span class="shipping_street"><?php echo $invoice->shipping_street; ?></span><input type="hidden" name="shipping_street" value="<?php echo $invoice->shipping_street; ?>"><br>
+                       <span class="shipping_city"><?php echo $invoice->shipping_city; ?></span><input type="hidden" name="shipping_city" value="<?php echo $invoice->shipping_city; ?>">,
+                       <span class="shipping_state"><?php echo $invoice->shipping_state; ?></span><input type="hidden" name="shipping_state" value="<?php echo $invoice->shipping_state; ?>">
+                       <br>
+                       <span class="shipping_country"><?php foreach ($country as $key => $value) {
+                            if ( $value['country_id'] == $invoice->shipping_country)
+                            {
+                             ?><?php echo $value['short_name']; ?>
+                             <input type="hidden" name="shipping_country"  value="<?php echo $value['country_id']; ?>" >
+                             <?php
+                           }
+
+                         } ?></span>,
+                       <span class="shipping_zip"><?php echo $invoice->shipping_zip; ?></span><input type="hidden" name="shipping_zip" value="<?php echo $invoice->shipping_zip; ?>">
+                     </address>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-12">
+                     <div class="form-group" >
+                      <label for="invoice" > <small class="req text-danger"> * </small> Invoice Number</label>
+                      <div class="input-group date">
+                        <input type="text" name="invoice_number" class="form-control datepicker"  autocomplete="off">
+                        <div >
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                   <div class="col-md-6">
-                    <div class="form-group" >
-                      <label for="date" > <small class="req text-danger">* </small> Invoice Date</label>
-                      <div class="input-group date"><input type="date" id="date"  name="invoice_date" class="form-control datepicker"  autocomplete="off"><div >
-
-                      </div></div></div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group" ><label for="open_till" >Due Date</label><div class="input-group date"><input type="date"  name="due_date" id="open_till" class="form-control datepicker" autocomplete="off"><div class="input-group-addon">
-                      </div>
-                    </div>
-                  </div>                          
                 </div>
-              </div>                                                      
-            </div> 
-            <div class="col-md-6 " >
-              <div class="row">
-                <div class="col-md-12">
-                  <fieldset class="form-group">
-                    <label for="helpInputTop"> Tags</label>
-                    <select class="form-control select2" name="tag[]" id="tag" multiple>
-                      <option value=""></option>
-                      <?php foreach ($tags as $key => $value) {
-                       ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
-                     } ?>
-                   </select>
-                 </fieldset>
-               </div>
-             </div>
-             <div class="row">
+                <div class="row">
+                 <div class="col-md-6">
+                  <div class="form-group" >
+                    <label for="date" > <small class="req text-danger">* </small> Invoice Date</label>
+                    <div class="input-group date"><input type="date" id="date"  name="invoice_date" class="form-control datepicker"  autocomplete="off" value="<?php echo $invoice->date; ?>"><div >
+                    </div></div></div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group" ><label for="open_till" >Due Date</label><div class="input-group date"><input type="date"  name="due_date" id="open_till" class="form-control datepicker" autocomplete="off"><div class="input-group-addon" value="<?php echo $invoice->duedate; ?>">
+                    </div>
+                  </div>
+                </div>                          
+              </div>
+            </div>                                                      
+          </div> 
+          <div class="col-md-6 " >
+            <div class="row">
               <div class="col-md-12">
                 <fieldset class="form-group">
-                  <label for="helpInputTop"> Allowed payment modes for this invoice</label>
-                  <select class="form-control select2" name="payment_modes[]"  multiple>
+                  <label for="helpInputTop"> Tags</label>
+                  <select class="form-control select2" name="tag[]" id="tag" multiple>
                     <option value=""></option>
-                    <?php foreach ($payment_modes as $key => $value) {
+                    <?php foreach ($tags as $key => $value) {
                      ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
                    } ?>
                  </select>
@@ -120,91 +125,104 @@
              </div>
            </div>
            <div class="row">
-             <div class="col-md-6">
-              <div class="form-group" ><label for="currency" > <small class="req text-danger">* </small> Currency</label>
-                <select class="form-control" name="currency" >
-                  <option value="0"></option>
-                  <?php foreach ($currencies as $key => $value) {
-                   ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option>
-                   <?php 
-                 } ?>
-               </select>
-             </div></div>
-             <div class="col-md-6">
-              <div class="form-group" >
-                <label for="open_till" >Sale Agent</label>
-                <select class="form-control" id="sale_agent" name="sale_agent">
+            <div class="col-md-12">
+              <fieldset class="form-group">
+                <label for="helpInputTop"> Allowed payment modes for this invoice</label>
+                <select class="form-control select2" name="payment_modes[]"  multiple>
+                  <?php $pay = unserialize($invoice->allowed_payment_modes); ?>
                   <option value=""></option>
-                  <?php foreach ($sale_agent as $key => $value) {
-                   ?><option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." ".$value['lastname']; ?></option>
-                   <?php 
+                  <?php foreach ($payment_modes as $key => $value) {
+                   ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option><?php 
                  } ?>
-
                </select>
-             </div> </div>
+             </fieldset>
            </div>
-           <div class="row">
-             <div class="col-md-6">
-              <div class="form-group" ><label for="currency" ><small class="req text-danger">* </small> Recurring Invoice?</label>
-                <select class="form-control" name="recurring" id="recurring">
-                  <option value="0">No</option>
-                  <option value="1">Every 1 month</option>
-                  <option value="2">Every 2 month</option>
-                  <option value="3">Every 3 month</option>
-                  <option value="4">Every 4 month</option>
-                  <option value="5">Every 5 month</option>
-                  <option value="6">Every 6 month</option>
-                  <option value="7">Every 7 month</option>
-                  <option value="8">Every 8 month</option>
-                  <option value="9">Every 9 month</option>
-                  <option value="10">Every 10 month</option>
-                  <option value="11">Every 11 month</option>
-                  <option value="12">Every 12 month</option>
-                  <option value="custom">Custom</option>
+         </div>
+         <div class="row">
+           <div class="col-md-6">
+            <div class="form-group" ><label for="currency" > <small class="req text-danger">* </small> Currency</label>
+              <select class="form-control" name="currency" >
+                <option value="0"></option>
+                <?php foreach ($currencies as $key => $value) {
+                 ?><option value="<?php  echo $value['id']; ?>"><?php echo $value['name']; ?></option>
+                 <?php 
+               } ?>
+             </select>
+           </div></div>
+           <div class="col-md-6">
+            <div class="form-group" >
+              <label for="open_till" >Sale Agent</label>
+              <select class="form-control" id="sale_agent" name="sale_agent">
+                <option value=""></option>
+                <?php foreach ($sale_agent as $key => $value) {
+                 ?><option value="<?php  echo $value['staffid']; ?>"><?php echo $value['firstname']." ".$value['lastname']; ?></option>
+                 <?php 
+               } ?>
+
+             </select>
+           </div> </div>
+         </div>
+         <div class="row">
+           <div class="col-md-6">
+            <div class="form-group" ><label for="" ><small class="req text-danger">* </small> Recurring Invoice?</label>
+              <select class="form-control" name="recurring" id="recurring">
+                <option value="0" <?php if ($Invoice->recurring == 0) { echo ' selected="selected"'; } ?>>No</option>
+                <option value="1" <?php if ($Invoice->recurring == 1) { echo ' selected="selected"'; } ?>>Every 1 month</option>
+                <option value="2" <?php if ($Invoice->recurring == 2) { echo ' selected="selected"'; } ?>>Every 2 month</option>
+                <option value="3" <?php if ($Invoice->recurring == 3) { echo ' selected="selected"'; } ?>>Every 3 month</option>
+                <option value="4" <?php if ($Invoice->recurring == 4) { echo ' selected="selected"'; } ?>>Every 4 month</option>
+                <option value="5" <?php if ($Invoice->recurring == 5) { echo ' selected="selected"'; } ?>>Every 5 month</option>
+                <option value="6" <?php if ($Invoice->recurring == 6) { echo ' selected="selected"'; } ?>>Every 6 month</option>
+                <option value="7" <?php if ($Invoice->recurring == 7) { echo ' selected="selected"'; } ?>>Every 7 month</option>
+                <option value="8" <?php if ($Invoice->recurring == 8) { echo ' selected="selected"'; } ?>>Every 8 month</option>
+                <option value="9" <?php if ($Invoice->recurring == 9) { echo ' selected="selected"'; } ?>>Every 9 month</option>
+                <option value="10" <?php if ($Invoice->recurring == 10) { echo ' selected="selected"'; } ?>>Every 10 month</option>
+                <option value="11" <?php if ($Invoice->recurring == 11) { echo ' selected="selected"'; } ?>>Every 11 month</option>
+                <option value="12" <?php if ($Invoice->recurring == 12) { echo ' selected="selected"'; } ?>>Every 12 month</option>
+                <option value="custom" <?php if ($Invoice->recurring == 'custom') { echo ' selected="selected"'; } ?>>Custom</option>
+              </select>
+            </div></div>
+            <div class="col-md-6">
+              <div class="form-group" >
+                <label for="discount_type" >Discount Type</label>
+                <select class="form-control"  name="discount_type">
+                  <option value=""></option>
+                  <option value="1">Before Tax</option>
+                  <option value="2">After Tax</option>
                 </select>
-              </div></div>
-              <div class="col-md-6">
-                <div class="form-group" >
-                  <label for="discount_type" >Discount Type</label>
-                  <select class="form-control"  name="discount_type">
-                    <option value=""></option>
-                    <option value="1">Before Tax</option>
-                    <option value="2">After Tax</option>
-                  </select>
-                </div> 
-              </div>
+              </div> 
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group" >
-                  <input type="text" name="custom_recurring" id="custom_recurring" class="form-control">
-                </div> 
-              </div>
-              <div class="col-md-6">
-                <div class="form-group" >
-                  <input type="text" name="recurring_type" id="recurring_type" class="form-control">
-                </div> 
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group" >
+                <input type="text" name="custom_recurring" id="custom_recurring" value="" class="form-control">
+              </div> 
             </div>
-            <fieldset id="infinity">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <div class="checkbox">
-                      <input type="checkbox" class="checkbox__input" id="checkboxinput" name="checkbox">
-                      <label for="checkboxinput"></label>
-                    </div>
+            <div class="col-md-6">
+              <div class="form-group" >
+                <input type="text" name="recurring_type" id="recurring_type" class="form-control">
+              </div> 
+            </div>
+          </div>
+          <fieldset id="infinity">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <div class="checkbox">
+                    <input type="checkbox" class="checkbox__input" id="checkboxinput" name="checkbox">
+                    <label for="checkboxinput"></label>
                   </div>
                 </div>
-                <input type="text" class="form-control" name="cycles" id="cycles" aria-label="Text input with checkbox" disabled>
               </div>
-            </fieldset>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group" >
-                  <label for="open_till" > Admin Note</label>
-                  <textarea class="form-control" name="adminnote"></textarea>
-                </div>
+              <input type="text" class="form-control" name="cycles" id="cycles" aria-label="Text input with checkbox" disabled>
+            </div>
+          </fieldset>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group" >
+                <label for="open_till" > Admin Note</label>
+                <textarea class="form-control" name="adminnote"></textarea>
               </div>
             </div>
           </div>
@@ -212,6 +230,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 </div>
 </div>
@@ -403,22 +422,22 @@
 
           <div class="form-group">
             <label class="control-label" for="title">Street:</label>
-            <input type="text" name="street" id="billing_street_add" class="form-control"  required />
+            <input type="text" name="street" id="billing_street_add" class="form-control" value="<?php echo $invoice->billing_street; ?>" required />
             <div class="help-block with-errors"></div>
           </div>
           <div class="form-group">
             <label class="control-label" for="title">City:</label>
-            <input type="text" name="city" class="form-control" id="billing_city_add" required />
+            <input type="text" name="city" class="form-control" id="billing_city_add" value="<?php echo $invoice->billing_city; ?>" required />
             <div class="help-block with-errors"></div>
           </div>
           <div class="form-group">
             <label class="control-label" for="title">State:</label>
-            <input type="text" name="city" class="form-control" id="billing_state_add"  required />
+            <input type="text" name="city" class="form-control" id="billing_state_add" value="<?php echo $invoice->billing_state; ?>"  required />
             <div class="help-block with-errors"></div>
           </div>
           <div class="form-group">
             <label class="control-label" for="title">Zip Code:</label>
-            <input type="text" name="city" class="form-control" id="billing_zip_add"  required />
+            <input type="text" name="city" class="form-control" id="billing_zip_add" value="<?php echo $invoice->billing_zip; ?>"  required />
             <div class="help-block with-errors"></div>
           </div>
           <div class="form-group">
@@ -427,80 +446,100 @@
             <select id="billing_country_add" class="form-control">
               <option value="0">Nothing selected</option>
               <?php foreach ($country as $key => $value) {
-               ?>
-               <option value="<?php  echo $value['country_id']; ?>"><?php echo $value['short_name']; ?></option>
-               <?php 
-             } ?>
-           </select>
-           <div class="help-block with-errors"></div>
-         </div>
-         <hr>
-         <div class="col-md-12">
-          <input type="checkbox" name="" class="shipping_address" id="shipping_address">
-          <label>Shipping Address</label>
-        </div>
-        <div id="show_shiiping">
-         <div class="col-md-12">
-          <input type="checkbox" name="" class="show_shipping_on_invoice" id="show_shipping_on_invoice">
-          <label>Show shipping details in invoice</label>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="title">Street:</label>
-          <input type="text" name="street" class="form-control" id="shipping_street_add"  required />
-          <div class="help-block with-errors"></div>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="title">City:</label>
-          <input type="text" name="city" class="form-control" id="shipping_city_add"  required />
-          <div class="help-block with-errors"></div>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="title">State:</label>
-          <input type="text" name="city" class="form-control" id="shipping_state_add"  required />
-          <div class="help-block with-errors"></div>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="title">Zip Code:</label>
-          <input type="text" name="city" class="form-control" id="shipping_zip_add"  required />
-          <div class="help-block with-errors"></div>
-        </div>
-        <div class="form-group">
-          <label class="control-label" for="title">Country:</label>
-          <select id="shipping_country_add" class="form-control">
-            <option value="0">Nothing selected</option>
-            <?php foreach ($country as $key => $value) {
-             ?>
-             <option value="<?php  echo $value['country_id']; ?>"><?php echo $value['short_name']; ?></option>
-             <?php 
-           } ?>
-         </select>
+                if ( $value['country_id'] == $invoice->billing_country)
+                {
+    // Select this city
+                  $selectedText = "selected='selected'";
+                }
+                else
+                {
+    // Don't select this city
+                  $selectedText = "";
+                }
+                ?>
+                <option value="<?php  echo $value['country_id']; ?>" <?php echo  $selectedText; ?>><?php echo $value['short_name']; ?></option>
+                <?php 
+              } ?>
+            </select>
+            <div class="help-block with-errors"></div>
+          </div>
+          <hr>
+          <div class="col-md-12">
+            <input type="checkbox" name="" class="shipping_address" id="shipping_address">
+            <label>Shipping Address</label>
+          </div>
+          <div id="show_shiiping">
+           <div class="col-md-12">
+            <input type="checkbox" name="" class="show_shipping_on_invoice" id="show_shipping_on_invoice">
+            <label>Show shipping details in invoice</label>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="title">Street:</label>
+            <input type="text" name="street" class="form-control" id="shipping_street_add"  required />
+            <div class="help-block with-errors"></div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="title">City:</label>
+            <input type="text" name="city" class="form-control" id="shipping_city_add"  required />
+            <div class="help-block with-errors"></div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="title">State:</label>
+            <input type="text" name="city" class="form-control" id="shipping_state_add"  required />
+            <div class="help-block with-errors"></div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="title">Zip Code:</label>
+            <input type="text" name="city" class="form-control" id="shipping_zip_add"  required />
+            <div class="help-block with-errors"></div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="title">Country:</label>
+            <select id="shipping_country_add" class="form-control">
+              <option value="0">Nothing selected</option>
+              <?php foreach ($country as $key => $value) {
+                if ( $value['country_id'] == $invoice->shipping_country)
+                {
+    // Select this city
+                  $selectedText = "selected='selected'";
+                }
+                else
+                {
+    // Don't select this city
+                  $selectedText = "";
+                }
+                ?>
+                <option value="<?php  echo $value['country_id']; ?>" <?php echo $selectedText; ?>><?php echo $value['short_name']; ?></option>
+                <?php 
+              } ?>
+            </select>
 
-         <div class="help-block with-errors"></div>
-       </div>
+            <div class="help-block with-errors"></div>
+          </div>
 
-       <hr>
-     </div>
-     <div class="form-group">
-      <button type="submit" data-dismiss="modal" class="btn shipping-billing-submit btn-success " id="apply">Apply</button>
+          <hr>
+        </div>
+        <div class="form-group">
+          <button type="submit" data-dismiss="modal" class="btn shipping-billing-submit btn-success " id="apply">Apply</button>
+        </div>
+      </form>
     </div>
-  </form>
-</div>
 
 
-</div>
+  </div>
 </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script  src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
   $('[name="checkbox"]').change(function()
-      {
-        if ($(this).is(':checked',false)) {
+  {
+    if ($(this).is(':checked',false)) {
            // Do something...
            $("#cycles").prop('disabled', false);
            //alert('You can rock now...');
-        };
-      });
+         };
+       });
   
   $('#infinity').hide();
   $('#recurring_type').hide();
@@ -513,11 +552,11 @@
     }else if(this.value == 0){
       $('#custom_recurring').hide();
       $('#recurring_type').hide();
-     $('#infinity').hide();
-   }else if(this.value !=''){
+      $('#infinity').hide();
+    }else if(this.value !=''){
      $('#infinity').show();
-      $('#custom_recurring').hide();
-      $('#recurring_type').hide();
+     $('#custom_recurring').hide();
+     $('#recurring_type').hide();
    }else{
     $('#infinity').hide();
   }
@@ -722,9 +761,9 @@ $.ajax({
  data:$('#invoice_form').serialize(),
  success: function(res){
    console.log(res);
-   //alert(res);
+   alert(res);
 
-          window.location.href= "<?php echo base_url('admin/invoices'); ?>";
+          //window.location.href= "<?php echo base_url('admin/invoices'); ?>";
         }
       });
 });

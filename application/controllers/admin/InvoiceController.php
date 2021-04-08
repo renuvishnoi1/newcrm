@@ -12,6 +12,10 @@ class InvoiceController extends MY_Controller
   public function index(){
    $data['title'] = "Invoices";
 
+   $data['records']= $this->invoiceModel->get_invoice();
+   // echo "<pre>";
+   // print_r($data);
+   // die;   
    $this->admin_load('invoices/invoice_list',$data);  	
  }
  public function addInvoice(){
@@ -36,7 +40,7 @@ class InvoiceController extends MY_Controller
  }
  public function insertInvoice(){
   //   echo "<pre>";
-  // print_r($_POST['tag']);
+  // print_r($_POST);
   // die;
   $data['clientid'] = isset($_POST['clientid']) ? $_POST['clientid'] : '';
   $data['billing_street'] = isset($_POST['billing_street']) ? $_POST['billing_street'] : '';
@@ -65,7 +69,6 @@ class InvoiceController extends MY_Controller
   $data['subtotal'] = isset($_POST['subtotal']) ? $_POST['subtotal'] : '';
   $data['adjustment'] = isset($_POST['adjustment']) ? $_POST['adjustment'] : '';
   $data['total'] = isset($_POST['total']) ? $_POST['total'] : '';
-
   $invoice_table ='tblinvoices';
   $invoiceData = $this->invoiceModel->insert($invoice_table,$data);
  
@@ -120,6 +123,53 @@ $tags = $this->invoiceModel->insert($tagTable, $tagData);
  }
 
 } 
+public function editInvoice($id){
+  $data['title'] = "Edit Invoices";
+  $data['invoice'] = $this->invoiceModel->get($id);
+  $data['payment_modes'] = $this->invoiceModel->get_list('tblpayment_modes');
+   $data['sale_agent'] = $this->invoiceModel->get_list('tblstaff');
+   $data['tags']= $this->invoiceModel->get_list('tbltags');
+   $data['clients'] = $this->invoiceModel->get_list('tblclients');
+   $data['country']= $this->invoiceModel->get_list('tblcountries');
+   $data['items']= $this->invoiceModel->get_list('tblitems');
+   $data['tax']= $this->invoiceModel->get_list('tbltaxes');
+   $data['currencies']= $this->invoiceModel->get_list('tblcurrencies');
+  // echo "<pre>";
+  // print_r($data['invoice']);die;
+
+  $this->admin_load('invoices/edit_invoice',$data);
+}
+public function updateInvoice(){
+  $id = isset($_POST['invoice_id']) ? $_POST['invoice_id'] : '';
+$data['clientid'] = isset($_POST['clientid']) ? $_POST['clientid'] : '';
+  $data['billing_street'] = isset($_POST['billing_street']) ? $_POST['billing_street'] : '';
+  $data['billing_city'] = isset($_POST['billing_city']) ? $_POST['billing_city'] : '';
+  $data['billing_state'] = isset($_POST['billing_state']) ? $_POST['billing_state'] : '';
+  $data['billing_country'] = isset($_POST['billing_country']) ? $_POST['billing_country'] : '';
+  $data['billing_zip'] = isset($_POST['billing_zip']) ? $_POST['billing_zip'] : '';
+  $data['shipping_street'] = isset($_POST['shipping_street']) ? $_POST['shipping_street'] : '';
+  $data['shipping_city'] = isset($_POST['shipping_city']) ? $_POST['shipping_city'] : '';
+  $data['shipping_state'] = isset($_POST['shipping_state']) ? $_POST['shipping_state'] : '';
+  $data['shipping_country'] = isset($_POST['shipping_country']) ? $_POST['shipping_country'] : '';
+  $data['shipping_zip'] = isset($_POST['shipping_zip']) ? $_POST['shipping_zip'] : '';
+  //$data['invoice_number'] = isset($_POST['invoice_number']) ? $_POST['invoice_number'] : '';
+  $data['date'] = isset($_POST['invoice_date']) ? $_POST['invoice_date'] : '';
+  $data['duedate'] = isset($_POST['due_date']) ? $_POST['due_date'] : '';
+  $data['currency'] = isset($_POST['currency']) ? $_POST['currency'] : '';
+  $data['sale_agent'] = isset($_POST['sale_agent']) ? $_POST['sale_agent'] : '';//serialize
+  $payment_modes = isset($_POST['payment_modes']) ? $_POST['payment_modes'] : '';
+  $data['allowed_payment_modes'] =  serialize($payment_modes);
+  $data['terms'] = isset($_POST['terms']) ? $_POST['terms'] : '';
+  $data['clientnote'] = isset($_POST['clientnote']) ? $_POST['clientnote'] : '';
+  $data['adminnote'] = isset($_POST['adminnote']) ? $_POST['adminnote'] : '';
+  $data['cycles'] = isset($_POST['cycles']) ? $_POST['cycles'] : '';
+  $data['custom_recurring'] = isset($_POST['custom_recurring']) ? $_POST['custom_recurring'] : '';
+  $data['recurring_type'] = isset($_POST['recurring_type']) ? $_POST['recurring_type'] : '';
+  $data['subtotal'] = isset($_POST['subtotal']) ? $_POST['subtotal'] : '';
+  $data['adjustment'] = isset($_POST['adjustment']) ? $_POST['adjustment'] : '';
+  $data['total'] = isset($_POST['total']) ? $_POST['total'] : '';
+  $invoice_table ='tblinvoices';
+}
 
 
 
